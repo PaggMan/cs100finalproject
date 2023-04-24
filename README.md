@@ -13,3 +13,14 @@
 #### Ryan Noghani
 - [Github Page](https://github.com/ryannoghani)
 - [Issues](https://github.com/cs100/final-project-ksugi014-cmill100-pchen215-rnogh001/issues?q=user%3Aryannoghani)
+
+## Project Description
+
+### Why is it important to us?
+- uh uh i dont knwo asfasdfasdfsal fsla place holder text
+### What languages/tools/technologies do we plan to use?
+- The majority of the project will be done C++. We also plan to use some external dependencies like [FTXUI](https://github.com/ArthurSonzogni/FTXUI) that will allow us to build terminal interfaces easily
+### What will be the input/output of your project?
+- adfsafas
+### What are the features that the project provides?
+- asdfasdfasdflsajdfsldjfsladfjsalk
