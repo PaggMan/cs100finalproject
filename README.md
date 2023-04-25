@@ -1,4 +1,4 @@
-# Story Mode (tentative title)
+# Texed-Based RPG (tentative title)
 
 ## Authors
 #### Komay Sugiyama (ksugi014)
