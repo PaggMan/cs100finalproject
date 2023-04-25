@@ -17,7 +17,7 @@
 ## Project Description
 
 ### Why is it important to us?
-- uh uh i dont knwo asfasdfasdfsal fsla place holder text
+- We have all come across some sort of story game in our lives, so it would be interesting to understand how one works behind the scenes.
 ### What languages/tools/technologies do we plan to use?
 - The majority of the project will be done C++. We also plan to use some external dependencies like [FTXUI](https://github.com/ArthurSonzogni/FTXUI) that will allow us to build terminal interfaces easily
 ### What will be the input/output of your project?
