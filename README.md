@@ -1,4 +1,4 @@
-# Texted-Based RPG (tentative title)
+# Senior CS Student Simulator
 
 ## Authors
 #### Komay Sugiyama (ksugi014)
