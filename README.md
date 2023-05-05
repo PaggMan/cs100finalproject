@@ -1,4 +1,4 @@
-# Texed-Based RPG (tentative title)
+# Texted-Based RPG (tentative title)
 
 ## Authors
 #### Komay Sugiyama (ksugi014)
