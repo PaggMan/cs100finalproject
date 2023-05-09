@@ -24,3 +24,11 @@
 - The input will be keys to navigate the menu and make choices, while the output will be story prompts displayed by the terminal.
 ### What are the features that the project provides?
 - The project provides a menu, character customization, ability to save/restart the game, make choices that impact the path the game takes.
+
+
+### Screen Navigation
+
+<img src="https://cdn.discordapp.com/attachments/1096301999986835466/1105351405377704017/image.png"  width="600" height="300">
+
+### UML Diagram
+<img src="https://cdn.discordapp.com/attachments/1096301999986835466/1105354990064771122/Senior_CS_Student_Simulator.jpg"  width="600" height="300">
