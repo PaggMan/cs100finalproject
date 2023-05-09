@@ -32,3 +32,6 @@
 
 ### UML Diagram
 <img src="https://cdn.discordapp.com/attachments/1096301999986835466/1105354990064771122/Senior_CS_Student_Simulator.jpg"  width="600">
+
+
+This is our tentative UML diagram. Our game will consist of these classes. The "user" who's playing will be represented with our character class which will store their stats, and also store the actions that they can do. For example, things like changing their grades and health status. These changes will be brought about thorugh the game or minigame classes that will invoke different characther methods depending on what type of actions they do. If they skip school for example, the game class will use the character class health mutator to change their mental heath status to be a little better.
