@@ -1,4 +1,4 @@
-# Texted-Based RPG (tentative title)
+# Senior CS Student Simulator
 
 ## Authors
 #### Komay Sugiyama (ksugi014)
@@ -24,3 +24,14 @@
 - The input will be keys to navigate the menu and make choices, while the output will be story prompts displayed by the terminal.
 ### What are the features that the project provides?
 - The project provides a menu, character customization, ability to save/restart the game, make choices that impact the path the game takes.
+
+
+### Screen Navigation
+
+<img src="https://cdn.discordapp.com/attachments/1096301999986835466/1105351405377704017/image.png"  width="600" height="300">
+
+### UML Diagram
+<img src="https://cdn.discordapp.com/attachments/1096301999986835466/1105354990064771122/Senior_CS_Student_Simulator.jpg"  width="600">
+
+
+This is our tentative UML diagram. Our game will consist of these classes. The "user" who's playing will be represented with our character class which will store their stats, and also store the actions that they can do. For example, things like changing their grades and health status. These changes will be brought about thorugh the game or minigame classes that will invoke different characther methods depending on what type of actions they do. If they skip school for example, the game class will use the character class health mutator to change their mental heath status to be a little better. The screen class is what we will use to render our game and allow for interaction between the user and our code. There will be methods like printing the screen and taking the user input
