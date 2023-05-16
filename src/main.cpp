@@ -1,6 +1,8 @@
 #include <iostream>
 #include "../include/game.h"
 #include <experimental/filesystem>
+#include <ftxui/dom/elements.hpp>
+#include <ftxui/screen/screen.hpp>
 using namespace std;
 
 namespace fs = std::experimental::filesystem;

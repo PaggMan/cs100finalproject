@@ -12,6 +12,9 @@ add_executable(rungame
     src/character.cpp
 )
 
+
+
+
 # Include the JSONCpp headers
 target_include_directories(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -23,3 +26,19 @@ target_sources(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_writer.cpp
 )
+
+
+
+
+# Include the FTXUI headers
+target_include_directories(rungame PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+# Add all FTXUI source files to your project
+file(GLOB FTXUI_SOURCE_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/*.hpp
+    # Add other patterns if necessary
+)
+target_sources(rungame PRIVATE ${FTXUI_SOURCE_FILES})
