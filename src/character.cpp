@@ -11,7 +11,7 @@ Character::~Character() {
 
 }
 
-int Character::getGrades() { return name; }
+string Character::getName() { return name; }
 int Character::getGrades() { return grades; }
 int Character::getHappiness(){ return happiness; }
 int Character::getHealth() { return health; }
