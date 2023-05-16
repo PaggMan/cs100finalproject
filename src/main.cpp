@@ -24,6 +24,7 @@ int main() {
     if(choice == 1) {
         // Start new game
         game->start();
+        game->save();
     }
     else if(choice == 2) {
         // Load saved game

@@ -5,6 +5,7 @@ Character::Character() {
     grades = 50;
     happiness = 50;
     health = 50;
+    name  = "Cole";
 }
 
 Character::~Character() {

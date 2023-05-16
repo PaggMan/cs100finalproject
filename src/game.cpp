@@ -22,8 +22,27 @@ void Game::load(string fileName) {
 }
 
 void Game::save() {
-    std::ofstream file;
-    file.open(name + ".json");
+    // Write character data
+    Json::Value characterToWrite;
+    characterToWrite["name"] = character->getName();
+    characterToWrite["grades"] = character->getGrades();
+    characterToWrite["happiness"] = character->getHappiness();
+    characterToWrite["health"] = character->getHealth();
+
+    // Create a JSON object for the game
+    Json::Value game;
+    game["character"] = characterToWrite;
+    game["version"] = "1.0";
+    game["name"] = "College Student Simulator";
+    
+
+    // Write the JSON to a file
+    Json::StyledWriter writer;
+    std::string jsonString = writer.write(game);
+    std::ofstream file("gamedata/game.json");
+    file << jsonString;
+    file.close();
+
 
 }
 
