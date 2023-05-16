@@ -1,4 +1,7 @@
+#ifndef __CHARACTER__
+#define __CHARACTER__
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Character {
@@ -12,3 +15,5 @@ class Character {
         Character();
         ~Character();
 };
+
+#endif
