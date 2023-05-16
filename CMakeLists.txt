@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_STANDARD 17)
 project(CsStudentSimulator)
 
-# Add your own project's source files
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+
+# Add project source files
 add_executable(rungame
     src/main.cpp
     src/game.cpp
@@ -15,7 +17,7 @@ target_include_directories(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Add the JSONCpp source files to your project
+# Add the JSONCpp source files to project
 target_sources(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_reader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
