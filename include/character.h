@@ -15,6 +15,7 @@ class Character {
         Character();
         ~Character();
 
+        int getName();
         int getGrades();
         int getHappiness();
         int getHealth();
