@@ -14,6 +14,12 @@ class Character {
     public:
         Character();
         ~Character();
+
+        int getGrades();
+        int getHappiness();
+        int getHealth();
+
+        
 };
 
 #endif
