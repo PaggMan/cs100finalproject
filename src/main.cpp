@@ -21,10 +21,10 @@ int main() {
     cin >> choice;
 
     system("clear");
-    Game* game = new Game();
     // Process user input
     if(choice == 1) {
         // Start new game
+        Game* game = new Game();
         game->start();
         game->save();
     }
@@ -38,6 +38,7 @@ int main() {
         //         std::cout << entry.path().filename() << std::endl;
         //     }
         // }
+        Game* game = new Game();
         game->start();
     } 
     else {
