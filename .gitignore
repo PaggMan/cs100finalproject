@@ -8,3 +8,5 @@ Makefile
 _deps/
 cmake_install.cmake
 *.out
+bin/
+gamedata/

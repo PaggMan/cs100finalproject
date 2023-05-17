@@ -1,15 +1,18 @@
-#include "character.h"
 #include <cstdlib>
+#include "../include/character.h"
 
-    Character(){
+Character::Character() {
+    std::cout << "Character created" << endl;
+    grades = 50;
+    happiness = 50;
+    health = 50;
+    name  = "Cole";
+}
 
-    }
-    Character(const string& n, int g, int hp, int happ){
-        name = n;
-        grades = g;
-        health = hp;
-        happiness = happ;
-    }
+Character::~Character() {
+
+}
+
     ~Character();
 
     //stat accsessors
