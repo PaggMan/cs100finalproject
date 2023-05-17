@@ -11,10 +11,10 @@ using namespace ftxui;
 
 int main() {
 
-  // Create the New Game button.
-  bool renderScreens = true;
+  bool showNewGameScreen = true; // Flag to control the new game screen visibility
+
   auto gameTitle = text(L"CS Student Simulator") | bold | hcenter | color(Color::Green);
-  Component new_game_button = Button("New Game", [] {
+  Component new_game_button = Button("New Game", [&] {
       // On button click
       std::string gameName;
 
@@ -31,6 +31,13 @@ int main() {
           Game* game = new Game();
           game->setName(gameName);
           game->save();
+          showNewGameScreen = false; // Hide the new game screen
+
+          // buttons = Container::Vertical({}); // Set the component to an empty container
+          // screen.PostEvent(Event::Custom); // Trigger a custom event to force a redraw
+
+          
+        // From this point on, the game object can handle the game screens
         }
       });
       
@@ -75,12 +82,17 @@ int main() {
   });
 
   auto titleScreen = Renderer(buttons, [&] {
-    return vbox({
-               gameTitle,
-               separator(),
-               buttons->Render(),
-           }) |
-           border;
+    if(showNewGameScreen) {
+      return vbox({
+            gameTitle,
+            separator(),
+            buttons->Render(),
+        }) |
+      border;
+    }
+    else { // clear the screen
+     return vbox({}) | border;
+    }
   });
 
   // Create the screen and render the container.
