@@ -12,6 +12,7 @@ using namespace ftxui;
 int main() {
 
   // Create the New Game button.
+  bool renderScreens = true;
   auto gameTitle = text(L"CS Student Simulator") | bold | hcenter | color(Color::Green);
   Component new_game_button = Button("New Game", [] {
       // On button click
@@ -20,23 +21,45 @@ int main() {
       Component inputGameName = Input(&gameName, "My Game #1");
       Component test = Input(&gameName, "Name the game");
 
-      auto component = Container::Vertical({
-        inputGameName
+
+
+
+      Component submitButton = Button("Ready", [&] {
+      // On submit button click
+        if (!gameName.empty()) {
+          // Game name is not empty, do something with it
+          Game* game = new Game();
+          game->setName(gameName);
+          game->save();
+        }
+      });
+      
+      auto newGameComponents = Container::Vertical({
+        inputGameName,
+        submitButton
       });
 
-
-      auto renderer = Renderer(component, [&] {
+      auto newGameScreen = Renderer(newGameComponents, [&] {
       return vbox({
-                text("What would you like to name your game"),
-                separator(),
-                // hbox(text(" Name of game: "), inputGameName->Render()),
-                hbox(inputGameName->Render())
-      }) | border;
-  });
+          text("What would you like to name your game"),
+          separator(),
+          // hbox(text(" Name of game: "), inputGameName->Render()),
+          hbox(inputGameName->Render()),
+          separator(),
+          hbox(submitButton->Render())
+     }) | border;
+
+
+      });
  
-  auto screen = ScreenInteractive::Fullscreen();
-  screen.Loop(renderer);
-      Game* game = new Game();
+      auto screen = ScreenInteractive::Fullscreen();
+      screen.Loop(newGameScreen);
+
+
+      
+
+
+
   });
 
   // Create the Load Game button.
@@ -51,7 +74,7 @@ int main() {
     load_game_button,
   });
 
-  auto component = Renderer(buttons, [&] {
+  auto titleScreen = Renderer(buttons, [&] {
     return vbox({
                gameTitle,
                separator(),
@@ -62,7 +85,7 @@ int main() {
 
   // Create the screen and render the container.
   auto screen = ScreenInteractive::Fullscreen();
-  screen.Loop(component);
+  screen.Loop(titleScreen);
 
   return 0;
 }

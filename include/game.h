@@ -12,5 +12,7 @@ class Game {
         ~Game();
         void save();
         void start();
+
+        void setName(const string& name);
         
 };

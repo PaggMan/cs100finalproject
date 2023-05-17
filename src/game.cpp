@@ -7,6 +7,7 @@ Game::Game() {
     std::cout << "New game started" << std::endl;
     character = new Character();
     currentDay = 0;
+    name = "";
 }
 
 Game::~Game() {
@@ -33,7 +34,7 @@ void Game::save() {
     Json::Value game;
     game["character"] = characterToWrite;
     game["version"] = "1.0";
-    game["name"] = "College Student Simulator";
+    game["name"] = name;
     
 
     // Write the JSON to a file
@@ -49,3 +50,5 @@ void Game::save() {
 void Game::start() {
     
 }
+
+void Game::setName(const string& name) {this->name = name;}
