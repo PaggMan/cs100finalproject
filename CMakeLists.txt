@@ -49,7 +49,7 @@ target_sources(rungame PRIVATE ${FTXUI_SOURCE_FILES})
 
 
 # Set the Google Test directory
-set(GTEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/gtest")
+set(GTEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/googletest")
 
 # Add Google Test subdirectory
 add_subdirectory(${GTEST_DIR})
