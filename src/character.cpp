@@ -13,7 +13,6 @@ Character::~Character() {
 
 }
 
-    ~Character();
 
     //stat accsessors
     string Character::getName() { return name; }

@@ -23,9 +23,9 @@ class Character {
         int getHappiness();
 
         //stat modifiers
-        int workout();
-        int studyHarder();
-        int sleep();
-        int hangWithFriends()
+        void workout();
+        void studyHarder();
+        void sleep();
+        void hangWithFriends();
 };
 #endif
