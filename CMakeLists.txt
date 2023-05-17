@@ -12,17 +12,39 @@ add_executable(rungame
     src/character.cpp
 )
 
+ 
+# --- Fetch FTXUI --------------------------------------------------------------
+include(FetchContent)
+ 
+set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
+FetchContent_Declare(ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+  GIT_TAG main
+  # Important: Specify a GIT_TAG XXXXX here.
+)
+ 
+FetchContent_GetProperties(ftxui)
+if(NOT ftxui_POPULATED)
+  FetchContent_Populate(ftxui)
+  add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+ 
+# ------------------------------------------------------------------------------
+
+target_include_directories(rungame PRIVATE src)
+
+target_link_libraries(rungame
+  PRIVATE ftxui::screen
+  PRIVATE ftxui::dom
+  PRIVATE ftxui::component 
+)
 
 
 
-# Include the headers
 target_include_directories(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/component
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui
-
-
 )
+
 
 # Add the JSONCpp source files to project
 target_sources(rungame PRIVATE
@@ -30,22 +52,6 @@ target_sources(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_writer.cpp
 )
-
-
-
-
-
-# Add all FTXUI source files to your project
-file(GLOB FTXUI_SOURCE_FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/component/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/dom/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/screen/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ftxui/component/terminal_input_parser.hpp
-)
-target_sources(rungame PRIVATE ${FTXUI_SOURCE_FILES})
-
-
 
 
 # Set the Google Test directory
@@ -58,4 +64,7 @@ add_subdirectory(${GTEST_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Link Google Test libraries
-target_link_libraries(rungame gtest gtest_main)
+target_link_libraries(rungame 
+    PRIVATE gtest 
+    PRIVATE gtest_main
+    )
