@@ -3,51 +3,73 @@
 #include <experimental/filesystem>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
-using namespace std;
 
 namespace fs = std::experimental::filesystem;
+using namespace ftxui;
 
 int main() {
-    std::cout << "Welcome to College Student Simulator!\n";
+    // // Initialize FTXUI screen
+    // auto screen = Screen(100, 100);
 
-    cout << "Menu: " << endl;
-    cout << "1. New Game" << endl;
-    cout << "2. Load Game" << endl;
-    cout << "3. Quit" << endl;
+    // // Create UI elements
+    // auto title = text(L"College Student Simulator") | bold | hcenter;
+    // auto menu = hbox({
+    //     text(L"1. New Game"),
+    //     text(L"2. Load Game"),
+    //     text(L"3. Quit"),
+    // }) | hcenter;
+    // auto container = vbox({
+    //     title,
+    //     separator(),
+    //     menu,
+    // }) | yflex;
 
-    // Get user input
-    int choice;
-    cout << "Enter your choice (1-3): ";
-    cin >> choice;
+    // // Render the UI
+    // Render(container, &screen);
 
-    system("clear");
-    Game* game = new Game();
-    // Process user input
-    if(choice == 1) {
-        // Start new game
-        game->start();
-        game->save();
-    }
-    else if(choice == 2) {
-        // Load saved game
-        cout << "Which game do you want to load." << endl;
-        // std::string directoryPath = "../data";  // Replace with the actual directory path
+    // // Refresh the screen
+    // screen.Print();
 
-        // for (const auto& entry : fs::directory_iterator(directoryPath)) {
-        //     if (fs::is_regular_file(entry)) {
-        //         std::cout << entry.path().filename() << std::endl;
-        //     }
-        // }
-        game->start();
-    } 
-    else {
-        // Invalid input
-        cout << "Invalid choice. Please enter a number between 1 and 3." << endl;
-    }
+    // // Wait for user input
+    // bool quit = false;
+    // while (!quit) {
+    //     // Read user input
+    //     auto input = screen.GetEvent();
 
+    //     if (input == Event::Character('1')) {
+    //         // Start new game
+    //         std::cout << "Starting new game..." << std::endl;
+    //         Game* game = new Game();
+    //         quit = true;
+    //     } else if (input == Event::Character('2')) {
+    //         // Load saved game
+    //         std::cout << "Loading saved game..." << std::endl;
+    //         quit = true;
+    //     } else if (input == Event::Character('3')) {
+    //         // Quit game
+    //         std::cout << "Quitting game..." << std::endl;
+    //         quit = true;
+    //     }
+    // }
+ 
+  // Define the document
+  Element document =
+    hbox({
+      text("left")   | border,
+      text("middle") | border | flex,
+      text("right")  | border,
+    });
+ 
+  auto screen = Screen::Create(
+    Dimension::Full(),       // Width
+    Dimension::Fit(document) // Height
+  );
+  Render(screen, document);
+  screen.Print();
+ 
+  return EXIT_SUCCESS;
 
-
-    delete game;  // Clean up the dynamically allocated game object
+    
 
     return 0;
 }
