@@ -1,54 +1,47 @@
 #include <iostream>
 #include "../include/game.h"
 #include <experimental/filesystem>
+#include <ftxui/component/component.hpp>
+#include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
-using namespace std;
 
 namespace fs = std::experimental::filesystem;
+using namespace ftxui;
 
 int main() {
-    std::cout << "Welcome to College Student Simulator!\n";
 
-    cout << "Menu: " << endl;
-    cout << "1. New Game" << endl;
-    cout << "2. Load Game" << endl;
-    cout << "3. Quit" << endl;
+  // Create the New Game button.
+  auto gameTitle = text(L"CS Student Simulator") | bold | hcenter | color(Color::Green);
+  Component new_game_button = Button("New Game", [] {
+      // On button click
+      Game* game = new Game();
+  });
 
-    // Get user input
-    int choice;
-    cout << "Enter your choice (1-3): ";
-    cin >> choice;
+  // Create the Load Game button.
+  Component load_game_button = Button("Load Game", [] {
+    // On button click
+    // Display the dropdown with saved games
+  });
 
-    system("clear");
-    // Process user input
-    if(choice == 1) {
-        // Start new game
-        Game* game = new Game();
-        game->start();
-        game->save();
-    }
-    else if(choice == 2) {
-        // Load saved game
-        cout << "Which game do you want to load." << endl;
-        // std::string directoryPath = "../data";  // Replace with the actual directory path
+  // Create the container to hold the buttons.
+  auto buttons = Container::Vertical({
+    new_game_button,
+    load_game_button,
+  });
 
-        // for (const auto& entry : fs::directory_iterator(directoryPath)) {
-        //     if (fs::is_regular_file(entry)) {
-        //         std::cout << entry.path().filename() << std::endl;
-        //     }
-        // }
-        Game* game = new Game();
-        game->start();
-    } 
-    else {
-        // Invalid input
-        cout << "Invalid choice. Please enter a number between 1 and 3." << endl;
-    }
+  auto component = Renderer(buttons, [&] {
+    return vbox({
+               gameTitle,
+               separator(),
+               buttons->Render(),
+           }) |
+           border;
+  });
 
+  // Create the screen and render the container.
+  auto screen = ScreenInteractive::Fullscreen();
+  screen.Loop(component);
 
-
-    delete game;  // Clean up the dynamically allocated game object
-
-    return 0;
+  return 0;
 }
