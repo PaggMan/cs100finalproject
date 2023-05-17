@@ -10,5 +10,18 @@ class Character {
     
     public:
         Character();
+        Character(const string&, int, int, int);
         ~Character();
+
+        //stat accsessors
+        string getName();
+        int getGrades();
+        int getHealth();
+        int getHappiness();
+
+        //stat modifiers
+        int workout();
+        int studyHarder();
+        int sleep();
+        int hangWithFriends()
 };
