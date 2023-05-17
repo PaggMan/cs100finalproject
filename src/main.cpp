@@ -1,6 +1,8 @@
 #include <iostream>
 #include "../include/game.h"
 #include <experimental/filesystem>
+#include <ftxui/component/component.hpp>
+#include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
 
@@ -53,23 +55,37 @@ int main() {
     // }
  
   // Define the document
-  Element document =
-    hbox({
-      text("left")   | border,
-      text("middle") | border | flex,
-      text("right")  | border,
-    });
  
-  auto screen = Screen::Create(
-    Dimension::Full(),       // Width
-    Dimension::Fit(document) // Height
-  );
-  Render(screen, document);
-  screen.Print();
+  std::vector<std::string> entries = {
+      "tribute",     "clearance", "ally",        "bend",        "electronics",
+      "module",      "era",       "cultural",    "sniff",       "nationalism",
+      "negotiation", "deliver",   "figure",      "east",        "tribute",
+      "clearance",   "ally",      "bend",        "electronics", "module",
+      "era",         "cultural",  "sniff",       "nationalism", "negotiation",
+      "deliver",     "figure",    "east",        "tribute",     "clearance",
+      "ally",        "bend",      "electronics", "module",      "era",
+      "cultural",    "sniff",     "nationalism", "negotiation", "deliver",
+      "figure",      "east",
+  };
  
-  return EXIT_SUCCESS;
-
-    
+  int selected_1 = 0;
+  int selected_2 = 0;
+  int selected_3 = 0;
+  int selected_4 = 0;
+ 
+  auto layout = Container::Vertical({
+      Container::Horizontal({
+          Dropdown(&entries, &selected_1),
+          Dropdown(&entries, &selected_2),
+      }),
+      Container::Horizontal({
+          Dropdown(&entries, &selected_3),
+          Dropdown(&entries, &selected_4),
+      }),
+  });
+ 
+  auto screen = ScreenInteractive::FitComponent();
+  screen.Loop(layout);
 
     return 0;
 }
