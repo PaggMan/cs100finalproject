@@ -15,6 +15,27 @@ int main() {
   auto gameTitle = text(L"CS Student Simulator") | bold | hcenter | color(Color::Green);
   Component new_game_button = Button("New Game", [] {
       // On button click
+      std::string gameName;
+
+      Component inputGameName = Input(&gameName, "My Game #1");
+      Component test = Input(&gameName, "Name the game");
+
+      auto component = Container::Vertical({
+        inputGameName
+      });
+
+
+      auto renderer = Renderer(component, [&] {
+      return vbox({
+                text("What would you like to name your game"),
+                separator(),
+                // hbox(text(" Name of game: "), inputGameName->Render()),
+                hbox(inputGameName->Render())
+      }) | border;
+  });
+ 
+  auto screen = ScreenInteractive::Fullscreen();
+  screen.Loop(renderer);
       Game* game = new Game();
   });
 
