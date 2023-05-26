@@ -6,6 +6,7 @@ class Course {
         std::string name;
         double difficulty;
     public:
+        Course();
         Course(const std::string&, double);
         const std::string& getName() const;
         double getDifficulty() const;
