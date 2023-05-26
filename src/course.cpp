@@ -13,6 +13,8 @@ Course::Course(const std::string& _name, double _difficulty) {
 const std::string& Course::getName() const {
     return name;
 }
+
 double Course::getDifficulty() const {
     return difficulty;
 }
+

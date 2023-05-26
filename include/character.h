@@ -23,6 +23,9 @@ class Character {
         int getHappiness();
 
         //stat modifiers
+        void setGrades(int);
+        void setHealth(int);
+        void setHappiness(int);
         void workout();
         void studyHarder();
         void sleep();
