@@ -62,3 +62,18 @@ void Game::save() {
 void Game::start() {
     
 }
+
+
+// Getters and setters
+Character* Game::getCharacter() {
+    return this->character;
+}
+
+std::string Game::getName() {
+    return this->name;
+}
+
+int Game::getCurrentDay() {
+    return this->currentDay;
+}
+
