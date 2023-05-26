@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_STANDARD 17)
 project(CsStudentSimulator)
 
+
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 # Add project source files
@@ -10,7 +12,11 @@ add_executable(rungame
     src/game.cpp
     src/screen.cpp
     src/character.cpp
+    src/course.cpp
+    src/characterValidator.cpp
 )
+
+
 
  
 # --- Fetch FTXUI --------------------------------------------------------------
@@ -40,7 +46,6 @@ target_link_libraries(rungame
 )
 
 
-
 target_include_directories(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -68,3 +73,13 @@ target_link_libraries(rungame
     PRIVATE gtest 
     PRIVATE gtest_main
     )
+
+
+add_executable(testCharacterValidator
+    tests/testCharacterValidator.cpp
+    src/characterValidator.cpp
+    src/course.cpp 
+)
+
+TARGET_LINK_LIBRARIES(testCharacterValidator gtest)
+TARGET_COMPILE_DEFINITIONS(testCharacterValidator PRIVATE gtest_disable_pthreads=ON)

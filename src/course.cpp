@@ -1,13 +1,18 @@
-#ifndef COURSE_H
-#define COURSE_H
-#include <string>
-class Course {
-    private:
-        std::string name;
-        double difficulty;
-    public:
-        Course(const std::string&, double);
-        const std::string& getName() const;
-        double getDifficulty() const;
-};
-#endif
+#include "../include/course.h"
+
+Course::Course() {
+    name = "";
+    difficulty = 0.0;
+}
+
+Course::Course(const std::string& _name, double _difficulty) {
+    name = _name;
+    difficulty = _difficulty;
+}
+
+const std::string& Course::getName() const {
+    return name;
+}
+double Course::getDifficulty() const {
+    return difficulty;
+}
