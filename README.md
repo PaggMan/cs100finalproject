@@ -34,6 +34,9 @@
 <img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
  - Our UML follows the Single Responsibilty SOLID principle. It is most evident in the minigame section, as each minigame has its own class that inherits from a Minigame interface.
 
+### Lobby Screen Layout
+<img src="https://files.catbox.moe/plem7x.jpg" width="600">
+
 ### OLD UML Diagram
 <img src="https://cdn.discordapp.com/attachments/1096301999986835466/1106704973959528508/Screen_Shot_2023-05-12_at_3.09.32_PM.png"  width="600">
 
