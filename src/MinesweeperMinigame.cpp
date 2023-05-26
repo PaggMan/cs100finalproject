@@ -91,19 +91,19 @@ bool MinesweeperMinigame::validIndex(int row, int column) {
     }
 }
 
-void MinesweeperMinigame::executeChoice(int row, int column) {
+void MinesweeperMinigame::revealChoice(int row, int column) {
     if(validIndex(row, column)) {
         if(gridToPrint[row][column] == 0) {
             gridToPrint[row][column] = 1;
             if(grid[row][column] == 0){
-                executeChoice(row - 1, column - 1);
-                executeChoice(row - 1, column);
-                executeChoice(row - 1, column + 1);
-                executeChoice(row, column - 1);
-                executeChoice(row, column + 1);
-                executeChoice(row + 1, column - 1);
-                executeChoice(row + 1, column);
-                executeChoice(row + 1, column + 1);
+                revealChoice(row - 1, column - 1);
+                revealChoice(row - 1, column);
+                revealChoice(row - 1, column + 1);
+                revealChoice(row, column - 1);
+                revealChoice(row, column + 1);
+                revealChoice(row + 1, column - 1);
+                revealChoice(row + 1, column);
+                revealChoice(row + 1, column + 1);
             }
         }
     }
@@ -135,7 +135,7 @@ void MinesweeperMinigame::initialize(){
     int column;
     
     cout << "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!" << endl << endl;
-    cout << "Enter your first choice: ";
+    cout << "Enter the row of your first choice: ";
     cin >> userIndex;
     row = userIndex / 10;
     column = userIndex % 10;
@@ -148,7 +148,7 @@ void MinesweeperMinigame::initialize(){
     }
     
     generateGrid(row, column);
-    executeChoice(row, column);
+    revealChoice(row, column);
     printGrid(false);
 
     terminate();
