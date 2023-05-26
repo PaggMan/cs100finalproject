@@ -54,7 +54,7 @@ void TypingMinigame::terminate(){
 
 int main()
 {
-    TypingMinigame* t = new TypingMinigame("test");
+    TypingMinigame* t = new TypingMinigame("The fox jumps over the lazy dog");
     t->initialize();
     return 0;
 }
