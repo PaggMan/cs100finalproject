@@ -9,7 +9,16 @@ void TicTacToeMinigame::initialize(){
     int computerChoice = 0;
     int count = 0;
 
-    cout << "\nHello, welcome to Tic Tac Toe!\nThe rules are like any normal Tic Tac Toe game.\nLet's get started!\n\n";
+    cout << "\nHello, welcome to Tic Tac Toe!\nThe rules are like any normal Tic Tac Toe game.\n\n";
+
+    cout << "Here are the index numbers for each location in the game:" << endl;
+    cout << "1 | 2 | 3" << endl;
+    cout << "---------" << endl;
+    cout << "4 | 5 | 6" << endl;
+    cout << "---------" << endl;
+    cout << "7 | 8 | 9" << endl;
+    
+    cout << "\nLet's get started!\n\n";
 
     while((count < 9) && (winner == 0)) {
         if(count % 2 == 0) {
@@ -17,7 +26,11 @@ void TicTacToeMinigame::initialize(){
             cin >> userChoice;
             userChoice--;
             while(arr[userChoice] != ' ') {
-                cout << "This location is not empty!\n";
+                if(cin.fail()) {
+                    cin.clear();
+                    cin.ignore(2147483647, '\n');
+                }
+                cout << "Invalid location!\n";
                 cout << "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
                 cin >> userChoice;
                 userChoice--;
@@ -116,4 +129,11 @@ void TicTacToeMinigame::initialize(){
 
 void TicTacToeMinigame::terminate(){
     
+}
+
+int main() {
+    TicTacToeMinigame testGame;
+    testGame.initialize();
+
+    return 0;
 }

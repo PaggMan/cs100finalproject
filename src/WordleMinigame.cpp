@@ -4,7 +4,7 @@ WordleMinigame::WordleMinigame(){
     
 }
 
-void WordleMinigame::printAttempt(const char (&arr)[5][2]) {
+void WordleMinigame::printAttempt(const char arr[5][2]) {
     for(int i = 0; i < 5; ++i) {
         if(arr[i][1] == 'O') {
             cout << "\033[1;32m" << arr[i][0] << "\033[0m";
@@ -233,4 +233,11 @@ void WordleMinigame::initialize(){
 
 void WordleMinigame::terminate(){
     
+}
+
+int main() {
+    WordleMinigame testGame;
+    testGame.initialize();
+
+    return 0;
 }
