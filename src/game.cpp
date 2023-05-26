@@ -7,7 +7,6 @@ Game::Game() {
     std::cout << "New game started" << std::endl;
     character = new Character();
     currentDay = 0;
-    name = "";
 }
 
 Game::~Game() {
@@ -15,10 +14,23 @@ Game::~Game() {
 }
 
 void Game::load(string fileName) {
-    std::ifstream file;
-    file.open(fileName);
 
-    if(!file.is_open()) throw std::runtime_error("Could not read file.");
+    std::ifstream file("gamedata/game.json");
+    Json::Value gameData;
+    file >> gameData;
+    file.close();
+
+    Json::Value characterData = gameData["character"];
+    std::string name = characterData["name"].asString();
+    int grades = characterData["grades"].asInt();
+    int happiness = characterData["happiness"].asInt();
+    int health = characterData["health"].asInt();
+
+    character = new Character();
+    character->setName(name);
+    character->setGrades(grades);
+    character->setHappiness(happiness);
+    character->setHealth(health);
 
 }
 
@@ -34,7 +46,7 @@ void Game::save() {
     Json::Value game;
     game["character"] = characterToWrite;
     game["version"] = "1.0";
-    game["name"] = name;
+    game["name"] = "College Student Simulator";
     
 
     // Write the JSON to a file
@@ -50,5 +62,3 @@ void Game::save() {
 void Game::start() {
     
 }
-
-void Game::setName(const string& name) {this->name = name;}
