@@ -31,5 +31,7 @@ class Character {
         void studyHarder();
         void sleep();
         void hangWithFriends();
+
+        void promptForName();
 };
 #endif

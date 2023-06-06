@@ -1,10 +1,9 @@
 #include "../include/game.h"
 // #include "../include/character.h"
-
+#include <unistd.h>
 #include <fstream>
 
 Game::Game() {
-    std::cout << "New game started" << std::endl;
     character = new Character();
     currentDay = 0;
 }
@@ -59,8 +58,23 @@ void Game::save() {
 
 }
 
+
+
 void Game::start() {
-    
+    cout << "Enter a name for your character: ";
+    character->promptForName();
+    clearAndLoad();
+    cout << "Hi there, " << character->getName() << endl;
+    cout << "Type 1 to begin the game" << endl;
+    string garbage;
+    cin >> garbage;
+    save();
+    gameLoop();
+
+}
+
+void Game::gameLoop() {
+    // run all the days of the game here.
 }
 
 
@@ -75,5 +89,10 @@ std::string Game::getName() {
 
 int Game::getCurrentDay() {
     return this->currentDay;
+}
+
+void Game::clearAndLoad() {
+    system("clear");
+    sleep(1.5);
 }
 

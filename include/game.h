@@ -19,5 +19,8 @@ class Game {
         int getCurrentDay();
         void setName(const string& name);
 
+        void clearAndLoad();
+        void gameLoop();
+
         
 };

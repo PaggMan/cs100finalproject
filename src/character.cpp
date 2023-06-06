@@ -1,11 +1,11 @@
 #include <cstdlib>
 #include "../include/character.h"
 Character::Character() {
-    std::cout << "Character created" << endl;
+    // std::cout << "Character created" << endl;
     grades = 50;
     happiness = 50;
     health = 50;
-    name  = "Cole";
+    name  = "";
 }
 Character::~Character() {
 }
@@ -87,4 +87,11 @@ Character::~Character() {
         int increase = rand() % 10 + 1;
         health += increase;
         //add 5-10 fun messages based on the value you get
+    }
+
+
+    void Character::promptForName() {
+        string username;
+        cin >> username;
+        name = username;
     }
