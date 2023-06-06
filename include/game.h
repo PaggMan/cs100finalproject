@@ -13,6 +13,11 @@ class Game {
         void save();
         void start();
 
+
+        Character* getCharacter();
+        string getName();
+        int getCurrentDay();
         void setName(const string& name);
+
         
 };

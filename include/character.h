@@ -26,6 +26,7 @@ class Character {
         void setGrades(int);
         void setHealth(int);
         void setHappiness(int);
+        void setName(string);
         void workout();
         void studyHarder();
         void sleep();

@@ -30,6 +30,9 @@ Character::~Character() {
     void Character::setHealth(int health) {
         this->health = health;
     }
+    void Character::setName(string name) {
+        this->name = name;
+    }
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
