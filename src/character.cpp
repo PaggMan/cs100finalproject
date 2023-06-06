@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include "../include/character.h"
-
 Character::Character() {
     // std::cout << "Character created" << endl;
     grades = 50;
@@ -8,12 +7,8 @@ Character::Character() {
     health = 50;
     name  = "";
 }
-
 Character::~Character() {
-
 }
-
-
     //stat accsessors
     string Character::getName() { return name; }
     int Character::getGrades() { return grades; }
@@ -55,6 +50,7 @@ Character::~Character() {
             cout << "You PR on everything you try and get some reputaton at the gym. +" << increase;
         }
         //add 5-10 fun messages based on the value you get
+
         cout << endl;   
 
     }
@@ -62,6 +58,7 @@ Character::~Character() {
     void Character::studyHarder(){
         int increase = rand() % 10 + 1;
         grades += increase;
+
         if(increase <= 2){
             cout << "You get distracted by your phone. +" << increase; 
         }
@@ -84,13 +81,11 @@ Character::~Character() {
     void Character::hangWithFriends(){
         int increase = rand() % 10 + 1;
         happiness += increase;
-
         //add 5-10 fun messages based on the value you get
     }
     void Character::sleep(){
         int increase = rand() % 10 + 1;
         health += increase;
-
         //add 5-10 fun messages based on the value you get
     }
 
