@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include "../include/character.h"
-
 Character::Character() {
     std::cout << "Character created" << endl;
     grades = 50;
@@ -8,12 +7,8 @@ Character::Character() {
     health = 50;
     name  = "Cole";
 }
-
 Character::~Character() {
-
 }
-
-
     //stat accsessors
     string Character::getName() { return name; }
     int Character::getGrades() { return grades; }
@@ -54,6 +49,8 @@ Character::~Character() {
         else if(increase > 8 or increase <= 10){
             cout << "You PR on everything you try and get some reputaton at the gym. +" << increase;
         }
+        //add 5-10 fun messages based on the value you get
+
         cout << endl;   
 
     }
@@ -61,6 +58,7 @@ Character::~Character() {
     void Character::studyHarder(){
         int increase = rand() % 10 + 1;
         grades += increase;
+
         if(increase <= 2){
             cout << "You get distracted by your phone. +" << increase; 
         }
@@ -76,26 +74,17 @@ Character::~Character() {
         else if(increase > 8 or increase <= 10){
             cout << "You master the subject. It is impossible to fail your exam. +" << increase;
         }
+        //add 5-10 fun messages based on the value you get
         cout << endl;   
+        //add 5-10 fun messages based on the value you get
     }
     void Character::hangWithFriends(){
         int increase = rand() % 10 + 1;
         happiness += increase;
-        if(increase <= 2){
-            cout << "You get forgotten and don't get picked up. +" << increase; 
-        }
-        else if(increase > 2 or increase <= 4){
-            cout << "You get McDonalds with your friend. +" << increase;
-        }
-        else if(increase > 4 or increase <= 6){
-            cout << "You go see a movie with your friends. +" << increase;
-        }
-        else if(increase > 6 or increase <= 8){
-            cout << "You go to an amusement park with your friends. +" << increase;
-        }
-        else if(increase > 8 or increase <= 10){
-            cout << "You travel the world with your friends. +" << increase;
-        }
-        cout << endl;   
+        //add 5-10 fun messages based on the value you get
     }
-
+    void Character::sleep(){
+        int increase = rand() % 10 + 1;
+        health += increase;
+        //add 5-10 fun messages based on the value you get
+    }
