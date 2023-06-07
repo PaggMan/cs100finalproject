@@ -15,6 +15,10 @@ class Game {
         void save();
         void start();
 
+
+        Character* getCharacter();
+        string getName();
+        int getCurrentDay();
         void setName(const string& name);
 
     private:   //Private member functions
@@ -24,5 +28,7 @@ class Game {
         void chooseCourses();   //Prompts the user to choose 4 courses.
         void printCourseList(); //Outputs the contents of courseList in a formatted way.
         void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
+        void clearAndLoad();
+        void gameLoop();
         
 };

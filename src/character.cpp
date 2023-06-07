@@ -1,18 +1,14 @@
 #include <cstdlib>
 #include "../include/character.h"
-
 Character::Character() {
+
     grades = 50;
     happiness = 50;
     health = 50;
-    name  = "Cole";
+    name  = "";
 }
-
 Character::~Character() {
-
 }
-
-
     //stat accsessors
     string Character::getName() { return name; }
     int Character::getGrades() { return grades; }
@@ -33,6 +29,7 @@ Character::~Character() {
     void Character::setHealth(int health) {
         this->health = health;
     }
+
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
@@ -55,6 +52,7 @@ Character::~Character() {
             cout << "You PR on everything you try and get some reputaton at the gym. +" << increase;
         }
         //add 5-10 fun messages based on the value you get
+
         cout << endl;   
 
     }
@@ -62,6 +60,7 @@ Character::~Character() {
     void Character::studyHarder(){
         int increase = rand() % 10 + 1;
         grades += increase;
+
         if(increase <= 2){
             cout << "You get distracted by your phone. +" << increase; 
         }
@@ -84,12 +83,17 @@ Character::~Character() {
     void Character::hangWithFriends(){
         int increase = rand() % 10 + 1;
         happiness += increase;
-
         //add 5-10 fun messages based on the value you get
     }
     void Character::sleep(){
         int increase = rand() % 10 + 1;
         health += increase;
-
         //add 5-10 fun messages based on the value you get
+    }
+
+
+    void Character::promptForName() {
+        string username;
+        cin >> username;
+        name = username;
     }

@@ -1,12 +1,10 @@
 #include "../include/game.h"
 #include "../include/characterValidator.h"
-
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
 
 Game::Game() {
-
     //initialize current day to 1.
     //initialize the name of the game to "My Game"
 
@@ -48,7 +46,6 @@ Game::Game() {
 
     system("clear");
     std::cout << "Good! It is time to begin your last quarter at UCR...";
-
 }
 
 
@@ -94,7 +91,6 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
 
     while (!isValidCourse) {
         std::cout << "\n1st course: ";
-
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
         if (courseListSize == 1) {  //If the courseListSize changed, that means the course was successfully added.
@@ -102,6 +98,7 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             //Now the only thing that must be done to verify the course is to ensure that there are no duplicate courses in courseList
             if (courseListValidator.isValidCourseList(courseList, courseListSize)) {
                 isValidCourse = true;
+                
             }
 
             else {
@@ -228,7 +225,6 @@ void Game::addCourse(const std::string& courseName, unsigned& courseListSize) { 
     unsigned originalCourseListSize = courseListSize;   //this new variable will be used to determine whether courseListSize has increased.
     std::string courseNameInCatalog = " ";  //This will store the course names found in the txt file.
     double courseDifficultyInCatalog = 0.0; //This will store the course difficulties found in the txt file.
-
     while (courseListSize == originalCourseListSize && inFS >> courseNameInCatalog >> courseDifficultyInCatalog) {
         //If name of course matches with one in file, store the difficulty as well in a double and store this new course object in courseList.
             //Increment courselIstSize by 1.
@@ -260,7 +256,7 @@ void Game::customizeCharacter() {  //Prompts the user to enter a name for their 
 
         if (!isValidName) {
             system("clear");
-            std::cout << "\tThe name you enter must not contain spaces and needs to be in between 2 to 20 characters. Please try again!\n\n";
+            std::cout << "The name you enter must not contain spaces and needs to be in between 2 to 20 characters. Please try again!\n\n";
         }
         
    }
@@ -273,12 +269,12 @@ void Game::customizeCharacter() {  //Prompts the user to enter a name for their 
 
 
 Game::~Game() {
-    delete character;
+     delete character;
     
-    delete courseList[0];
-    delete courseList[1];
-    delete courseList[2];
-    delete courseList[3];
+     delete courseList[0];
+     delete courseList[1];
+     delete courseList[2];
+     delete courseList[3];
     //delete[] courseList;
 }
 
@@ -332,8 +328,40 @@ void Game::save() {
     this->name = name;
  }
 
+
 void Game::start() {
-    
+    cout << "Enter a name for your character: ";
+    character->promptForName();
+    clearAndLoad();
+    cout << "Hi there, " << character->getName() << endl;
+    cout << "Type 1 to begin the game" << endl;
+    string garbage;
+    cin >> garbage;
+    save();
+    gameLoop();
+
 }
 
+void Game::gameLoop() {
+    // run all the days of the game here.
+}
+
+
+// Getters and setters
+Character* Game::getCharacter() {
+    return this->character;
+}
+
+std::string Game::getName() {
+    return this->name;
+}
+
+int Game::getCurrentDay() {
+    return this->currentDay;
+}
+
+void Game::clearAndLoad() {
+    system("clear");
+    sleep(1.5);
+}
 
