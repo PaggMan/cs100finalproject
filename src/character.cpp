@@ -2,7 +2,6 @@
 #include "../include/character.h"
 
 Character::Character() {
-    std::cout << "Character created" << endl;
     grades = 50;
     happiness = 50;
     health = 50;
@@ -20,6 +19,10 @@ Character::~Character() {
     int Character::getHappiness(){ return happiness; }
     int Character::getHealth() { return health; }
 
+
+    void Character::setName(const string& name) {
+        this->name = name;
+    }
 
     void Character::setGrades(int grades) {
         this->grades = grades;

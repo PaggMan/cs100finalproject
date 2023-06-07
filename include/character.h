@@ -7,6 +7,8 @@ using namespace std;
 class Character {
     private:
         string name;
+
+
         int grades;
         int happiness;
         int health;
@@ -23,6 +25,7 @@ class Character {
         int getHappiness();
 
         //stat modifiers
+        void setName(const string&);
         void setGrades(int);
         void setHealth(int);
         void setHappiness(int);
