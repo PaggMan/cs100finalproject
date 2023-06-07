@@ -28,8 +28,7 @@ class Character {
         void setName(const string&);
         void setGrades(int);
         void setHealth(int);
-        void setHappiness(int);
-        void setName(string);
+        void setHappiness(int);     
         void workout();
         void studyHarder();
         void sleep();

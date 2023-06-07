@@ -76,6 +76,8 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
 
+    courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
+
     std::cout << '\n';
 
     //Show list of courses
@@ -275,7 +277,7 @@ Game::~Game() {
      delete courseList[1];
      delete courseList[2];
      delete courseList[3];
-    //delete[] courseList;
+     delete[] courseList;
 }
 
 void Game::load(string fileName) {

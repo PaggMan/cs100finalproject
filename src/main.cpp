@@ -14,9 +14,8 @@ using namespace ftxui;
 int main() {
  system("clear");
 
- Game g;
-
- /*cout << " _____  _____   _____ _             _            _     _____ _                 _       _             " << endl;
+ cout << " _____  _____   _____ _             _            _     _____ _                 _       _             " << endl;
+ 
  cout << "/  __ \\/  ___| /  ___| |           | |          | |   /  ___(_)               | |     | |            " << endl;
  cout << "| /  \\/\\ `--.  \\ `--.| |_ _   _  __| | ___ _ __ | |_  \\ `--. _ _ __ ___  _   _| | __ _| |_ ___  _ __ " << endl;
  cout << "| |     `--. \\  `--. \\ __| | | |/ _` |/ _ \\ '_ \\| __|  `--. \\ | '_ ` _ \\| | | | |/ _` | __/ _ \\| '__|" << endl;
@@ -41,7 +40,7 @@ if(userinput == '1') {
      cin.clear();
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
      Game* game = new Game();
-     game->start();
+     //game->start();
 } else if(userinput == '2') {
   Game* game = new Game();
   game->load("../gamedata/game.json");
@@ -53,7 +52,7 @@ if(userinput == '1') {
 
 } else {
   cout << "in development";
-}*/
+}
 
   // bool showNewGameScreen = true; // Flag to control the new game screen visibility
 
