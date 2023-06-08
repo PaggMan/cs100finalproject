@@ -1,6 +1,8 @@
 #include "character.h"
 #include "course.h"
+#include "internship.h"
 #include "json/json.h"
+#include <vector>
 class Game {
     private:    //Private member variables
         int currentDay;
@@ -21,7 +23,9 @@ class Game {
         int getCurrentDay();
         void setName(const string& name);
 
+        Internship getRandomInternship(const std::vector<Internship>& internships);
         void displayInternships();
+        std::vector<Internship> parseInternships(string );
 
     private:   //Private member functions
     

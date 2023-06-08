@@ -1,9 +1,9 @@
 #include "../include/game.h"
 #include "../include/characterValidator.h"
-#include "../include/internship.h"
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
+#include <random>
 
 
 
@@ -361,15 +361,14 @@ void Game::gameLoop() {
     // run all the days of the game here.
 }
 
-void Game::displayInternships() {
-    string tier = calculateScore();
+std::vector<Internship> Game::parseInternships(string tier) {
     std::vector<Internship> internships;
 
     std::ifstream ifs;
-    ifs.open("../gamedata/internships.json");
+    ifs.open("gamedata/internships.json");
     if (!ifs.is_open()) {
         std::cout << "Failed to open the JSON file." << std::endl;
-        return;
+        throw runtime_error("error reading file");
     }
 
     Json::Value root;
@@ -385,29 +384,59 @@ void Game::displayInternships() {
     if (tierInternships.isNull()) {
         std::cout << "Invalid tier specified." << std::endl;
         ifs.close();
-        return;
+        throw runtime_error("invalid tier specified.");
     }
 
     for (Json::Value::ArrayIndex i = 0; i < tierInternships.size(); ++i) {
-        Json::Value internship = tierInternships[i]["internship"];
+        Json::Value internship = tierInternships[i];
         Internship newInternship;
         newInternship.title = internship["title"].asString();
         newInternship.company = internship["company"].asString();
         newInternship.startingWage = internship["starting_wage"].asString();
         newInternship.welcomeMessage = internship["welcome_message"].asString();
         internships.push_back(newInternship);
+        // cout << newInternship.title << endl;
     }
 
     ifs.close();
+    return internships;
+}
 
-    int randIndex = rand() % internships.size();
-    Internship theInternship = internships.at(randIndex);
+void Game::displayInternships() {
+    system("clear");
+    cout << "Loading your internship opportunity..." <<endl;
+    clearAndLoad();
 
-    cout << theInternship.company << endl;
+    string tier = calculateScore();
+    std::vector<Internship> possibleInternships = parseInternships(tier);
+
+
+    // int randIndex = rand() % possibleInternships.size();
+    // Internship theInternship = possibleInternships.at(randIndex); broken
+    Internship theInternship = getRandomInternship(possibleInternships);
+ 
+    cout << "Congratulations! With your cumulative game score of " << this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness() << ", ";
+    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
+    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
+    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+
+
 
 
 }
 
+Internship Game::getRandomInternship(const std::vector<Internship>& internships) {
+    // Initialize random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    
+    // Generate a random index within the range of the vector size
+    std::uniform_int_distribution<> dist(0, internships.size() - 1);
+    int randomIndex = dist(gen);
+    
+    // Return the random Internship
+    return internships[randomIndex];
+}
 
 string Game::calculateScore() {
     int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
@@ -440,8 +469,8 @@ int Game::getCurrentDay() {
 }
 
 void Game::clearAndLoad() {
-    system("clear");
     sleep(1.5);
+    system("clear");
 }
 
 
