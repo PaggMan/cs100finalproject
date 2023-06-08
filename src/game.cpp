@@ -5,47 +5,12 @@
 #include <stdexcept>
 
 Game::Game() {
-    //initialize current day to 1.
-    //initialize the name of the game to "My Game"
 
-    //Give welcome message    
-
-    //ask user to enter character name
-    //make sure that the entered name is valid. If not valid, ask again.
-        //****I'm thinking of adding a feature where if the user enters 3 invalid names in a row, the game assigns the player a default name.
-    
-
-    //Show a list of courses the user can choose from
-    //Ask the user to choose 4 courses by entering the name of a course.
-        //A list of courses will be located in a txt file, where they can either be outputted to the screen and read from to create a new course.
-        //A course validator must exist in order to determine whether a selected course actually exists, or if there is a duplicate course somewhere in your list.
-    
-
-
-    //2 of the 4 private member variables are being initialized here. 
     currentDay = 1;
     name = "My Simulation";
-    //Character and CourseList will be initialized later because they first require user input.
+    courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
+    character = nullptr;    //The character will be initialized later once the user gives the character customization information.
 
-
-
-    //Welcome message to starting a new game
-    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
-    
-    customizeCharacter();   //This function will create a character and give it a name.
-
-
-    sleep(2);
-    system("clear");
-
-    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
-    std::cout << " For this last quarter, you decide to take four more classes.";
-    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
-
-    chooseCourses();
-
-    system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR...";
 }
 
 
@@ -75,9 +40,6 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
-
-    courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
-
     std::cout << '\n';
 
     //Show list of courses
@@ -332,15 +294,25 @@ void Game::save() {
 
 
 void Game::start() {
-    cout << "Enter a name for your character: ";
-    character->promptForName();
-    clearAndLoad();
-    cout << "Hi there, " << character->getName() << endl;
-    cout << "Type 1 to begin the game" << endl;
-    string garbage;
-    cin >> garbage;
-    save();
-    gameLoop();
+
+
+    //Welcome message to starting a new game
+    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
+    
+    customizeCharacter();   //This function will create a character and give it a name.
+
+
+    sleep(2);
+    system("clear");
+
+    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
+    std::cout << " For this last quarter, you decide to take four more classes.";
+    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
+
+    chooseCourses();
+
+    system("clear");
+    std::cout << "Good! It is time to begin your last quarter at UCR...";
 
 }
 
