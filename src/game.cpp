@@ -25,26 +25,7 @@ Game::Game() {
 
 
 
-    //Welcome message to starting a new game
-    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
     
-    customizeCharacter();   //This function will create a character and give it a name.
-
-
-    sleep(2);
-    system("clear");
-
-    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
-    std::cout << " For this last quarter, you decide to take four more classes.";
-    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
-
-    // chooseCourses();
-
-    system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
-
-
-    (void)displayInternships();
 }
 
 
@@ -330,7 +311,7 @@ void Game::save() {
 void Game::start() {
 
 
-    //Welcome message to starting a new game
+//Welcome message to starting a new game
     std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
     
     customizeCharacter();   //This function will create a character and give it a name.
@@ -346,7 +327,10 @@ void Game::start() {
     chooseCourses();
 
     system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR...";
+    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
+
+
+    (void)displayInternships();
 
 }
 
