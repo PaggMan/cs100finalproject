@@ -1,7 +1,8 @@
 #include "../include/MinesweeperMinigame.h"
 
 MinesweeperMinigame::MinesweeperMinigame(){
-    
+    gameOver = false;
+    uncoveredSquares = 0;
 }
 
 void MinesweeperMinigame::generateGrid(int userRow, int userColumn) {
@@ -95,6 +96,7 @@ void MinesweeperMinigame::revealChoice(int row, int column) {
     if(validIndex(row, column)) {
         if(gridToPrint[row][column] == 0) {
             gridToPrint[row][column] = 1;
+            uncoveredSquares++;
             if(grid[row][column] == 0){
                 revealChoice(row - 1, column - 1);
                 revealChoice(row - 1, column);
@@ -110,8 +112,9 @@ void MinesweeperMinigame::revealChoice(int row, int column) {
 }
 
 void MinesweeperMinigame::printGrid(bool endGame) {
+    cout << "    0 1 2 3 4 5 6 7 8 9" << endl << "  -----------------------" << endl;
     for(int i = 0; i < 8; ++i) {
-        cout << "| ";
+        cout << i << " | ";
         for(int j = 0; j < 10; ++j) {
             if(endGame or gridToPrint[i][j] != 0) {
                 if(grid[i][j] == -1) {
@@ -121,41 +124,96 @@ void MinesweeperMinigame::printGrid(bool endGame) {
                     cout << grid[i][j] << ' ';
                 }
             }
+            else if(gridToPrint[i][j] == -1) {
+                cout << "F ";
+            }
             else {
-                cout << "X ";
+                cout << "? ";
             }
         }
         cout << "|" << endl;
     }
+    cout << endl;
 }
 
 void MinesweeperMinigame::initialize(){
-    int userIndex = -1;
-    int row;
-    int column;
+    int row = -1;
+    int column = -1;
     
     cout << "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!" << endl << endl;
     cout << "Enter the row of your first choice: ";
-    cin >> userIndex;
-    row = userIndex / 10;
-    column = userIndex % 10;
-    while(!validIndex(row, column)) {
-        cout << "Please enter a valid choice: ";
-        cin >> userIndex;
+    cin >> row;
+    cout << endl;
+    while(cin.fail() or row < 0 or row > 7) {
+        cin.clear();
+        cin.ignore(2147483647, '\n');
+        cout << "Please enter a valid row: ";
+        cin >> row;
         cout << endl;
-        row = userIndex / 10;
-        column = userIndex % 10;
     }
-    
+    cout << "Enter the column of your first choice: ";
+    cin >> column;
+    cout << endl;
+    while(cin.fail() or column < 0 or column > 9) {
+        cin.clear();
+        cin.ignore(2147483647, '\n');
+        cout << "Please enter a valid column: ";
+        cin >> column;
+        cout << endl;
+    }
     generateGrid(row, column);
     revealChoice(row, column);
     printGrid(false);
 
-    terminate();
+    while(!gameOver) {
+        row = -1;
+        column = -1;
+        while(!validIndex(row, column)) {
+            cout << "Enter your next row: ";
+            cin >> row;
+            cout << endl;
+            while(cin.fail() or row < 0 or row > 7) {
+                cin.clear();
+                cin.ignore(2147483647, '\n');
+                cout << "Please enter a valid row: ";
+                cin >> row;
+                cout << endl;
+            }
+            cout << "Enter your next column: ";
+            cin >> column;
+            cout << endl;
+            while(cin.fail() or column < 0 or column > 9) {
+                cin.clear();
+                cin.ignore(2147483647, '\n');
+                cout << "Please enter a valid column: ";
+                cin >> column;
+                cout << endl;
+            }
+        }
+        if(grid[row][column] == -1) {
+            terminate();
+        }
+        else {
+            revealChoice(row, column);
+            if(uncoveredSquares >= 70) {
+                terminate();
+            }
+            else {
+                printGrid(false);
+            }
+        }
+    }
 }
 
 void MinesweeperMinigame::terminate(){
-    
+    if(uncoveredSquares == 70) {
+        cout << "Congratulations, you won!" << endl;
+    }
+    else {
+        cout << "Better luck next time, you lost." << endl;
+    }
+    gameOver = true;
+    printGrid(true);
 }
 
 int main() {

@@ -10,6 +10,8 @@ class MinesweeperMinigame : public Minigame{
     private:
         int grid[8][10] = { 0 };
         int gridToPrint[8][10] = { 0 };
+        bool gameOver;
+        int uncoveredSquares;
         void generateGrid(int, int);
         bool validMineIndex(int, int, int, int);
         bool validIndex(int, int);
