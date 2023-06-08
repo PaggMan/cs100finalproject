@@ -1,11 +1,18 @@
 #include "../include/characterValidator.h"
-
+#include "../include/course.h"
 
 bool CharacterValidator::isValidCharacterName(const std::string& characterName) {  //Returns true or false depending on the validity of the name passed in.
+    
+    for (unsigned i = 0; i < characterName.size(); ++i) {
+        if (characterName.at(i) == ' ' || characterName.at(i) == '\t') {    //A name should not have any spaces
+            return false;
+        }
+    }
+    
     return characterName.size() >=2 && characterName.size() <= 20;
 }
 
-bool CharacterValidator::isValidCourseList(Course* courseList, unsigned sizeOfCourseList) {  //Returns true or false depending on the validity of the course list passed in.
+bool CharacterValidator::isValidCourseList(Course** courseList, unsigned sizeOfCourseList) {  //Returns true or false depending on the validity of the course list passed in.
     
     if (sizeOfCourseList == 0) {
         return false;
@@ -29,14 +36,14 @@ bool CharacterValidator::isValidCourseList(Course* courseList, unsigned sizeOfCo
 }
 
 
-bool CharacterValidator::validateTwoCourses(Course* courseList) {  //Given two courses, the function determines whether they can be taken together or not
-    return courseList[0].getName() != courseList[1].getName();
+bool CharacterValidator::validateTwoCourses(Course** courseList) {  //Given two courses, the function determines whether they can be taken together or not
+    return courseList[0]->getName() != courseList[1]->getName();
 }
 
-bool CharacterValidator::validateThreeCourses(Course* courseList) {  //Given three courses, the function determines whether they can be taken together or not
-    return validateTwoCourses(courseList) && courseList[2].getName() != courseList[0].getName() && courseList[2].getName() != courseList[1].getName();
+bool CharacterValidator::validateThreeCourses(Course** courseList) {  //Given three courses, the function determines whether they can be taken together or not
+    return validateTwoCourses(courseList) && courseList[2]->getName() != courseList[0]->getName() && courseList[2]->getName() != courseList[1]->getName();
 }
 
-bool CharacterValidator::validateFourCourses(Course* courseList) {  //Given four courses, the function determines whether they can be taken together or not
-    return validateThreeCourses(courseList) && courseList[3].getName() != courseList[0].getName() && courseList[3].getName() != courseList[1].getName() && courseList[3].getName() != courseList[2].getName();
+bool CharacterValidator::validateFourCourses(Course** courseList) {  //Given four courses, the function determines whether they can be taken together or not
+    return validateThreeCourses(courseList) && courseList[3]->getName() != courseList[0]->getName() && courseList[3]->getName() != courseList[1]->getName() && courseList[3]->getName() != courseList[2]->getName();
 }

@@ -13,13 +13,18 @@ add_executable(rungame
     src/screen.cpp
     src/character.cpp
     src/course.cpp
-    src/characterValidator.cpp
+    src/characterValidator.cpp 
 )
 
 add_executable(characterTests
     tests/characterTests.cpp
     src/character.cpp
 )
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
+    ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+
+
+
  
 # --- Fetch FTXUI --------------------------------------------------------------
 include(FetchContent)
@@ -90,3 +95,5 @@ add_executable(testCharacterValidator
 
 TARGET_LINK_LIBRARIES(testCharacterValidator gtest)
 TARGET_COMPILE_DEFINITIONS(testCharacterValidator PRIVATE gtest_disable_pthreads=ON)
+
+

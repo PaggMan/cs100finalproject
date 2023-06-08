@@ -1,11 +1,11 @@
 #include <cstdlib>
 #include "../include/character.h"
 Character::Character() {
-    std::cout << "Character created" << endl;
+
     grades = 50;
     happiness = 50;
     health = 50;
-    name  = "Cole";
+    name  = "";
 }
 Character::~Character() {
 }
@@ -17,6 +17,10 @@ Character::~Character() {
 
     
 
+    void Character::setName(const string& name) {
+        this->name = name;
+    }
+
     void Character::setGrades(int grades) {
         this->grades = grades;
     }
@@ -26,6 +30,7 @@ Character::~Character() {
     void Character::setHealth(int health) {
         this->health = health;
     }
+
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
@@ -92,4 +97,11 @@ void Character::hangWithFriends(){
             cout << "You travel the world with your friends. +" << increase;
         }
         cout << endl;  
-} 
+    }
+
+
+    void Character::promptForName() {
+        string username;
+        cin >> username;
+        name = username;
+    }
