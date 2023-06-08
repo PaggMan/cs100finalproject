@@ -9,5 +9,5 @@ _deps/
 cmake_install.cmake
 *.out
 bin/
-gamedata/
+gamedata/game.json
 lib/

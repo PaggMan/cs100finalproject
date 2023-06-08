@@ -1,6 +1,8 @@
 #include "character.h"
 #include "course.h"
+#include "internship.h"
 #include "json/json.h"
+#include <vector>
 class Game {
     private:    //Private member variables
         int currentDay;
@@ -21,6 +23,10 @@ class Game {
         int getCurrentDay();
         void setName(const string& name);
 
+        Internship getRandomInternship(const std::vector<Internship>& internships);
+        void displayInternships();
+        std::vector<Internship> parseInternships(string );
+
     private:   //Private member functions
     
     //Helper functions for constructor
@@ -30,5 +36,8 @@ class Game {
         void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
         void clearAndLoad();
         void gameLoop();
+
+
+        string calculateScore(); // Used to calculate internship opportunities
         
 };

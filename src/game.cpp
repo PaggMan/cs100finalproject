@@ -3,14 +3,29 @@
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
+#include <random>
+
+
+
 
 Game::Game() {
+
+
+
+
+    // The following is if they are loading a new game, we can skip this if they have a saved game.
+
+    //initialize current day to 1.
+    //initialize the name of the game to "My Game"
 
     currentDay = 1;
     name = "My Simulation";
     courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
     character = nullptr;    //The character will be initialized later once the user gives the character customization information.
 
+
+
+    
 }
 
 
@@ -296,7 +311,7 @@ void Game::save() {
 void Game::start() {
 
 
-    //Welcome message to starting a new game
+//Welcome message to starting a new game
     std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
     
     customizeCharacter();   //This function will create a character and give it a name.
@@ -312,7 +327,10 @@ void Game::start() {
     chooseCourses();
 
     system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR...";
+    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
+
+
+    (void)displayInternships();
 
 }
 
@@ -320,6 +338,99 @@ void Game::gameLoop() {
     // run all the days of the game here.
 }
 
+std::vector<Internship> Game::parseInternships(string tier) {
+    std::vector<Internship> internships;
+
+    std::ifstream ifs;
+    ifs.open("gamedata/internships.json");
+    if (!ifs.is_open()) {
+        std::cout << "Failed to open the JSON file." << std::endl;
+        throw runtime_error("error reading file");
+    }
+
+    Json::Value root;
+    Json::Reader reader;
+    if (!reader.parse(ifs, root)) {
+        std::cout << "Failed to parse the JSON file." << std::endl;
+        ifs.close();
+        throw runtime_error("error reading file");
+    }
+
+    Json::Value tierInternships = root[tier];
+
+    if (tierInternships.isNull()) {
+        std::cout << "Invalid tier specified." << std::endl;
+        ifs.close();
+        throw runtime_error("invalid tier specified.");
+    }
+
+    for (Json::Value::ArrayIndex i = 0; i < tierInternships.size(); ++i) {
+        Json::Value internship = tierInternships[i];
+        Internship newInternship;
+        newInternship.title = internship["title"].asString();
+        newInternship.company = internship["company"].asString();
+        newInternship.startingWage = internship["starting_wage"].asString();
+        newInternship.welcomeMessage = internship["welcome_message"].asString();
+        internships.push_back(newInternship);
+        // cout << newInternship.title << endl;
+    }
+
+    ifs.close();
+    return internships;
+}
+
+void Game::displayInternships() {
+    system("clear");
+    cout << "Loading your internship opportunity..." <<endl;
+    clearAndLoad();
+
+    string tier = calculateScore();
+    std::vector<Internship> possibleInternships = parseInternships(tier);
+
+
+    // int randIndex = rand() % possibleInternships.size();
+    // Internship theInternship = possibleInternships.at(randIndex); broken
+    Internship theInternship = getRandomInternship(possibleInternships);
+ 
+    cout << "Congratulations! With your cumulative game score of " << this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness() << ", ";
+    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
+    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
+    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+
+
+
+
+}
+
+Internship Game::getRandomInternship(const std::vector<Internship>& internships) {
+    // Initialize random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    
+    // Generate a random index within the range of the vector size
+    std::uniform_int_distribution<> dist(0, internships.size() - 1);
+    int randomIndex = dist(gen);
+    
+    // Return the random Internship
+    return internships[randomIndex];
+}
+
+string Game::calculateScore() {
+    int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
+
+    if(overallScore > 280) {
+        return "legendary";
+    } else if(overallScore > 250) {
+        return "epic";
+    } else if(overallScore > 200) {
+        return "good";
+    } else if(overallScore > 140) {
+        return "satisfactory";
+    } else {
+        return "poor";
+    }
+
+}
 
 // Getters and setters
 Character* Game::getCharacter() {
@@ -335,7 +446,10 @@ int Game::getCurrentDay() {
 }
 
 void Game::clearAndLoad() {
-    system("clear");
     sleep(1.5);
+    system("clear");
 }
+
+
+
 
