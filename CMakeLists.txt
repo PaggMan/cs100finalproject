@@ -16,7 +16,7 @@ add_executable(rungame
     src/characterValidator.cpp 
 )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/courseCatalog.txt
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
 
