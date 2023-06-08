@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include "../include/character.h"
 Character::Character() {
-    // std::cout << "Character created" << endl;
+
     grades = 50;
     happiness = 50;
     health = 50;
@@ -16,6 +16,10 @@ Character::~Character() {
     int Character::getHealth() { return health; }
 
 
+    void Character::setName(const string& name) {
+        this->name = name;
+    }
+
     void Character::setGrades(int grades) {
         this->grades = grades;
     }
@@ -25,9 +29,7 @@ Character::~Character() {
     void Character::setHealth(int health) {
         this->health = health;
     }
-    void Character::setName(string name) {
-        this->name = name;
-    }
+
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
