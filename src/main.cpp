@@ -10,11 +10,12 @@
 
 namespace fs = std::experimental::filesystem;
 using namespace ftxui;
-
+ 
 int main() {
  system("clear");
 
  cout << " _____  _____   _____ _             _            _     _____ _                 _       _             " << endl;
+ 
  cout << "/  __ \\/  ___| /  ___| |           | |          | |   /  ___(_)               | |     | |            " << endl;
  cout << "| /  \\/\\ `--.  \\ `--.| |_ _   _  __| | ___ _ __ | |_  \\ `--. _ _ __ ___  _   _| | __ _| |_ ___  _ __ " << endl;
  cout << "| |     `--. \\  `--. \\ __| | | |/ _` |/ _ \\ '_ \\| __|  `--. \\ | '_ ` _ \\| | | | |/ _` | __/ _ \\| '__|" << endl;
@@ -36,8 +37,10 @@ if(userinput == '1') {
      cout << "Starting new game..." << endl;
      sleep(1.5);
      system("clear");
+     cin.clear();
+     cin.ignore(numeric_limits<streamsize>::max(), '\n');
      Game* game = new Game();
-     game->start();
+     //game->start();
 } else if(userinput == '2') {
   Game* game = new Game();
   game->load("../gamedata/game.json");
@@ -60,10 +63,6 @@ if(userinput == '1') {
 
   //     Component inputGameName = Input(&gameName, "My Game #1");
   //     Component test = Input(&gameName, "Name the game");
-
-
-
-
   //     Component submitButton = Button("Ready", [&] {
   //     // On submit button click
   //       if (!gameName.empty()) {
@@ -138,6 +137,4 @@ if(userinput == '1') {
   // // Create the screen and render the container.
   // auto screen = ScreenInteractive::Fullscreen();
   // screen.Loop(titleScreen);
-
-  return 0;
 }
