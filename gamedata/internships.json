@@ -1,0 +1,213 @@
+{
+    "legendary": [
+      {
+        "internship": {
+          "title": "Software Development Intern",
+          "company": "Google",
+          "starting_wage": "$35/hour",
+          "welcome_message": "Welcome to Google as a Software Development Intern! You will be working on cutting-edge projects, developing innovative solutions, and collaborating with top-notch engineers. We are thrilled to have you on board!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Data Science Intern",
+          "company": "Amazon",
+          "starting_wage": "$30/hour",
+          "welcome_message": "Congratulations on joining Amazon as a Data Science Intern! Your role involves analyzing vast data sets, deriving valuable insights, and contributing to our customer-focused strategies. We're excited to see your impact!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Software Engineering Intern",
+          "company": "Spotify",
+          "starting_wage": "$32/hour",
+          "welcome_message": "Welcome to Spotify as a Software Engineering Intern! You'll be part of our mission to connect the world with music by developing innovative features and improving the user experience. Get ready to make an impact!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Machine Learning Intern",
+          "company": "NVIDIA",
+          "starting_wage": "$34/hour",
+          "welcome_message": "Congratulations on your internship at NVIDIA as a Machine Learning Intern! You'll contribute to groundbreaking projects, optimize algorithms, and push the boundaries of AI technology. We're thrilled to have you on our team!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Software Engineering Intern",
+          "company": "Uber",
+          "starting_wage": "$33/hour",
+          "welcome_message": "Welcome to Uber as a Software Engineering Intern! You'll be part of revolutionizing transportation by building scalable and reliable systems, and creating innovative features for millions of users. Let's shape the future together!"
+        }
+      }
+    ],
+    "epic": [
+      {
+        "internship": {
+          "title": "Web Developer Intern",
+          "company": "Microsoft",
+          "starting_wage": "$25/hour",
+          "welcome_message": "Congratulations on joining Microsoft as a Web Developer Intern! Your role involves building responsive and interactive websites, collaborating with cross-functional teams, and contributing to our mission of empowering people through technology. Get ready for an epic experience!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Cybersecurity Intern",
+          "company": "IBM",
+          "starting_wage": "$24/hour",
+          "welcome_message": "Welcome to IBM as a Cybersecurity Intern! You'll play a vital role in protecting our systems, analyzing threats, and developing innovative security solutions. We're excited to have you on board and help us secure the digital world!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Product Management Intern",
+          "company": "Facebook",
+          "starting_wage": "$26/hour",
+          "welcome_message": "Congratulations on joining Facebook as a Product Management Intern! You'll collaborate with cross-functional teams, analyze user data, and contribute to shaping our products' future. We can't wait to see your impact!"
+        }
+      },
+      {
+        "internship": {
+          "title": "UX/UI Design Intern",
+          "company": "Adobe",
+          "starting_wage": "$23/hour",
+          "welcome_message": "Welcome to Adobe as a UX/UI Design Intern! You'll work on creating intuitive and visually appealing user interfaces, collaborating with talented designers, and contributing to our creative software solutions. Get ready to unleash your creativity!"
+        }
+      },
+      {
+        "internship": {
+          "title": "Data Analyst Intern",
+          "company": "Netflix",
+          "starting_wage": "$22/hour",
+          "welcome_message": "Congratulations on your internship at Netflix as a Data Analyst Intern! You'll analyze viewer behavior, provide insights for decision-making, and contribute to our data-driven approach in shaping the future of entertainment. We're excited to have you on our team!"
+        }
+      }
+    ],
+    "good": [
+      {
+        "job": {
+          "title": "IT Support Specialist",
+          "company": "Cisco",
+          "starting_wage": "$20/hour",
+          "welcome_message": "Welcome to Cisco as an IT Support Specialist! Your role involves assisting users with technical issues, troubleshooting network problems, and ensuring smooth operations. We're glad to have you on our team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Quality Assurance Analyst",
+          "company": "Intel",
+          "starting_wage": "$18/hour",
+          "welcome_message": "Congratulations on joining Intel as a Quality Assurance Analyst! You'll test and validate software and hardware products, contribute to ensuring top-notch quality, and play a vital role in our success. Welcome aboard!"
+        }
+      },
+      {
+        "job": {
+          "title": "Junior Frontend Developer",
+          "company": "LinkedIn",
+          "starting_wage": "$19/hour",
+          "welcome_message": "Welcome to LinkedIn as a Junior Frontend Developer! Your role involves developing user-friendly web interfaces, collaborating with experienced developers, and contributing to our professional network platform. Let's build connections together!"
+        }
+      },
+      {
+        "job": {
+          "title": "Digital Marketing Associate",
+          "company": "HubSpot",
+          "starting_wage": "$17/hour",
+          "welcome_message": "Congratulations on joining HubSpot as a Digital Marketing Associate! You'll assist in executing marketing campaigns, analyze data, and contribute to our inbound marketing efforts. We're excited to have you on our team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Technical Writer",
+          "company": "Salesforce",
+          "starting_wage": "$16/hour",
+          "welcome_message": "Welcome to Salesforce as a Technical Writer! Your role involves creating comprehensive documentation, translating complex concepts into user-friendly content, and supporting our customers' success. We're thrilled to have you on our team!"
+        }
+      }
+    ],
+    "satisfactory": [
+      {
+        "job": {
+          "title": "Customer Service Representative",
+          "company": "Verizon",
+          "starting_wage": "$15/hour",
+          "welcome_message": "Welcome to Verizon as a Customer Service Representative! Your role involves assisting customers, addressing inquiries, and ensuring a positive experience. We appreciate your commitment to providing excellent service!"
+        }
+      },
+      {
+        "job": {
+          "title": "Administrative Assistant",
+          "company": "Oracle",
+          "starting_wage": "$14/hour",
+          "welcome_message": "Congratulations on joining Oracle as an Administrative Assistant! You'll provide support, organize data, and contribute to the smooth functioning of our operations. We're glad to have you on our team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Social Media Coordinator",
+          "company": "Twitter",
+          "starting_wage": "$13/hour",
+          "welcome_message": "Welcome to Twitter as a Social Media Coordinator! Your role involves managing social media accounts, creating engaging content, and fostering connections with our users. We're excited to have you on board!"
+        }
+      },
+      {
+        "job": {
+          "title": "Sales Associate",
+          "company": "Tesla",
+          "starting_wage": "$12/hour",
+          "welcome_message": "Congratulations on joining Tesla as a Sales Associate! You'll play a crucial role in assisting customers, providing product information, and contributing to our mission of accelerating the world's transition to sustainable energy. Welcome to the team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Research Assistant",
+          "company": "IBM Research",
+          "starting_wage": "$11/hour",
+          "welcome_message": "Welcome to IBM Research as a Research Assistant! Your role involves supporting research projects, analyzing data, and contributing to technological advancements. We appreciate your dedication to scientific discovery!"
+        }
+      }
+    ],
+    "poor": [
+      {
+        "job": {
+          "title": "Fast Food Worker",
+          "company": "McDonald's",
+          "starting_wage": "$10/hour",
+          "welcome_message": "Welcome to McDonald's as a Fast Food Worker! Your role involves preparing and serving delicious meals, providing friendly service, and ensuring customer satisfaction. We're glad to have you on our team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Warehouse Associate",
+          "company": "Walmart",
+          "starting_wage": "$9/hour",
+          "welcome_message": "Congratulations on joining Walmart as a Warehouse Associate! Your role involves organizing inventory, fulfilling orders, and contributing to the efficient operation of our supply chain. Welcome aboard!"
+        }
+      },
+      {
+        "job": {
+          "title": "Retail Sales Representative",
+          "company": "Target",
+          "starting_wage": "$8/hour",
+          "welcome_message": "Welcome to Target as a Retail Sales Representative! Your role involves assisting customers, organizing merchandise, and ensuring a positive shopping experience. We appreciate your dedication to customer satisfaction!"
+        }
+      },
+      {
+        "job": {
+          "title": "Delivery Driver",
+          "company": "UPS",
+          "starting_wage": "$7/hour",
+          "welcome_message": "Congratulations on joining UPS as a Delivery Driver! Your role involves ensuring timely package delivery, providing excellent service, and contributing to our logistics network. We're glad to have you on our team!"
+        }
+      },
+      {
+        "job": {
+          "title": "Custodial Worker",
+          "company": "Jan-Pro Cleaning Systems",
+          "starting_wage": "$6/hour",
+          "welcome_message": "Welcome to Jan-Pro Cleaning Systems as a Custodial Worker! Your role involves maintaining cleanliness, ensuring a safe environment, and contributing to our clients' satisfaction. We appreciate your commitment to keeping spaces clean!"
+        }
+      }
+    ]
+  }
+  
