@@ -26,8 +26,9 @@ class Game {
         string getName();
         int getCurrentDay();
         void setName(const string& name);
-
-        Internship getRandomInternship(const std::vector<Internship>& internships);
+        
+        template<class T>
+        T getRandomFromVector(const std::vector<T>& internships);
         void displayInternships();
         std::vector<Internship> parseInternships(string );
 

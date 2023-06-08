@@ -472,7 +472,7 @@ void Game::displayInternships() {
 
     // int randIndex = rand() % possibleInternships.size();
     // Internship theInternship = possibleInternships.at(randIndex); broken
-    Internship theInternship = getRandomInternship(possibleInternships);
+    Internship theInternship = getRandomFromVector(possibleInternships);
  
     cout << "Congratulations! With your cumulative game score of " << this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness() << ", ";
     cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
@@ -483,18 +483,18 @@ void Game::displayInternships() {
 
 
 }
-
-Internship Game::getRandomInternship(const std::vector<Internship>& internships) {
+template<class T>
+T Game::getRandomFromVector(const std::vector<T>& v) {
     // Initialize random number generator
     std::random_device rd;
     std::mt19937 gen(rd());
     
     // Generate a random index within the range of the vector size
-    std::uniform_int_distribution<> dist(0, internships.size() - 1);
+    std::uniform_int_distribution<> dist(0, v.size() - 1);
     int randomIndex = dist(gen);
     
     // Return the random Internship
-    return internships[randomIndex];
+    return v[randomIndex];
 }
 
 string Game::calculateScore() {
