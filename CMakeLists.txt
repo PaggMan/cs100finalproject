@@ -16,8 +16,10 @@ add_executable(rungame
     src/characterValidator.cpp
 )
 
-
-
+add_executable(characterTests
+    tests/characterTests.cpp
+    src/character.cpp
+)
  
 # --- Fetch FTXUI --------------------------------------------------------------
 include(FetchContent)
@@ -47,6 +49,11 @@ target_link_libraries(rungame
 
 
 target_include_directories(rungame PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+
+target_include_directories(characterTests PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
