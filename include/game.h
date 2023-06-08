@@ -17,6 +17,10 @@ class Game {
         void save();
         void start();
 
+        void giveInstructions();    //Explains the user how to play the game
+        void gameLoop();    //A loop that calls runDay() until the dayCounter reaches 30.
+        void runDay();  //Allows user to make choices on a given day and calls minigame classes
+
 
         Character* getCharacter();
         string getName();
@@ -29,15 +33,15 @@ class Game {
 
     private:   //Private member functions
     
-    //Helper functions for constructor
-        void customizeCharacter();  //Prompts the user to enter a name for their character.
-        void chooseCourses();   //Prompts the user to choose 4 courses.
-        void printCourseList(); //Outputs the contents of courseList in a formatted way.
-        void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
-        void clearAndLoad();
-        void gameLoop();
+    void customizeCharacter();  //Prompts the user to enter a name for their character.
+    void chooseCourses();   //Prompts the user to choose 4 courses.
+    void printCourseList(); //Outputs the contents of courseList in a formatted way.
+    void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
+    void clearAndLoad();
+    void playMinigame();
+   
 
 
-        string calculateScore(); // Used to calculate internship opportunities
+    string calculateScore(); // Used to calculate internship opportunities
         
 };

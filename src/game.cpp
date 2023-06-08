@@ -1,5 +1,8 @@
 #include "../include/game.h"
 #include "../include/characterValidator.h"
+#include "../include/MinesweeperMinigame.h"
+#include "../include/RockPaperScissorsMinigame.h"
+
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
@@ -330,12 +333,91 @@ void Game::start() {
     std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
 
 
-    (void)displayInternships();
+    //(void)displayInternships();
 
 }
 
 void Game::gameLoop() {
+    //While loop that iterates until currentDay reaches 30
+
+
+    //Start the day
+
+
+    //increment dayCounter by 1
+}
+
+void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
+    std::cout << "DAY " << currentDay << "\n\n";
+    
+    //Asks User if they skip class or go to class
+        //If they go to class, start a minigame
+
+    
+    std::cout << "Do you skip class today or go to class? (Type 1 to skip, type 2 to go to class)\n";
+    
+    
+    char choice = ' ';
+
+    bool skippingClass = true;  //This will be used later to determine what path the user takes.
+
+    while(true) {   //The loop keeps running until a valid response is Entered by the User
+
+        std::cout << "\t1) Skip class\n\t2) Go to class\n\n\tChoice: ";
+        cin >> choice;
+
+        if (choice == '1') {
+            skippingClass = true;
+            break;
+        }
+
+        else if (choice == '2') {
+            skippingClass = false;
+            break;
+        }
+        
+        else {
+            system("clear");
+            std::cout << "Invalid Response. Try Again.\n";
+            cin.clear();
+        }
+    }
+
+
+    if (!skippingClass) {   //If they don't skip, they play a minigame
+        playMinigame();
+    }
+
+    //If they skip, jump to the end of the day
+
+    //End of the day:
+        //Choose a stat boosting you want
+            //If you skip you can upgrade another stat.
+}
+
+void Game::playMinigame() {     //Randomly chooses a minigame to play
+    int choice = rand() % 10;
+    choice = 1;
+    if (choice == 0) {
+        MinesweeperMinigame minesweeper;
+        minesweeper.initialize();
+    }
+
+    else if (choice == 1) {
+        RockPaperScissorsMinigame rockPaperScissors;
+        rockPaperScissors.initialize();
+    }
+
+}
+
+void Game::giveInstructions() {
     // run all the days of the game here.
+
+
+    //Give introduction message about what it being your last quarter and how this quarter determines your job prospects.
+    //Tells user to stay as happy as possible and shows them stat bars
+        //Display stat bars
+    //Explains the user will have decisions to make that will alter these stat bars and also minigames to play to make upgrades.
 }
 
 std::vector<Internship> Game::parseInternships(string tier) {
