@@ -1,10 +1,20 @@
 #include "../include/game.h"
 #include "../include/characterValidator.h"
+#include "../include/internship.h"
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
 
+
+
+
 Game::Game() {
+
+
+
+
+    // The following is if they are loading a new game, we can skip this if they have a saved game.
+
     //initialize current day to 1.
     //initialize the name of the game to "My Game"
 
@@ -42,10 +52,13 @@ Game::Game() {
     std::cout << " For this last quarter, you decide to take four more classes.";
     std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
 
-    chooseCourses();
+    // chooseCourses();
 
     system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR...";
+    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
+
+
+    (void)displayInternships();
 }
 
 
@@ -348,6 +361,70 @@ void Game::gameLoop() {
     // run all the days of the game here.
 }
 
+void Game::displayInternships() {
+    string tier = calculateScore();
+    std::vector<Internship> internships;
+
+    std::ifstream ifs;
+    ifs.open("../gamedata/internships.json");
+    if (!ifs.is_open()) {
+        std::cout << "Failed to open the JSON file." << std::endl;
+        return;
+    }
+
+    Json::Value root;
+    Json::Reader reader;
+    if (!reader.parse(ifs, root)) {
+        std::cout << "Failed to parse the JSON file." << std::endl;
+        ifs.close();
+        throw runtime_error("error reading file");
+    }
+
+    Json::Value tierInternships = root[tier];
+
+    if (tierInternships.isNull()) {
+        std::cout << "Invalid tier specified." << std::endl;
+        ifs.close();
+        return;
+    }
+
+    for (Json::Value::ArrayIndex i = 0; i < tierInternships.size(); ++i) {
+        Json::Value internship = tierInternships[i]["internship"];
+        Internship newInternship;
+        newInternship.title = internship["title"].asString();
+        newInternship.company = internship["company"].asString();
+        newInternship.startingWage = internship["starting_wage"].asString();
+        newInternship.welcomeMessage = internship["welcome_message"].asString();
+        internships.push_back(newInternship);
+    }
+
+    ifs.close();
+
+    int randIndex = rand() % internships.size();
+    Internship theInternship = internships.at(randIndex);
+
+    cout << theInternship.company << endl;
+
+
+}
+
+
+string Game::calculateScore() {
+    int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
+
+    if(overallScore > 280) {
+        return "legendary";
+    } else if(overallScore > 250) {
+        return "epic";
+    } else if(overallScore > 200) {
+        return "good";
+    } else if(overallScore > 140) {
+        return "satisfactory";
+    } else {
+        return "poor";
+    }
+
+}
 
 // Getters and setters
 Character* Game::getCharacter() {
@@ -366,4 +443,7 @@ void Game::clearAndLoad() {
     system("clear");
     sleep(1.5);
 }
+
+
+
 
