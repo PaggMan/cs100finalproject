@@ -46,6 +46,9 @@
 ### Lobby Screen Layout
 <img src="https://files.catbox.moe/plem7x.jpg" width="600">
 
+### Final Game Over Screen
+<img src="https://files.catbox.moe/lmbi4y.png" width = "600">
+
 ### OLD UML Diagram
 <img src="https://cdn.discordapp.com/attachments/1096301999986835466/1106704973959528508/Screen_Shot_2023-05-12_at_3.09.32_PM.png"  width="600">
 
