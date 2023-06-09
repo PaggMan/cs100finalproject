@@ -99,8 +99,5 @@ Lobby
 
 <img src = "https://cdn.discordapp.com/attachments/771442141007839294/1116689606503579768/68747470733a2f2f66696c65732e636174626f782e6d6f652f706c656d37782e6a7067.png" width = "600">
 
-### OLD UML Diagram
-<img src="https://cdn.discordapp.com/attachments/1096301999986835466/1106704973959528508/Screen_Shot_2023-05-12_at_3.09.32_PM.png"  width="600">
-
-
-This is our tentative UML diagram. Our game will consist of these classes. The "user" who's playing will be represented with our character class which will store their stats, and also store the actions that they can do. For example, things like changing their grades and health status. These changes will be brought about thorugh the game or minigame classes that will invoke different characther methods depending on what type of actions they do. If they skip school for example, the game class will use the character class health mutator to change their mental heath status to be a little better. The screen class is what we will use to render our game and allow for interaction between the user and our code. There will be methods like printing the screen and taking the user input.
+### Testing
+We tested out project using GitHub actions (CI). Our continuous integration constantly checks to see if unit tests are passing, and if the program is working correctly. 
