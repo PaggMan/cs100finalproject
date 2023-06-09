@@ -33,7 +33,6 @@ Game::Game() {
     minigameList.push_back(new MinesweeperMinigame());
     minigameList.push_back(new RockPaperScissorsMinigame());
     minigameList.push_back(new TicTacToeMinigame());
-    minigameList.push_back(new TypingMinigame());
     minigameList.push_back(new UnscrambleMinigame());
     minigameList.push_back(new WordleMinigame());
 }
@@ -447,7 +446,7 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
 
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    int randomIndex = rand()%6;
+    int randomIndex = rand()%5;
     minigameList.at(randomIndex)->initialize();
     if(minigameList.at(randomIndex)->getResult()) {
         character->setGrades(character->getGrades() + 10);
@@ -470,14 +469,10 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
     } 
 
     else if (randomIndex == 3) {
-        minigameList.at(randomIndex) = new TypingMinigame();
-    }
-
-    else if (randomIndex == 4) {
         minigameList.at(randomIndex) = new UnscrambleMinigame();
     }
 
-    else if (randomIndex == 5) {
+    else if (randomIndex == 4) {
         minigameList.at(randomIndex) = new WordleMinigame();
     }
 }
