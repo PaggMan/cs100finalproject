@@ -39,6 +39,8 @@ Game::Game() {
 
 
 void Game::printCourseList() {  //Takes contents of courseCatalog.txt and outputs in formatted way.
+    std::string output;
+    Print outputObject;
     std::ifstream inFS;
     inFS.open("courseCatalog.txt");
     if (!inFS.is_open()) {
@@ -66,6 +68,8 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
+    std::string output;
+    Print outputObject;
     std::cout << '\n';
 
     //Show list of courses
@@ -230,6 +234,8 @@ void Game::addCourse(const std::string& courseName, unsigned& courseListSize) { 
 
 
 void Game::customizeCharacter() {  //Prompts the user to enter a name for their character.
+    std::string output;
+    Print outputObject;
 
     std::cout << "\tTo run " << name << ", you will need a character. What would you like to name this character?\n\n";
 
@@ -277,6 +283,8 @@ Game::~Game() {
 }
 
 void Game::load(string fileName) {
+    std::string output;
+    Print outputObject;
 
     // std::ifstream file("gamedata/game.json");
     std::ifstream file(fileName);
@@ -313,6 +321,9 @@ void Game::load(string fileName) {
 }
 
 void Game::save(string fileName) {
+    std::string output;
+    Print outputObject;
+
     string fileNameToSave;
     if(fileName == "") fileNameToSave = "gamedata/game";
     else fileNameToSave = "gamedata/savedgames/" + fileName + ".json";
@@ -354,7 +365,8 @@ void Game::save(string fileName) {
 
 
 void Game::start() {
-
+    std::string output;
+    Print outputObject;
 
 //Welcome message to starting a new game
     std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
@@ -394,6 +406,9 @@ void Game::gameLoop() {
 
 
 void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
+    std::string output;
+    Print outputObject;
+
     std::cout << "DAY " << currentDay << "\n\n";
     
     //Asks User if they skip class or go to class
@@ -489,6 +504,8 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
 }
 
 void Game::giveInstructions() {
+    std::string output;
+    Print outputObject;
     // run all the days of the game here.
     string text1 = "Welcome to UCR! You just finished your 2nd quarter as a fourth year computer science major and things are starting to heat up...\n\n";
     string text2 = "Keeping your work-life balance has always been quite the task... \nThere's just so many things to do in a day...\n";
@@ -537,6 +554,8 @@ void Game::giveInstructions() {
 }
 
 std::vector<Internship> Game::parseInternships(string tier) {
+    std::string output;
+    Print outputObject;
     std::vector<Internship> internships;
 
     std::ifstream ifs;
@@ -578,6 +597,8 @@ std::vector<Internship> Game::parseInternships(string tier) {
 }
 
 void Game::displayInternships() {
+    std::string output;
+    Print outputObject;
     system("clear");
     cout << "Loading your internship opportunity..." <<endl;
     clearAndLoad();
@@ -648,27 +669,29 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
-void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
-    for (char c : text) {
-        std::cout << c << std::flush; // Print the character
-        usleep(delay * 1000); // Delay in microseconds
-    }
-}
+// void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
+//     for (char c : text) {
+//         std::cout << c << std::flush; // Print the character
+//         usleep(delay * 1000); // Delay in microseconds
+//     }
+// }
 
-void Game::handleColor(int num) {
-    if(num == -1) {
-        cout << "\033[0m\n"; // reset to white
-        return;
-    }
+// void Game::handleColor(int num) {
+//     if(num == -1) {
+//         cout << "\033[0m\n"; // reset to white
+//         return;
+//     }
     
-    if(num >= 5) {
-        cout << "\033[1;32m"; //set to green
-        return;
-    }
-    cout << "\033[1;33m"; // yellow
-}
+//     if(num >= 5) {
+//         cout << "\033[1;32m"; //set to green
+//         return;
+//     }
+//     cout << "\033[1;33m"; // yellow
+// }
 
 void Game::printLobby() {
+    std::string output;
+    Print outputObject;
     cout << character->getName() << "\'s Room" << endl;
     cout << endl << endl;
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
