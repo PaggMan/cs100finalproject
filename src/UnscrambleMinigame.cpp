@@ -13,7 +13,11 @@ UnscrambleMinigame::UnscrambleMinigame(){
 
 void UnscrambleMinigame::initialize(){
     cout << "Welcome to Unscramble! Your goal is the unscramble the given CS100 word!\n";
-    cout << "Unscramble this word: " << scrambledWords[word] << endl;
+    cout << "Unscramble this word: " << scrambledWords[word] << endl << endl;
+    cout << "  *Be careful, the word is case sensitive!" << endl << endl << endl;
+
+    cout << "Enter your guess: ";
+  
     getline(cin, userInput);
 
     if(userInput == possibleWords[word]){

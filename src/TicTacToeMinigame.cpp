@@ -97,7 +97,6 @@ void TicTacToeMinigame::initialize(){
                 computerChoice = rand() % 9;
                 while(arr[computerChoice] != ' ') {
                     computerChoice = rand() % 9;
-                    cout << computerChoice << endl;
                 }
                 arr[computerChoice] = 'X';
             }

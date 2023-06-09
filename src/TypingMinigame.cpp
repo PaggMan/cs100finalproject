@@ -6,9 +6,16 @@
 using namespace std;
 
 TypingMinigame::TypingMinigame(){
+    possibleWords[0] = "The fox jumps over the lazy dog";
+    possibleWords[1] = "CS100 is the best class";
+    possibleWords[2] = "CS Student simulator is Game of the Year";
+    possibleWords[3] = "I think the developers should get a raise";
+    possibleWords[4] = "How much wood would a woodchuck chuck if a woodchuck could chuck wood";
     srand(time(0));
     int targetWordIndex = rand() % 5;
     targetWord = possibleWords[targetWordIndex];
+}
+TypingMinigame::~TypingMinigame() {
 }
 
 void TypingMinigame::disableTerminalEcho() {

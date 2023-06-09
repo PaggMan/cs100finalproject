@@ -7,9 +7,25 @@
 #include <ftxui/screen/screen.hpp>
 #include <unistd.h>
 #include "../include/loadgame.h"
+#include <thread>
 
 
 using namespace ftxui;
+
+
+
+bool noSpacesInName(const std::string& name) {
+  if (name.size() == 0) {
+    return false;
+  }
+
+  for (unsigned i = 0; i < name.size(); ++i) {
+    if (name.at(i) == ' ' || name.at(i) == '\t' || name.at(i) == '\n') {
+      return false;
+    }
+  }
+  return true;
+}
  
 int main() {
  system("clear");
@@ -40,7 +56,41 @@ if(userinput == '1') {
      cin.clear();
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
      Game* game = new Game();
+
+     //Recieve user input for the name of the game
+     //The user should keep on being asked for a name until they enter a name without spaces, tabs, or newlines.
+     string name = " ";
+     while (true) {
+        std::cout << "Choose a name for the game: ";
+        getline(cin, name);
+        if (noSpacesInName(name)) {
+          game -> setName(name);
+          break;
+        }
+        //If the name had spaces, the user is asked to enter another name.
+        system("clear");
+        std::cout << "Invalid Response. Make sure to not put any spaces in the name.\n\n";
+     }
+     system("clear");
+     
+     //game->giveInstructions();
      game->start();
+
+     try {
+        game->gameLoop();
+     }
+
+     catch(std::runtime_error& e) {
+        delete game;
+        return 1;
+     }
+
+
+
+     game->displayInternships();
+
+     delete game;
+
 } else if(userinput == '2') {
     system("clear");
     cout << "Looking for saved games..." << endl;
@@ -51,7 +101,7 @@ if(userinput == '1') {
           gm.handleGameLoad();
     } catch(std::runtime_error& e) {
       cout << e.what() << endl;
-      return 1;
+      return 0;
     }
 
     cout << "Found " << gm.getNumGames() << " saved games." << endl;
@@ -61,7 +111,13 @@ if(userinput == '1') {
 
 
     Game* game = new Game();
-    game->load(fileToLoad);
+    try {
+      game->load(fileToLoad); // goes into game
+    }
+    catch(std::runtime_error& e) {
+      delete game;
+      return 0;
+    }
     /*
     Everything below here should be handled by the load function
     */
@@ -70,7 +126,7 @@ if(userinput == '1') {
     // system("clear");
     // cout << "Welcome back, " << game->getCharacter()->getName() << endl;
 
-
+    delete game;
   
 
 } else {
@@ -160,4 +216,5 @@ if(userinput == '1') {
   // // Create the screen and render the container.
   // auto screen = ScreenInteractive::Fullscreen();
   // screen.Loop(titleScreen);
+  return 0;
 }

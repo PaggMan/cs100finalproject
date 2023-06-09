@@ -10,5 +10,5 @@ cmake_install.cmake
 *.out
 bin/
 gamedata/game.json
-gamedata/savedgames/*
+gamedata/savedgames
 lib/

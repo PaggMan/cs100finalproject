@@ -13,9 +13,14 @@ add_executable(rungame
     src/screen.cpp
     src/character.cpp
     src/course.cpp
-    src/characterValidator.cpp 
+    src/characterValidator.cpp
+    src/MinesweeperMinigame.cpp
+    src/RockPaperScissorsMinigame.cpp
+    src/TicTacToeMinigame.cpp
+    src/TypingMinigame.cpp
+    src/UnscrambleMinigame.cpp
+    src/WordleMinigame.cpp
 )
-
 
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
@@ -72,6 +77,7 @@ target_sources(rungame PRIVATE
 )
 
 
+
 # Set the Google Test directory
 set(GTEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/googletest")
 
@@ -81,33 +87,14 @@ add_subdirectory(${GTEST_DIR})
 # Include Google Test directories
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# # characterTests
-# add_executable(characterTests
-#     tests/characterTests.cpp
-#     src/character.cpp
-#     src/game.cpp
-# )
-
-# # Link Google Test libraries
-# target_link_libraries(characterTests 
-#     PRIVATE gtest 
-#     PRIVATE gtest_main
-#     )
-
-# target_include_directories(characterTests PRIVATE
-#     ${CMAKE_CURRENT_SOURCE_DIR}/include
-# )
-
-# commented out characterTests for now
-
-# character validator tests
-add_executable(testCharacterValidator
-    tests/testCharacterValidator.cpp
-    src/characterValidator.cpp
-    src/course.cpp 
+# characterTests
+add_executable(characterTests
+    tests/characterTests.cpp
+    src/character.cpp
 )
 
-TARGET_LINK_LIBRARIES(testCharacterValidator gtest)
-TARGET_COMPILE_DEFINITIONS(testCharacterValidator PRIVATE gtest_disable_pthreads=ON)
-
-
+# Link Google Test libraries
+target_link_libraries(characterTests 
+    PRIVATE gtest 
+    PRIVATE gtest_main
+    )
