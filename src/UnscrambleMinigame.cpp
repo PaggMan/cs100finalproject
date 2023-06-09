@@ -12,6 +12,7 @@ UnscrambleMinigame::UnscrambleMinigame(){
 }
 
 void UnscrambleMinigame::initialize(){
+    cout << "Welcome to Unscramble! Your goal is the unscramble the given CS100 word!\n";
     cout << "Unscramble this word: " << scrambledWords[word] << endl;
     getline(cin, userInput);
 
