@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <string>
-
+#include "print.h"
 using namespace std;
 
 class Minigame{
     protected:
         bool userWon;
+        string output;
+        Print outputObject;
     public:
         virtual void initialize() = 0;
         virtual void terminate() = 0;

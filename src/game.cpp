@@ -39,6 +39,7 @@ Game::Game() {
 
 
 void Game::printCourseList() {  //Takes contents of courseCatalog.txt and outputs in formatted way.
+    
     std::ifstream inFS;
     inFS.open("courseCatalog.txt");
     if (!inFS.is_open()) {
@@ -49,16 +50,20 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
     std::string courseName = "";
     double courseDifficulty = 0.0;
     while (inFS >> courseName) {
-        std::cout << courseName;
+        output = courseName;
+        outputObject.printStaggeredOutput(output, 10);
         numSpaces = 8 - courseName.size();
 
         for (unsigned i = 0; i < numSpaces; ++i) {
-            std::cout << ' ';
+            output = ' ';
+            outputObject.printStaggeredOutput(output, 10);
         }
         inFS >> courseDifficulty;
-        handleColor(static_cast<int>(courseDifficulty));
-        std::cout << '\t' << courseDifficulty << '\n';
-        handleColor(-1);
+        
+        outputObject.handleColor(static_cast<int>(courseDifficulty));
+        output = '\t' + to_string(courseDifficulty);
+        outputObject.printStaggeredOutput(output, 10);
+        outputObject.handleColor(-1);
     }
 
     inFS.close();
@@ -66,7 +71,8 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
-    std::cout << '\n';
+    output = "\n";
+    outputObject.printOutput(output);
 
     //Show list of courses
     printCourseList();
@@ -80,7 +86,9 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     unsigned courseListSize = 0;
 
     while (!isValidCourse) {
-        std::cout << "\n1st course: ";
+        output = "\n1st course: ";
+        outputObject.printOutput(output);
+
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
         if (courseListSize == 1) {  //If the courseListSize changed, that means the course was successfully added.
@@ -98,7 +106,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -109,7 +118,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n2nd course: ";
+        output = "\n2nd course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -121,14 +131,16 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[1]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[1]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
                 delete courseList[1];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -143,7 +155,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n3rd course: ";
+        output = "\n3rd course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -155,14 +168,17 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[2]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[2]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
+
                 delete courseList[2];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -175,7 +191,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n4th course: ";
+        output = "\n4th course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -187,14 +204,16 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[3]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[3]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
                 delete courseList[3];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 }
@@ -231,22 +250,25 @@ void Game::addCourse(const std::string& courseName, unsigned& courseListSize) { 
 
 void Game::customizeCharacter() {  //Prompts the user to enter a name for their character.
 
-    std::cout << "\tTo run " << name << ", you will need a character. What would you like to name this character?\n\n";
+    output = "\tTo run " + name + ", you will need a character. What would you like to name this character?\n\n";
+    outputObject.printOutput(output);
 
     CharacterValidator characterValidator;  //CharacterValidator will be used to determine whether or not characterName is valid.
     std::string characterName = " ";  //The name was initialized to Bob in case the user can't think of a valid character name after 3 tries.
     bool isValidName = false; //This will determine whether or not the program can exit the loop.
 
     do {
-        std::cout << "\tName: ";
+        output = "\tName: ";
+        outputObject.printOutput(output);
         getline(cin, characterName);
-        std::cout << '\n';
+        outputObject.printNewline();
 
         isValidName = characterValidator.isValidCharacterName(characterName);   //This stores true or false, whether or not the name is valid.
 
         if (!isValidName) {
             system("clear");
-            std::cout << "The name you enter must not contain spaces and needs to be in between 2 to 20 characters. Please try again!\n\n";
+            output = "The name you enter must not contain spaces and needs to be in between 2 to 20 characters. Please try again!\n\n";
+            outputObject.printOutput(output);
         }
         
    }
@@ -254,7 +276,8 @@ void Game::customizeCharacter() {  //Prompts the user to enter a name for their 
 
     character = new Character();
     character -> setName(characterName);
-    std::cout << "Character \"" << characterName << "\" created.\n";
+    output = "Character \"" + characterName + "\" created.\n";
+    outputObject.printOutput(output);
 }
 
 
@@ -304,15 +327,18 @@ void Game::load(string fileName) {
     courseList[2] = new Course("Class", 5.0);
     courseList[3] = new Course("Class", 5.0);
 
-    cout << "Loading your game..." << endl;
+    output = "Loading your game...\n";
+    outputObject.printOutput(output);
     sleep(1.5);
     system("clear");
-    cout << "Welcome back to UCR, " << character->getName() << endl;
+    output = "Welcome back to UCR, " + character->getName() + "\n";
+    outputObject.printOutput(output);
     gameLoop();
     return;
 }
 
 void Game::save(string fileName) {
+
     string fileNameToSave;
     if(fileName == "") fileNameToSave = "gamedata/game";
     else fileNameToSave = "gamedata/savedgames/" + fileName + ".json";
@@ -338,9 +364,11 @@ void Game::save(string fileName) {
     std::ofstream file(fileNameToSave);
     file << jsonString;
     file.close();
-    cout << "\n\nSaving game..." << endl;
+    output = "\n\nSaving game...\n";
+    outputObject.printOutput(output);
     clearAndLoad();
-    cout << "Successfully saved game to " << fileNameToSave  << endl << endl;
+    output = "Successfully saved game to " + fileNameToSave + "\n\n";
+    outputObject.printOutput(output);
 
 
     //delete this;
@@ -355,31 +383,32 @@ void Game::save(string fileName) {
 
 void Game::start() {
 
-
 //Welcome message to starting a new game
-    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
-    
+    output = "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" + name + "\".\n\n";
+    outputObject.printOutput(output);
     customizeCharacter();   //This function will create a character and give it a name.
 
 
     sleep(2);
     system("clear");
 
-    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
-    std::cout << " For this last quarter, you decide to take four more classes.";
-    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
+    output = "Hello " + character->getName() + "! You are a student at UCR in your last quarter before graduating!";
+    output += " For this last quarter, you decide to take four more classes.";
+    output += " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
+    outputObject.printOutput(output);
 
     chooseCourses();
 
     system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
-
+    output += "Good! It is time to begin your last quarter at UCR...\n";
+    outputObject.printOutput(output);
 
     //(void)displayInternships();
 
 }
 
 void Game::gameLoop() {
+
     srand(time(NULL));
     //While loop that iterates until currentDay reaches 30
 
@@ -392,9 +421,9 @@ void Game::gameLoop() {
     }
     // build suspense here
     system("clear");
-    printCharacters("You just finished your last day at UCR!\n\n\n", 25);
+    outputObject.printStaggeredOutput("You just finished your last day at UCR!\n\n\n", 25);
     sleep(1.5);
-    printCharacters("Now it's time to see what internship offers you got!\n\n", 25);
+    outputObject.printStaggeredOutput("Now it's time to see what internship offers you got!\n\n", 25);
     sleep(1.5);
     displayInternships();
     this->save(this->name);
@@ -402,13 +431,16 @@ void Game::gameLoop() {
 
 
 void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
-    std::cout << "DAY " << currentDay << "\n\n";
+
+    output = "DAY " + to_string(currentDay) + "\n\n";
+    outputObject.printOutput(output);
     
     //Asks User if they skip class or go to class
         //If they go to class, start a minigame
 
     
-    std::cout << "Do you skip class today or go to class? (Type 1 to skip, type 2 to go to class)\n";
+    output = "Do you skip class today or go to class? (Type 1 to skip, type 2 to go to class)\n";
+    outputObject.printOutput(output);
     
     
     char choice = ' ';
@@ -417,7 +449,8 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
     while(true) {   //The loop keeps running until a valid response is Entered by the User
 
-        std::cout << "\t1) Skip class\n\t2) Go to class\n\n\tChoice: ";
+        output = "\t1) Skip class\n\t2) Go to class\n\n\tChoice: ";
+        outputObject.printOutput(output);
         cin >> choice;
 
         if (choice == '1') {
@@ -432,7 +465,8 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
         
         else {
             system("clear");
-            std::cout << "Invalid Response. Try Again.\n";
+            output = "Invalid Response. Try Again.\n";
+            outputObject.printOutput(output);
             cin.clear();
         }
     }
@@ -457,7 +491,8 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
         //Choose a stat boosting you want
             //If you skipped class you can upgrade another stat.
     system("clear");
-    std::cout << "End of day " << currentDay << "\n\n";
+    output = "End of day " + to_string(currentDay) + "\n\n";
+    outputObject.printOutput(output);
     sleep(1);
     printLobby();
     sleep(3);
@@ -497,6 +532,7 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
 }
 
 void Game::giveInstructions() {
+
     // run all the days of the game here.
     string text1 = "Welcome to UCR! You just finished your 2nd quarter as a fourth year computer science major and things are starting to heat up...\n\n";
     string text2 = "Keeping your work-life balance has always been quite the task... \nThere's just so many things to do in a day...\n";
@@ -507,22 +543,28 @@ void Game::giveInstructions() {
     string text7 = "If you opt not to go to class, you will have an option to do a daytime activity. These all can affect in various ways your health, happiness, and grades.\n\nYou'll still have the nightime activity too!";
     string text8 = "At the end of the day, you'll be sent to your room where you can view your stats, and plan accordingly the next day in order to be at your best state.\n";
     string text9 = "At the end of the 15 days, your status as a student will be used to determine your job opportunity. The better your stats, the better your wage and opportunity!";
+    string text10 = "In calculating your standardized score as a student, different categories will be weighted differently, so make sure you don't slack off on your grades.";
+    string text11 = "Not studying/going to class will lower your grades category so make sure you keep an eye out on that.";
 
-    printCharacters(text1, 25); // in milliseconds
-    printCharacters("\n\n\n", 150);
-    printCharacters(text2, 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters(text3+text4, 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters(text5+text6, 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters(text7, 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters(text8, 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters(text9, 25);
-    printCharacters("\n\n\n", 150);
-    cout << "\n\n\n";
+    outputObject.printStaggeredOutput(text1, 25); // in milliseconds
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text2, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text3+text4, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text5+text6, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text7, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text8, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text9, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text10, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text11, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printOutput("\n\n\n");
 
 
     //Give introduction message about what it being your last quarter and how this quarter determines your job prospects.
@@ -532,12 +574,12 @@ void Game::giveInstructions() {
 
 
     // Very end
-    printCharacters("Ok, you seem good to go!", 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters("Its time to start your last quarter here at UCR!", 25);
-    printCharacters("\n\n\n", 150);
-    printCharacters("Type any character to continue...", 25);
-    printCharacters("\n\n\n", 150);
+    outputObject.printStaggeredOutput("Ok, you seem good to go!", 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput("Its time to start your last quarter here at UCR!", 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput("Type any character to continue...", 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
     char trash; cin >> trash;
     cin.clear();
     cin.ignore(2147483647, '\n');
@@ -545,19 +587,22 @@ void Game::giveInstructions() {
 }
 
 std::vector<Internship> Game::parseInternships(string tier) {
+
     std::vector<Internship> internships;
 
     std::ifstream ifs;
     ifs.open("gamedata/internships.json");
     if (!ifs.is_open()) {
-        std::cout << "Failed to open the JSON file." << std::endl;
+        output = "Failed to open the JSON file.\n";
+        outputObject.printOutput(output);
         throw runtime_error("error reading file");
     }
 
     Json::Value root;
     Json::Reader reader;
     if (!reader.parse(ifs, root)) {
-        std::cout << "Failed to parse the JSON file." << std::endl;
+        output = "Failed to parse the JSON file.\n";
+        outputObject.printOutput(output);
         ifs.close();
         throw runtime_error("error reading file");
     }
@@ -565,7 +610,8 @@ std::vector<Internship> Game::parseInternships(string tier) {
     Json::Value tierInternships = root[tier];
 
     if (tierInternships.isNull()) {
-        std::cout << "Invalid tier specified." << std::endl;
+        output = "Invalid tier specified.\n";
+        outputObject.printOutput(output);
         ifs.close();
         throw runtime_error("invalid tier specified.");
     }
@@ -578,7 +624,6 @@ std::vector<Internship> Game::parseInternships(string tier) {
         newInternship.startingWage = internship["starting_wage"].asString();
         newInternship.welcomeMessage = internship["welcome_message"].asString();
         internships.push_back(newInternship);
-        // cout << newInternship.title << endl;
     }
 
     ifs.close();
@@ -586,8 +631,10 @@ std::vector<Internship> Game::parseInternships(string tier) {
 }
 
 void Game::displayInternships() {
+
     system("clear");
-    cout << "Loading your internship opportunity..." <<endl;
+    output = "Loading your internship opportunity...\n";
+    outputObject.printOutput(output);
     clearAndLoad();
 
     // string tier = calculateScore();
@@ -599,15 +646,15 @@ void Game::displayInternships() {
     // Internship theInternship = possibleInternships.at(randIndex); broken
     Internship theInternship = getRandomFromVector(possibleInternships);
  
-    cout << "Congratulations! With your cumulative game score of " << this->character->getCumulativeScore() << ", ";
-    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
-    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
-    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+    output = "Congratulations! With your cumulative game score of " + to_string(this->character->getCumulativeScore()) + ", ";
+    output += "You've been offered an internship at " + theInternship.company + "!\n\n";
+    output += "Here's a message from the hiring team: \n\n" + theInternship.welcomeMessage + "\n\n\n";
+    output += "Your starting wage is " + theInternship.startingWage + "\n\n\n";
+    outputObject.printStaggeredOutput(output, 25);
     string x;
     cin >> x;
     cin.clear();
     cin.ignore(2147483647, '\n');
-
 
 
 
@@ -645,91 +692,80 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
-void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
-    for (char c : text) {
-        std::cout << c << std::flush; // Print the character
-        usleep(delay * 1000); // Delay in microseconds
-    }
-}
-
-void Game::handleColor(int num) {
-    if(num == -1) {
-        cout << "\033[0m\n"; // reset to white
-        return;
-    }
-    
-    if(num >= 5) {
-        cout << "\033[1;32m"; //set to green
-        return;
-    } if(num >=3) {
-        cout << "\033[1;33m"; // yellow
-        return;
-    }
-    else {
-        cout << "\033[1;31m"; // red
-    }
-    
-}
-
 void Game::printLobby() {
-    cout << character->getName() << "\'s Room" << endl;
-    cout << endl << endl;
+
+    output = character->getName() + "\'s Room\n\n\n";
+    outputObject.printOutput(output);
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
-    cout << "Health:    [ ";
-    handleColor(healthPercent); // set to green or yellow based on score
+    output = "Health:    [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(healthPercent); // set to green or yellow based on score
     for(int i = 0; i < healthPercent; ++i){
-        cout << "█ "; 
+        output = "█ "; 
+        outputObject.printOutput(output);
     }
     for(int i = healthPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
     
-    cout << "] " << character->getHealth() << "%" << endl;
-    handleColor(-1); // reset to white
-    cout << endl;
+    output = "] " + to_string(character->getHealth()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1); // reset to white
+    outputObject.printNewline();
 
     int gradesPercent = character->getGrades() / 10;
-    cout << "Grades:    [ ";
-    handleColor(gradesPercent);
+    output = "Grades:    [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(gradesPercent);
     for(int i = 0; i < gradesPercent; ++i){
-        cout << "█ "; 
+        output = "█ ";
+        outputObject.printOutput(output);
     }
     for(int i = gradesPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
 
-    cout << "] " << character->getGrades() << "%" << endl;
-    handleColor(-1);
-    cout << endl;
+    output = "] " + to_string(character->getGrades()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1);
+    outputObject.printNewline();
 
     int happinessPercent = character->getHappiness() / 10;
-    cout << "Happiness: [ ";
-    handleColor(happinessPercent);
+    output = "Happiness: [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(happinessPercent);
     for(int i = 0; i < happinessPercent; ++i){
-        cout << "█ "; 
+        output = "█ "; 
+        outputObject.printOutput(output);
     }
     for(int i = happinessPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
 
-    cout << "] " << character->getHappiness() << "%" << endl;
-    handleColor(-1);
-    cout << endl << endl;
+    output = "] " + to_string(character->getHappiness()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1);
+    output = "\n\n";
 
-    cout << "Options: " << endl;
-    cout << "\t1. Workout" << endl;
-    cout << "\t2. Study" << endl; 
-    cout << "\t3. Hang with Friends" << endl;
-    cout << "\t4. Save and quit game" << endl;
-    cout << "Type an option: ";
+    output += "Options: \n";
+    output += "\t1. Workout\n";
+    output += "\t2. Study\n"; 
+    output += "\t3. Hang with Friends\n";
+    output += "\t4. Save and quit game\n";
+    output += "Type an option: \n";
+    outputObject.printOutput(output);
     char option = 0;
     cin >> option;
 
     while(cin.fail() or option != '1' and option != '2' and option != '3' and option != '4'){
         cin.clear();
         cin.ignore(2147483647, '\n');
-        cout << "Invalid option, please try again" << endl;
-        cout << "Type an option: ";
+        output = "Invalid option, please try again\n";
+        output += "Type an option: ";
+        outputObject.printOutput(output);
         cin >> option;
     }
     if(option == '1'){

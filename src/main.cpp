@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/game.h"
+#include "../include/print.h"
 // #include <experimental/filesystem>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
@@ -61,7 +62,7 @@ if(userinput == '1') {
      //The user should keep on being asked for a name until they enter a name without spaces, tabs, or newlines.
      string name = " ";
      while (true) {
-        std::cout << "Choose a name for the game: ";
+        std::cout << "Choose a name for the game (this is what the game will be saved as): ";
         getline(cin, name);
         if (noSpacesInName(name)) {
           game -> setName(name);

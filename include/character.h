@@ -2,6 +2,7 @@
 #define __CHARACTER__
 #include <string>
 #include <iostream>
+#include "print.h"
 using namespace std;
 
 class Character {
@@ -12,6 +13,9 @@ class Character {
         int grades;
         int happiness;
         int health;
+
+        string output;
+        Print outputObject;
     
     public:
         Character();

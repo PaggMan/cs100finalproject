@@ -66,36 +66,44 @@ Character::~Character() {
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
+        
         int increase = rand() % 10 + 1;
         if(health == 100){
-            cout << "You ego-lift without a spotter, and it falls on your face. -15 health" << endl;
+            output = "You ego-lift without a spotter, and it falls on your face. -15 health\n";
+            outputObject.printOutput(output);
             health -= 15; 
             return;
         }
         health += increase;
         if(increase <= 2){
-            cout << "You trip and fall over a loose dumbell. +" << increase << " health"; 
+            output = "You trip and fall over a loose dumbell. +" + to_string(increase) + " health";
+            outputObject.printOutput(output);
         }
         else if(increase > 2 and increase <= 4){
-            cout << "You feel lazy, so you just do cardio. +" << increase << " health";
+            output = "You feel lazy, so you just do cardio. +" + to_string(increase) + " health";
+            outputObject.printOutput(output);
         }
         else if(increase > 4 and increase <= 6){
-            cout << "You have a good workout and feel sore the next day. +" << increase << " health";
+            output = "You have a good workout and feel sore the next day. +" + to_string(increase) + " health";
+            outputObject.printOutput(output);
         }
         else if(increase > 6 and increase <= 8){
-            cout << "You have an amazing workout and get a new record on some of your sets. +" << increase << " health";
+            output = "You have an amazing workout and get a new record on some of your sets. +" + to_string(increase) + " health";
+            outputObject.printOutput(output);
         }
         else if(increase > 8 and increase <= 10){
-            cout << "You PR on everything you try and get some reputaton at the gym. +" << increase << " health";
+            output = "You PR on everything you try and get some reputaton at the gym. +" + to_string(increase) + " health";
+            outputObject.printOutput(output);
         }
 
-        cout << "   -3 grades";
+        output = "   -3 grades";
+        outputObject.printOutput(output);
         grades -= 3;
 
         if(grades < 0){
             grades = 0;
         }
-        cout << endl;   
+        outputObject.printNewline();
         if(health > 100){
             health = 100;
         }
@@ -103,8 +111,10 @@ Character::~Character() {
     }
 
     void Character::studyHarder(){
+        
         if(grades == 100){
-            cout << "You get burnt out, fall asleep at your desk, and miss your midterm. -10 grades" << endl;
+            output = "You get burnt out, fall asleep at your desk, and miss your midterm. -10 grades\n";
+            outputObject.printOutput(output);
             grades -= 10; 
             return;
         }
@@ -112,22 +122,28 @@ Character::~Character() {
         grades += increase;
 
         if(increase <= 1){
-            cout << "You get distracted by your phone. +" << increase << " grades"; 
+            output = "You get distracted by your phone. +" + to_string(increase) + " grades"; 
+            outputObject.printOutput(output);
         }
         else if(increase > 1 and increase <= 2){
-            cout << "You study a little bit. +" << increase << " grades";
+            output = "You study a little bit. +" + to_string(increase) + " grades";
+            outputObject.printOutput(output);
         }
         else if(increase > 2 and increase <= 3){
-            cout << "You join a study group and are ready for your test. +" << increase << " grades";
+            output = "You join a study group and are ready for your test. +" + to_string(increase) + " grades";
+            outputObject.printOutput(output);
         }
         else if(increase > 3 and increase <= 4){
-            cout << "You study for a while. Maybe you can help teach class next time. +" << increase << " grades";
+            output = "You study for a while. Maybe you can help teach class next time. +" + to_string(increase) + " grades";
+            outputObject.printOutput(output);
         }
         else if(increase >  4 and increase <= 5){
-            cout << "You master the subject. It is impossible to fail your exam. +" << increase << " grades" ;
+            output = "You master the subject. It is impossible to fail your exam. +" + to_string(increase) + " grades" ;
+            outputObject.printOutput(output);
         }
 
-        cout << "   -1 health   -1 happiness";
+        output = "   -1 health   -1 happiness";
+        outputObject.printOutput(output);
         health--;
         happiness--;
         if(grades > 100){
@@ -139,35 +155,44 @@ Character::~Character() {
         if(happiness < 0){
             happiness = 0;
         }
-        cout << endl;   
+        outputObject.printNewline();
     }
+
     void Character::hangWithFriends(){
+        
         if(happiness == 100){
-                cout << "You get into an argument with your friends on the way back home. -15 happiness" << endl;
+                output = "You get into an argument with your friends on the way back home. -15 happiness\n";
+                outputObject.printOutput(output);
                 happiness -= 10; 
                 return;
             }
         int increase = rand() % 10 + 1;
         happiness += increase;
         if(increase <= 2){
-            cout << "You get forgotten and don't get picked up. +" << increase << " happiness"; 
+            output = "You get forgotten and don't get picked up. +" + to_string(increase) + " happiness"; 
+            outputObject.printOutput(output);
         }
         else if(increase > 2 and increase <= 4){
-            cout << "You get McDonalds with your friend. +" << increase << " happiness";
+            output = "You get McDonalds with your friend. +" + to_string(increase) + " happiness";
+            outputObject.printOutput(output);
         }
         else if(increase > 4 and increase <= 6){
-            cout << "You go see a movie with your friends. +" << increase << " happiness";
+            output = "You go see a movie with your friends. +" + to_string(increase) + " happiness";
+            outputObject.printOutput(output);
         }
         else if(increase > 6 and increase <= 8){
-            cout << "You go to an amusement park with your friends. +" << increase << " happiness";
+            output = "You go to an amusement park with your friends. +" + to_string(increase) + " happiness";
+            outputObject.printOutput(output);
         }
         else if(increase > 8 and increase <= 10){
-            cout << "You travel the world with your friends. +" << increase << " happiness";
+            output = "You travel the world with your friends. +" + to_string(increase) + " happiness";
+            outputObject.printOutput(output);
         }
 
-        cout << "   -3 grades";
+        output = "   -3 grades";
+        outputObject.printOutput(output);
         grades -= 3;
-        cout << endl;  
+        outputObject.printNewline();
         if(happiness > 100){
             happiness = 100;
         }

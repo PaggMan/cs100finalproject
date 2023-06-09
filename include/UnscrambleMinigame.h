@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "minigame.h"
-
+#include "print.h"
 using namespace std;
 
 class UnscrambleMinigame : public Minigame{
