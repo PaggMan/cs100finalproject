@@ -541,6 +541,67 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
+void Game::printLobby(){
+    cout << "Your Room" << endl;
+    cout << endl << endl;
+    int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
+    cout << "Health:    [ ";
+    for(int i = 0; i < healthPercent; ++i){
+        cout << "█ "; 
+    }
+    for(int i = healthPercent; i < 10; ++i){
+        cout << "- ";
+    }
+    cout << "] " << character->getHealth() << "%" << endl;
+
+    cout << endl;
+
+    int gradesPercent = character->getGrades() / 10;
+    cout << "Grades:    [ ";
+    for(int i = 0; i < gradesPercent; ++i){
+        cout << "█ "; 
+    }
+    for(int i = gradesPercent; i < 10; ++i){
+        cout << "- ";
+    }
+    cout << "] " << character->getGrades() << "%" << endl;
+
+    cout << endl;
+
+    int happinessPercent = character->getHappiness() / 10;
+    cout << "Happiness: [ ";
+    for(int i = 0; i < happinessPercent; ++i){
+        cout << "█ "; 
+    }
+    for(int i = happinessPercent; i < 10; ++i){
+        cout << "- ";
+    }
+    cout << "] " << character->getHappiness() << "%" << endl;
+
+    cout << endl << endl;
+
+    cout << "Options: " << endl;
+    cout << "\t1. Workout" << endl;
+    cout << "\t2. Study" << endl; 
+    cout << "\t3. Hang with Friends" << endl;
+    cout << "Type an option: ";
+    int option = 0;
+    cin >> option;
+    while(option != 1 and option != 2 and option != 3){
+        cout << "Invalid option, please try again" << endl;
+        cout << "Type an option: ";
+        cin >> option;
+    }
+    if(option == 1){
+        character->workout();
+    }
+    else if(option == 2){
+        character->studyHarder();
+    }
+    else{
+        character->hangWithFriends();
+    }
+}
 
 
 

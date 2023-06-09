@@ -22,7 +22,6 @@ class Game {
         void start();
 
         void giveInstructions();    //Explains the user how to play the game
-        void gameLoop();    //A loop that calls runDay() until the dayCounter reaches 30.
         void runDay();  //Allows user to make choices on a given day and calls minigame classes
 
 
@@ -44,8 +43,8 @@ class Game {
     void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
     void clearAndLoad();
     void playMinigame();
-   
-
+    void gameLoop();
+    void printLobby();
 
     string calculateScore(); // Used to calculate internship opportunities
         
