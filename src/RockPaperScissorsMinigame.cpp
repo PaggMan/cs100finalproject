@@ -69,15 +69,10 @@ void RockPaperScissorsMinigame::initialize(){
 void RockPaperScissorsMinigame::terminate(){
     if(userScore == 3) {
         cout << "\nCongratulations, you won the game!\n";
+        userWon = true;
     }
     else if(computerScore == 3) {
         cout << "\nUnlucky, you did not win the game.\n";
+        userWon = false;
     }
-}
-
-int main() {
-    RockPaperScissorsMinigame testGame;
-    testGame.initialize();
-
-    return 0;
 }

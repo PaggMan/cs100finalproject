@@ -8,19 +8,14 @@ using namespace std;
 
 class UnscrambleMinigame : public Minigame{
     private:
+        int word;
         string userInput;
-        bool gameOver;
-        int arrLength;
         string possibleWords[10] = {"googletest", "kanban" , "scrum" , "solid" , "computer" , "testing", "github", "develop", "ethics", "optimize"};
         string scrambledWords[10] = {"eloogesgtt", "abnakn", "cmurs", "lidso", "cpmoteur", "tetsign", "hgtiub", "vdelepo", "etcish", "imopitze"};
-
-    
     public:
         UnscrambleMinigame();
         void initialize() override;
         void terminate() override;
-
-
 };
 
 #endif

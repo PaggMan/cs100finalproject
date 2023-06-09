@@ -7,30 +7,26 @@ using namespace std;
 
 
 UnscrambleMinigame::UnscrambleMinigame(){
-    arrLength = 10;    
+    srand(time(0));
+    word = rand() % 10;
 }
 
 void UnscrambleMinigame::initialize(){
-
-    int word = rand() % 10; //random number 0-9
-
     cout << "Unscramble this word: " << scrambledWords[word] << endl;
     getline(cin, userInput);
 
-
     if(userInput == possibleWords[word]){
-        gameOver = true;
+        userWon = true;
     }
     else{
-        gameOver = false;
+        userWon = false;
     }
     terminate();
     return;
-
 }
 
 void UnscrambleMinigame::terminate(){
-    if(gameOver){
+    if(userWon){
         cout << "You Win!" << endl;
     }
     else{
@@ -39,14 +35,7 @@ void UnscrambleMinigame::terminate(){
     return;
 }
 
-
-int main()
-{
-    UnscrambleMinigame* t = new UnscrambleMinigame();
-    t->initialize();
-    UnscrambleMinigame* x = new UnscrambleMinigame();
-    x->initialize();
-    UnscrambleMinigame* y = new UnscrambleMinigame();
-    y->initialize();
-    return 0;
+int main() {
+    UnscrambleMinigame testg;
+    testg.initialize();
 }
