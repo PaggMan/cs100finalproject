@@ -112,7 +112,7 @@ void MinesweeperMinigame::revealChoice(int row, int column) {
 }
 
 void MinesweeperMinigame::printGrid(bool endGame) {
-    cout << "    0 1 2 3 4 5 6 7 8 9" << endl << "  -----------------------" << endl;
+    cout << "    0 1 2 3 4 5 6 7 8 9\n  -----------------------\n";
     for(int i = 0; i < 8; ++i) {
         cout << i << " | ";
         for(int j = 0; j < 10; ++j) {
@@ -131,7 +131,7 @@ void MinesweeperMinigame::printGrid(bool endGame) {
                 cout << "? ";
             }
         }
-        cout << "|" << endl;
+        cout << "|\n";
     }
     cout << endl;
 }
@@ -140,7 +140,7 @@ void MinesweeperMinigame::initialize(){
     int row = -1;
     int column = -1;
     
-    cout << "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!" << endl << endl;
+    cout << "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!\n\n";
     cout << "Enter the row of your first choice: ";
     cin >> row;
     cout << endl;
@@ -207,10 +207,12 @@ void MinesweeperMinigame::initialize(){
 
 void MinesweeperMinigame::terminate(){
     if(uncoveredSquares == 70) {
-        cout << "Congratulations, you won!" << endl;
+        cout << "Congratulations, you won!\n\n";
+        userWon = true;
     }
     else {
-        cout << "Better luck next time, you lost." << endl;
+        cout << "Better luck next time, you lost.\n\n";
+        userWon = false;
     }
     gameOver = true;
     printGrid(true);

@@ -1,14 +1,14 @@
 #include <iostream>
 #include "../include/game.h"
-#include <experimental/filesystem>
+// #include <experimental/filesystem>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
 #include <unistd.h>
+#include "../include/loadgame.h"
 
 
-namespace fs = std::experimental::filesystem;
 using namespace ftxui;
 
 
@@ -73,16 +73,40 @@ if(userinput == '1') {
      system("clear");
      
 
-     //game->start();
-     game->runDay();
+     game->start();
+     game->gameLoop();
+     game->displayInternships();
 } else if(userinput == '2') {
-  Game* game = new Game();
-  game->load("../gamedata/game.json");
-  system("clear");
-  cout << "Loading game..." << endl;
-  sleep(1.5);
-  system("clear");
-  cout << "Welcome back, " << game->getCharacter()->getName() << endl;
+    system("clear");
+    cout << "Looking for saved games..." << endl;
+    sleep(1.5);
+    system("clear");
+    GameManager gm = GameManager();
+    try {
+          gm.handleGameLoad();
+    } catch(std::runtime_error& e) {
+      cout << e.what() << endl;
+      return 1;
+    }
+
+    cout << "Found " << gm.getNumGames() << " saved games." << endl;
+    gm.printOptions();
+
+    string fileToLoad = gm.getGameFile();
+
+
+    Game* game = new Game();
+    game->load(fileToLoad);
+    /*
+    Everything below here should be handled by the load function
+    */
+    // cout << "Loading game..." << endl;
+    // sleep(1.5);
+    // system("clear");
+    // cout << "Welcome back, " << game->getCharacter()->getName() << endl;
+
+
+  
 
 } else {
   cout << "in development";

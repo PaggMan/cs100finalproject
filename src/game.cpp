@@ -33,7 +33,7 @@ Game::Game() {
     minigameList.push_back(new MinesweeperMinigame());
     minigameList.push_back(new RockPaperScissorsMinigame());
     minigameList.push_back(new TicTacToeMinigame());
-    //minigameList.push_back(new TypingMinigame());
+    minigameList.push_back(new TypingMinigame());
      minigameList.push_back(new UnscrambleMinigame());
      minigameList.push_back(new WordleMinigame());
 }
@@ -269,7 +269,8 @@ Game::~Game() {
 
 void Game::load(string fileName) {
 
-    std::ifstream file("gamedata/game.json");
+    // std::ifstream file("gamedata/game.json");
+    std::ifstream file(fileName);
     Json::Value gameData;
     file >> gameData;
     file.close();
@@ -286,9 +287,17 @@ void Game::load(string fileName) {
     character->setHappiness(happiness);
     character->setHealth(health);
 
+    cout << "Loading your game..." << endl;
+    sleep(1.5);
+    system("clear");
+    cout << "Welcome back to UCR, " << character->getName() << endl;
+    gameLoop();
+    return;
 }
 
-void Game::save() {
+void Game::save(string fileName) {
+    if(fileName == "") fileName = "gamedata/game";
+    else fileName == "gamedata/" + fileName;
     // Write character data
     Json::Value characterToWrite;
     characterToWrite["name"] = character->getName();
@@ -345,22 +354,16 @@ void Game::start() {
 }
 
 void Game::gameLoop() {
-    
-
-    //Before the loop starts, the minigame objects need to be initialized and added to a vector, so that vector can later be used to
-    //choose a random game.
-
-    srand((unsigned) time(NULL));
-
-
-
+    srand(time(NULL));
     //While loop that iterates until currentDay reaches 30
 
-
-    //Start the day
-
-
-    //increment dayCounter by 1
+    for (currentDay; currentDay <= 15; ++currentDay) {
+        if (name == "==") {
+            currentDay = 15;
+        }
+        system("clear");
+        runDay();
+    }
 }
 
 void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
@@ -405,18 +408,55 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         playMinigame();
+        sleep(3);
+    }
+    //If they skip, give the character an upgrade and jump to the end of the day 
+    else {
+        system("clear");
+        printLobby();
+        sleep(3);
     }
 
-    //If they skip, jump to the end of the day
-
     //End of the day:
+        //Show Lobby
         //Choose a stat boosting you want
-            //If you skip you can upgrade another stat.
+            //If you skipped class you can upgrade another stat.
+    system("clear");
+    std::cout << "End of day " << currentDay << "\n\n";
+    sleep(1);
+    printLobby();
+    sleep(3);
 }
 
+
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    srand(time(NULL));
-    minigameList.at(rand()%5)->initialize();
+    int randomIndex = rand()%5;
+    minigameList.at(randomIndex)->initialize();
+    delete minigameList.at(randomIndex);
+    
+    if (randomIndex == 0) {
+        new MinesweeperMinigame();
+    }
+
+    else if (randomIndex == 1) {
+        new RockPaperScissorsMinigame();
+    }
+
+    else if (randomIndex == 2) {
+        new TicTacToeMinigame();
+    } 
+
+    else if (randomIndex == 3) {
+        new TypingMinigame();
+    }
+
+    else if (randomIndex == 4) {
+        new UnscrambleMinigame();
+    }
+
+    else if (randomIndex == 5) {
+        new WordleMinigame();
+    }
 }
 
 void Game::giveInstructions() {
@@ -541,8 +581,8 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
-void Game::printLobby(){
-    cout << "Your Room" << endl;
+void Game::printLobby() {
+    cout << name << "\'s Room" << endl;
     cout << endl << endl;
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
     cout << "Health:    [ ";

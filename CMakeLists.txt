@@ -22,11 +22,6 @@ add_executable(rungame
     src/WordleMinigame.cpp
 )
 
-#add_executable(characterTests
- # tests/characterTests.cpp
- # src/character.cpp
- # src/game.cpp
-#)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
@@ -54,23 +49,24 @@ endif()
  
 # ------------------------------------------------------------------------------
 
-target_include_directories(rungame PRIVATE src)
+target_include_directories(rungame 
+  PRIVATE src
+  PRIVATE include
+)
 
+
+#  link against ftxui, and fs library (for reading files)
 target_link_libraries(rungame
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
   PRIVATE ftxui::component 
+  PRIVATE stdc++fs
 )
 
 
 target_include_directories(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-
-
-#target_include_directories(characterTests PRIVATE
-   # ${CMAKE_CURRENT_SOURCE_DIR}/include
-#)
 
 
 # Add the JSONCpp source files to project
@@ -90,13 +86,26 @@ add_subdirectory(${GTEST_DIR})
 # Include Google Test directories
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Link Google Test libraries
-target_link_libraries(rungame 
-    PRIVATE gtest 
-    PRIVATE gtest_main
-    )
+# # characterTests
+# add_executable(characterTests
+#     tests/characterTests.cpp
+#     src/character.cpp
+#     src/game.cpp
+# )
 
+# # Link Google Test libraries
+# target_link_libraries(characterTests 
+#     PRIVATE gtest 
+#     PRIVATE gtest_main
+#     )
 
+# target_include_directories(characterTests PRIVATE
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include
+# )
+
+# commented out characterTests for now
+
+# character validator tests
 add_executable(testCharacterValidator
     tests/testCharacterValidator.cpp
     src/characterValidator.cpp

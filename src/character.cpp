@@ -58,22 +58,22 @@ Character::~Character() {
     }
 
     void Character::studyHarder(){
-        int increase = rand() % 10 + 1;
+        int increase = rand() % 5 + 1;
         grades += increase;
 
-        if(increase <= 2){
+        if(increase <= 1){
             cout << "You get distracted by your phone. +" << increase; 
         }
-        else if(increase > 2 or increase <= 4){
+        else if(increase > 1 or increase <= 2){
             cout << "You study a little bit. +" << increase;
         }
-        else if(increase > 4 or increase <= 6){
+        else if(increase > 2 or increase <= 3){
             cout << "You join a study group and are ready for your test. +" << increase;
         }
-        else if(increase > 6 or increase <= 8){
+        else if(increase > 3 or increase <= 4){
             cout << "You study for a while. Maybe you can help teach class next time. +" << increase;
         }
-        else if(increase > 8 or increase <= 10){
+        else if(increase >  4 or increase <= 5){
             cout << "You master the subject. It is impossible to fail your exam. +" << increase;
         }
         cout << endl;   

@@ -5,8 +5,8 @@
 #include <unistd.h>
 using namespace std;
 
-
 TypingMinigame::TypingMinigame(){
+    srand(time(0));
     int targetWordIndex = rand() % 5;
     targetWord = possibleWords[targetWordIndex];
 }
@@ -37,17 +37,16 @@ void TypingMinigame::initialize(){
 
     terminate();
     return;
-
 }
 
 void TypingMinigame::terminate(){
     if(userInput == targetWord){
         cout << "You Win!" << endl;
-        gameOver = true;
+        userWon = true;
     }
     else{
         cout << "You lose!" << endl;
-        gameOver = false;
+        userWon = false;
     }
     return;
 }

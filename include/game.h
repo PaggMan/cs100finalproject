@@ -18,12 +18,12 @@ class Game {
         Game();
         void load(string fileName);
         ~Game();
-        void save();
+        void save(string fileName);
         void start();
 
         void giveInstructions();    //Explains the user how to play the game
         void runDay();  //Allows user to make choices on a given day and calls minigame classes
-
+        void gameLoop();
 
         Character* getCharacter();
         string getName();
@@ -43,9 +43,8 @@ class Game {
     void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
     void clearAndLoad();
     void playMinigame();
-    void gameLoop();
     void printLobby();
-
+    
     string calculateScore(); // Used to calculate internship opportunities
         
 };
