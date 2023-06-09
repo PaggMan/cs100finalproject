@@ -338,7 +338,9 @@ void Game::save(string fileName) {
     std::ofstream file(fileNameToSave);
     file << jsonString;
     file.close();
-    cout << "Successfully saved game to " << fileNameToSave  << endl;
+    cout << "\n\nSaving game..." << endl;
+    clearAndLoad();
+    cout << "Successfully saved game to " << fileNameToSave  << endl << endl;
 
 
     //delete this;
