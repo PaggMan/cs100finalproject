@@ -30,7 +30,7 @@ jobs:
     # Run tests on character class
     - name: Run the test file for character
       run: |
-        cmake .
+        cmake .c
         make && ./bin/characterTests
         
     #Run tests on validator class
