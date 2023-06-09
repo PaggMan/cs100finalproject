@@ -16,6 +16,37 @@ Character::~Character() {
     int Character::getHappiness(){ return happiness; }
     int Character::getHealth() { return health; }
 
+    int Character::getCumulativeScore() {
+        double gradesWeight = .4;  // Weight for grades (adjust as needed)
+        double happinessWeight = .3;  // Weight for happiness
+        double healthWeight = .3;  // Weight for health
+
+        double weightedGrades = gradesWeight * (grades / 100.0);
+        double weightedHappiness = happinessWeight * (happiness / 100.0);
+        double weightedHealth = healthWeight * (health / 100.0);
+
+        double overallScore = weightedGrades + weightedHappiness + weightedHealth;
+
+        return static_cast<int>(overallScore * 100);
+    }
+
+    string Character::getTier() {
+    int scaledScore = getCumulativeScore();
+
+    if (scaledScore > 90) {
+        return "legendary";
+    } else if (scaledScore > 80) {
+        return "epic";
+    } else if (scaledScore > 60) {
+        return "good";
+    } else if (scaledScore > 40) {
+        return "satisfactory";
+    } else {
+        return "poor";
+    }
+
+}
+
     
 
     void Character::setName(const string& name) {

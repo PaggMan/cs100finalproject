@@ -582,7 +582,8 @@ void Game::displayInternships() {
     cout << "Loading your internship opportunity..." <<endl;
     clearAndLoad();
 
-    string tier = calculateScore();
+    // string tier = calculateScore();
+    string tier = this->character->getTier();
     std::vector<Internship> possibleInternships = parseInternships(tier);
 
 
@@ -590,7 +591,7 @@ void Game::displayInternships() {
     // Internship theInternship = possibleInternships.at(randIndex); broken
     Internship theInternship = getRandomFromVector(possibleInternships);
  
-    cout << "Congratulations! With your cumulative game score of " << this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness() << ", ";
+    cout << "Congratulations! With your cumulative game score of " << this->character->getCumulativeScore() << ", ";
     cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
     cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
     cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
@@ -613,22 +614,6 @@ T Game::getRandomFromVector(const std::vector<T>& v) {
     return v[randomIndex];
 }
 
-string Game::calculateScore() {
-    int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
-
-    if(overallScore > 280) {
-        return "legendary";
-    } else if(overallScore > 250) {
-        return "epic";
-    } else if(overallScore > 200) {
-        return "good";
-    } else if(overallScore > 140) {
-        return "satisfactory";
-    } else {
-        return "poor";
-    }
-
-}
 
 // Getters and setters
 Character* Game::getCharacter() {
@@ -669,7 +654,7 @@ void Game::handleColor(int num) {
         return;
     }
     else {
-        cout << "\033[1;41m"; // red
+        cout << "\033[1;31m"; // red
     }
     
 }
