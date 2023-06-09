@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/game.h"
+#include "../include/print.h"
 // #include <experimental/filesystem>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>

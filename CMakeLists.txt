@@ -9,8 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 # Add project source files
 add_executable(rungame
     src/main.cpp
-    src/game.cpp
-    src/screen.cpp
+    src/game.cpp  
     src/character.cpp
     src/course.cpp
     src/characterValidator.cpp
@@ -116,7 +115,6 @@ target_sources(characterTests PRIVATE
      ${CMAKE_CURRENT_SOURCE_DIR}/include
  )
 
-# commented out characterTests for now
 
 # character validator tests
 add_executable(testCharacterValidator
@@ -128,3 +126,33 @@ add_executable(testCharacterValidator
 TARGET_LINK_LIBRARIES(testCharacterValidator gtest)
 TARGET_COMPILE_DEFINITIONS(testCharacterValidator PRIVATE gtest_disable_pthreads=ON)
 
+
+
+
+add_executable(testGame
+    tests/testGame.cpp
+    src/game.cpp
+    src/character.cpp
+    src/course.cpp
+    src/characterValidator.cpp
+    src/MinesweeperMinigame.cpp
+    src/RockPaperScissorsMinigame.cpp
+    src/TicTacToeMinigame.cpp
+    src/TypingMinigame.cpp
+    src/UnscrambleMinigame.cpp
+    src/WordleMinigame.cpp
+)
+
+target_include_directories(testGame
+  PRIVATE src
+  PRIVATE include
+)
+
+target_sources(testGame PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_reader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_writer.cpp
+)
+
+TARGET_LINK_LIBRARIES(testGame gtest)
+TARGET_COMPILE_DEFINITIONS(testGame PRIVATE gtest_disable_pthreads=ON)

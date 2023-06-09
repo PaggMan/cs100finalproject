@@ -70,7 +70,8 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     std::string output;
     Print outputObject;
-    std::cout << '\n';
+    output = "\n";
+    outputObject.printOutput(output);
 
     //Show list of courses
     printCourseList();
@@ -84,7 +85,9 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     unsigned courseListSize = 0;
 
     while (!isValidCourse) {
-        std::cout << "\n1st course: ";
+        output = "\n1st course: ";
+        outputObject.printOutput(output);
+
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
         if (courseListSize == 1) {  //If the courseListSize changed, that means the course was successfully added.
@@ -102,7 +105,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -113,7 +117,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n2nd course: ";
+        output = "\n2nd course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -125,14 +130,16 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[1]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[1]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
                 delete courseList[1];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -147,7 +154,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n3rd course: ";
+        output = "\n3rd course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -159,14 +167,17 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[2]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[2]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
+
                 delete courseList[2];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 
@@ -179,7 +190,8 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
     isValidCourse = false; //This boolean variable will be used to break a loop asking the user to choose a course.
 
     while (!isValidCourse) {
-        std::cout << "\n4th course: ";
+        output = "\n4th course: ";
+        outputObject.printOutput(output);
 
         getline(cin, courseName);
         addCourse(courseName, courseListSize);
@@ -191,14 +203,16 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             }
 
             else {
-                std::cout << "You already added " << courseList[3]->getName() << " to your list of courses. Add a different course instead!\n";
+                output = "You already added " + courseList[3]->getName() + " to your list of courses. Add a different course instead!\n";
+                outputObject.printOutput(output);
                 delete courseList[3];
                 courseListSize--;
             }
         }
 
         else {  //The course is not in courseList so is not valid.
-            std::cout << "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            output = "The course you entered is not valid. Make sure you spell the course correctly as you see in the course list.\n";
+            outputObject.printOutput(output);
         }
     }
 }
@@ -669,25 +683,25 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
-// void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
-//     for (char c : text) {
-//         std::cout << c << std::flush; // Print the character
-//         usleep(delay * 1000); // Delay in microseconds
-//     }
-// }
+void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
+    for (char c : text) {
+        std::cout << c << std::flush; // Print the character
+        usleep(delay * 1000); // Delay in microseconds
+    }
+}
 
-// void Game::handleColor(int num) {
-//     if(num == -1) {
-//         cout << "\033[0m\n"; // reset to white
-//         return;
-//     }
+void Game::handleColor(int num) {
+    if(num == -1) {
+        cout << "\033[0m\n"; // reset to white
+        return;
+    }
     
-//     if(num >= 5) {
-//         cout << "\033[1;32m"; //set to green
-//         return;
-//     }
-//     cout << "\033[1;33m"; // yellow
-// }
+    if(num >= 5) {
+        cout << "\033[1;32m"; //set to green
+        return;
+    }
+    cout << "\033[1;33m"; // yellow
+}
 
 void Game::printLobby() {
     std::string output;
