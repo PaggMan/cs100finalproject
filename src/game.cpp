@@ -2,19 +2,23 @@
 #include "../include/characterValidator.h"
 #include "../include/MinesweeperMinigame.h"
 #include "../include/RockPaperScissorsMinigame.h"
+#include "../include/TicTacToeMinigame.h"
+#include "../include/TypingMinigame.h"
+#include "../include/UnscrambleMinigame.h"
+#include "../include/WordleMinigame.h"
 
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
 #include <random>
+#include <vector>
+#include <cstdlib>
+
 
 
 
 
 Game::Game() {
-
-
-
 
     // The following is if they are loading a new game, we can skip this if they have a saved game.
 
@@ -25,10 +29,13 @@ Game::Game() {
     name = "My Simulation";
     courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
     character = nullptr;    //The character will be initialized later once the user gives the character customization information.
-
-
-
     
+    minigameList.push_back(new MinesweeperMinigame());
+    minigameList.push_back(new RockPaperScissorsMinigame());
+    minigameList.push_back(new TicTacToeMinigame());
+    //minigameList.push_back(new TypingMinigame());
+     minigameList.push_back(new UnscrambleMinigame());
+     minigameList.push_back(new WordleMinigame());
 }
 
 
@@ -338,6 +345,15 @@ void Game::start() {
 }
 
 void Game::gameLoop() {
+    
+
+    //Before the loop starts, the minigame objects need to be initialized and added to a vector, so that vector can later be used to
+    //choose a random game.
+
+    srand((unsigned) time(NULL));
+
+
+
     //While loop that iterates until currentDay reaches 30
 
 
@@ -385,6 +401,9 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
 
     if (!skippingClass) {   //If they don't skip, they play a minigame
+        system("clear");
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         playMinigame();
     }
 
@@ -396,18 +415,8 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 }
 
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    int choice = rand() % 10;
-    choice = 1;
-    if (choice == 0) {
-        MinesweeperMinigame minesweeper;
-        minesweeper.initialize();
-    }
-
-    else if (choice == 1) {
-        RockPaperScissorsMinigame rockPaperScissors;
-        rockPaperScissors.initialize();
-    }
-
+    srand(time(NULL));
+    minigameList.at(rand()%5)->initialize();
 }
 
 void Game::giveInstructions() {

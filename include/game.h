@@ -1,14 +1,18 @@
 #include "character.h"
 #include "course.h"
+#include "minigame.h"
+
 #include "internship.h"
 #include "json/json.h"
 #include <vector>
+
 class Game {
     private:    //Private member variables
         int currentDay;
         string name;
         Character* character;
         Course** courseList;
+        std::vector<Minigame*> minigameList;
     
     public: //Public member functions
         Game();
