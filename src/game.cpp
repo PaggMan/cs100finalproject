@@ -632,7 +632,10 @@ void Game::printLobby() {
     cout << "Type an option: ";
     char option = 0;
     cin >> option;
-    while(option != '1' and option != '2' and option != '3' and option != '4'){
+
+    while(cin.fail() or option != '1' and option != '2' and option != '3' and option != '4'){
+        cin.clear();
+        cin.ignore(2147483647, '\n');
         cout << "Invalid option, please try again" << endl;
         cout << "Type an option: ";
         cin >> option;
