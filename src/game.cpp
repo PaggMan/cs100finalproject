@@ -390,6 +390,8 @@ void Game::gameLoop() {
         system("clear");
         runDay();
     }
+    // build suspense here
+    displayInternships();
 }
 
 

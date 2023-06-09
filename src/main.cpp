@@ -87,7 +87,7 @@ if(userinput == '1') {
 
 
 
-     game->displayInternships();
+    //  game->displayInternships(); we moved this into gameloop so the game class handles the entirety of the game
 
      delete game;
 
