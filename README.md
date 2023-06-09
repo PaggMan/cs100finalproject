@@ -52,13 +52,34 @@ Now you should be good to run the executable with the following
 ## Project Description
 
 ### Why is it important to us?
-- We have all come across some sort of story game in our lives, so it would be interesting to understand how one works behind the scenes. Not only is it an interesting story game, but it is also applicable to the life of a UCR computer science student.
+Understanding how a story game works behind the scenes is important for several reasons. Firstly, it allows us to appreciate the complexity and effort that goes into creating such games. By dissecting the mechanics, we can gain insights into game design principles, narrative structures, and interactive storytelling techniques. This knowledge can be valuable for aspiring game developers or storytellers, providing them with a foundation to create engaging and immersive experiences.
+
+Secondly, as UCR computer science students, exploring the inner workings of a story game can have practical applications. It allows us to apply programming concepts, such as object-oriented design, input/output handling, and data management, in a real-world scenario. By working on this project, we can enhance our programming skills, problem-solving abilities, and collaborative development techniques, all of which are crucial for our academic and professional growth.
+
 ### What languages/tools/technologies do we plan to use?
-- The majority of the project will be done C++. We will use the GoogleTest subdirectory for our unit testing, and CMake for ease of compiling. 
+For this project, we plan to primarily use C++ as the programming language. It provides the necessary tools and libraries to handle various game mechanics and interactions effectively.
+
+Additionally, we intend to utilize GoogleTest, a C++ testing framework, to ensure the reliability and correctness of our code. By writing unit tests, we can verify that different components of our game function as intended, catch bugs early in the development process, and maintain the overall quality of the project.
+
+To streamline the build process, we will employ CMake, a cross-platform build system. CMake simplifies the compilation and linking of our code, making it easier to manage dependencies, build configurations, and generate executable files across different platforms.
+
 ### What will be the input/output of your project?
-- The input will be numbers and strings from the user to navigate the menu and make choices, while the output will be story prompts displayed by the terminal. Throughout the game, you make specific choices and play minigames that affect your character's stats. At the end of the game, you will be given a job or internship based on how good your stats are. 
+The input for our project will consist of numbers and strings provided by the user through the terminal. These inputs will be used to navigate the menu, make choices, and interact with the game world. For example, the user may input numbers to select menu options, input strings to customize their character's name, or make decisions during the story prompts.
+
+The output of the project will be displayed in the terminal as story prompts and game information. The prompts will present the narrative elements of the game, guiding the player through different scenarios and choices. Additionally, the game will provide feedback to the user based on their decisions and actions, such as displaying the outcome of a particular choice, presenting character stats, or indicating progress within the game.
+
 ### What are the features that the project provides?
-- The project provides a menu, character customization, ability to save, load, or restart the game, and user input choices or games that impact the path the game takes.
+The project aims to provide several key features to enhance the gameplay experience. These features include:
+
+Menu System: The game will have a menu system that allows the player to navigate different options, such as starting a new game, loading a saved game, or exiting the game.
+
+Character Customization: Players will have the ability to customize their character by inputting their preferred name or selecting different attributes. These choices may affect the gameplay and outcomes.
+
+Save, Load, and Restart: The game will provide options to save the current progress, load a saved game, or restart the game from the beginning. This feature allows players to continue their gameplay from where they left off or explore different paths by replaying the game.
+
+User Input Choices: Throughout the game, players will encounter story prompts that require them to make choices. These choices may influence the direction of the narrative, affect character stats, or determine the outcome of certain events.
+
+Minigames and Stats: The game may include minigames or challenges that players can participate in. The performance in these activities can impact the character's stats or unlock additional content. These mechanics add an interactive element to the game
 
 
 ### Screen Navigation
