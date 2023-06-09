@@ -13,7 +13,13 @@ add_executable(rungame
     src/screen.cpp
     src/character.cpp
     src/course.cpp
-    src/characterValidator.cpp 
+    src/characterValidator.cpp
+    src/MinesweeperMinigame.cpp
+    src/RockPaperScissorsMinigame.cpp
+    src/TicTacToeMinigame.cpp
+    src/TypingMinigame.cpp
+    src/UnscrambleMinigame.cpp
+    src/WordleMinigame.cpp
 )
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
