@@ -56,7 +56,9 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
             std::cout << ' ';
         }
         inFS >> courseDifficulty;
+        handleColor(static_cast<int>(courseDifficulty));
         std::cout << '\t' << courseDifficulty << '\n';
+        handleColor(-1);
     }
 
     inFS.close();
@@ -336,7 +338,9 @@ void Game::save(string fileName) {
     std::ofstream file(fileNameToSave);
     file << jsonString;
     file.close();
-    cout << "Successfully saved game to " << fileNameToSave  << endl;
+    cout << "\n\nSaving game..." << endl;
+    clearAndLoad();
+    cout << "Successfully saved game to " << fileNameToSave  << endl << endl;
 
 
     //delete this;
@@ -651,43 +655,62 @@ void Game::printCharacters(const std::string& text, int delay) { // delay is in 
     }
 }
 
+void Game::handleColor(int num) {
+    if(num == -1) {
+        cout << "\033[0m\n"; // reset to white
+        return;
+    }
+    
+    if(num >= 5) {
+        cout << "\033[1;32m"; //set to green
+        return;
+    }
+    cout << "\033[1;33m"; // yellow
+}
+
 void Game::printLobby() {
     cout << character->getName() << "\'s Room" << endl;
     cout << endl << endl;
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
     cout << "Health:    [ ";
+    handleColor(healthPercent); // set to green or yellow based on score
     for(int i = 0; i < healthPercent; ++i){
         cout << "█ "; 
     }
     for(int i = healthPercent; i < 10; ++i){
         cout << "- ";
     }
+    
     cout << "] " << character->getHealth() << "%" << endl;
-
+    handleColor(-1); // reset to white
     cout << endl;
 
     int gradesPercent = character->getGrades() / 10;
     cout << "Grades:    [ ";
+    handleColor(gradesPercent);
     for(int i = 0; i < gradesPercent; ++i){
         cout << "█ "; 
     }
     for(int i = gradesPercent; i < 10; ++i){
         cout << "- ";
     }
-    cout << "] " << character->getGrades() << "%" << endl;
 
+    cout << "] " << character->getGrades() << "%" << endl;
+    handleColor(-1);
     cout << endl;
 
     int happinessPercent = character->getHappiness() / 10;
     cout << "Happiness: [ ";
+    handleColor(happinessPercent);
     for(int i = 0; i < happinessPercent; ++i){
         cout << "█ "; 
     }
     for(int i = happinessPercent; i < 10; ++i){
         cout << "- ";
     }
-    cout << "] " << character->getHappiness() << "%" << endl;
 
+    cout << "] " << character->getHappiness() << "%" << endl;
+    handleColor(-1);
     cout << endl << endl;
 
     cout << "Options: " << endl;
