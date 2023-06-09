@@ -29,6 +29,7 @@ class Game {
         string getName();
         int getCurrentDay();
         void setName(const string& name);
+        void printCharacters(const std::string& text, int delay);
         
         template<class T>
         T getRandomFromVector(const std::vector<T>& internships);
