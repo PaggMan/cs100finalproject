@@ -17,13 +17,13 @@
 ## Project Description
 
 ### Why is it important to us?
-- We have all come across some sort of story game in our lives, so it would be interesting to understand how one works behind the scenes.
+- We have all come across some sort of story game in our lives, so it would be interesting to understand how one works behind the scenes. Not only is it an interesting story game, but it is also applicable to the life of a UCR computer science student.
 ### What languages/tools/technologies do we plan to use?
-- The majority of the project will be done C++. We also plan to use some external dependencies like [FTXUI](https://github.com/ArthurSonzogni/FTXUI) that will allow us to build terminal interfaces easily.
+- The majority of the project will be done C++. We will use the GoogleTest subdirectory for our unit testing, and CMake for ease of compiling. 
 ### What will be the input/output of your project?
-- The input will be keys to navigate the menu and make choices, while the output will be story prompts displayed by the terminal.
+- The input will be numbers and strings from the user to navigate the menu and make choices, while the output will be story prompts displayed by the terminal. Throughout the game, you make specific choices and play minigames that affect your character's stats. At the end of the game, you will be given a job or internship based on how good your stats are. 
 ### What are the features that the project provides?
-- The project provides a menu, character customization, ability to save/restart the game, make choices that impact the path the game takes.
+- The project provides a menu, character customization, ability to save, load, or restart the game, and user input choices or games that impact the path the game takes.
 
 
 ### Screen Navigation
