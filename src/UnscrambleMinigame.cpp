@@ -34,8 +34,3 @@ void UnscrambleMinigame::terminate(){
     }
     return;
 }
-
-int main() {
-    UnscrambleMinigame testg;
-    testg.initialize();
-}
