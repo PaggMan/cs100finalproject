@@ -56,7 +56,9 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
             std::cout << ' ';
         }
         inFS >> courseDifficulty;
+        handleColor(static_cast<int>(courseDifficulty));
         std::cout << '\t' << courseDifficulty << '\n';
+        handleColor(-1);
     }
 
     inFS.close();
