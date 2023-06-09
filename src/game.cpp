@@ -34,8 +34,8 @@ Game::Game() {
     minigameList.push_back(new RockPaperScissorsMinigame());
     minigameList.push_back(new TicTacToeMinigame());
     minigameList.push_back(new TypingMinigame());
-     minigameList.push_back(new UnscrambleMinigame());
-     minigameList.push_back(new WordleMinigame());
+    minigameList.push_back(new UnscrambleMinigame());
+    minigameList.push_back(new WordleMinigame());
 }
 
 
@@ -320,6 +320,9 @@ void Game::save(string fileName) {
     file.close();
 
 
+    //delete this;
+
+
 }
 
  void Game::setName(const string& name) {
@@ -365,6 +368,7 @@ void Game::gameLoop() {
         runDay();
     }
 }
+
 
 void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
     std::cout << "DAY " << currentDay << "\n\n";
@@ -430,7 +434,7 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
 
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    int randomIndex = rand()%5;
+    int randomIndex = rand()%6;
     minigameList.at(randomIndex)->initialize();
     delete minigameList.at(randomIndex);
     
@@ -627,7 +631,7 @@ void Game::printCharacters(const std::string& text, int delay) { // delay is in 
 }
 
 void Game::printLobby() {
-    cout << name << "\'s Room" << endl;
+    cout << character->getName() << "\'s Room" << endl;
     cout << endl << endl;
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
     cout << "Health:    [ ";
@@ -669,19 +673,29 @@ void Game::printLobby() {
     cout << "\t1. Workout" << endl;
     cout << "\t2. Study" << endl; 
     cout << "\t3. Hang with Friends" << endl;
+    cout << "\t4. Save and quit game" << endl;
     cout << "Type an option: ";
-    int option = 0;
+    char option = 0;
     cin >> option;
-    while(option != 1 and option != 2 and option != 3){
+
+    while(cin.fail() or option != '1' and option != '2' and option != '3' and option != '4'){
+        cin.clear();
+        cin.ignore(2147483647, '\n');
         cout << "Invalid option, please try again" << endl;
         cout << "Type an option: ";
         cin >> option;
     }
-    if(option == 1){
+    if(option == '1'){
         character->workout();
     }
-    else if(option == 2){
+    else if(option == '2'){
         character->studyHarder();
+    }
+
+    else if(option == '4') {
+        save(name);
+        throw runtime_error("Game saved and quit");
+
     }
     else{
         character->hangWithFriends();
