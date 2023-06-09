@@ -430,7 +430,7 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
 
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    int randomIndex = rand()%5;
+    int randomIndex = rand()%6;
     minigameList.at(randomIndex)->initialize();
     delete minigameList.at(randomIndex);
     
@@ -627,7 +627,9 @@ void Game::printLobby() {
     cout << "Type an option: ";
     int option = 0;
     cin >> option;
-    while(option != 1 and option != 2 and option != 3){
+    while(cin.fail() or (option != 1 and option != 2 and option != 3)){
+        cin.clear();
+        cin.ignore(2147483647, '\n');
         cout << "Invalid option, please try again" << endl;
         cout << "Type an option: ";
         cin >> option;
