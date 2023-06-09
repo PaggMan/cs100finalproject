@@ -47,7 +47,13 @@ if(userinput == '1') {
     sleep(1.5);
     system("clear");
     GameManager gm = GameManager();
-    gm.handleGameLoad();
+    try {
+          gm.handleGameLoad();
+    } catch(std::runtime_error& e) {
+      cout << e.what() << endl;
+      return 1;
+    }
+
     cout << "Found " << gm.getNumGames() << " saved games." << endl;
     gm.printOptions();
 
