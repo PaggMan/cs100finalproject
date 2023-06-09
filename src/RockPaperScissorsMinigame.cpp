@@ -74,10 +74,3 @@ void RockPaperScissorsMinigame::terminate(){
         cout << "\nUnlucky, you did not win the game.\n";
     }
 }
-
-int main() {
-    RockPaperScissorsMinigame testGame;
-    testGame.initialize();
-
-    return 0;
-}

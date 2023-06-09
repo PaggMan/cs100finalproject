@@ -40,13 +40,4 @@ void UnscrambleMinigame::terminate(){
 }
 
 
-int main()
-{
-    UnscrambleMinigame* t = new UnscrambleMinigame();
-    t->initialize();
-    UnscrambleMinigame* x = new UnscrambleMinigame();
-    x->initialize();
-    UnscrambleMinigame* y = new UnscrambleMinigame();
-    y->initialize();
-    return 0;
-}
+

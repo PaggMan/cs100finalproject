@@ -10,6 +10,21 @@
 
 namespace fs = std::experimental::filesystem;
 using namespace ftxui;
+
+
+
+bool noSpacesInName(const std::string& name) {
+  if (name.size() == 0) {
+    return false;
+  }
+
+  for (unsigned i = 0; i < name.size(); ++i) {
+    if (name.at(i) == ' ' || name.at(i) == '\t' || name.at(i) == '\n') {
+      return false;
+    }
+  }
+  return true;
+}
  
 int main() {
  system("clear");
@@ -40,7 +55,26 @@ if(userinput == '1') {
      cin.clear();
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
      Game* game = new Game();
-     game->start();
+
+     //Recieve user input for the name of the game
+     //The user should keep on being asked for a name until they enter a name without spaces, tabs, or newlines.
+     string name = " ";
+     while (true) {
+        std::cout << "Choose a name for the game: ";
+        getline(cin, name);
+        if (noSpacesInName(name)) {
+          game -> setName(name);
+          break;
+        }
+        //If the name had spaces, the user is asked to enter another name.
+        system("clear");
+        std::cout << "Invalid Response. Make sure to not put any spaces in the name.\n\n";
+     }
+     system("clear");
+     
+
+     //game->start();
+     game->runDay();
 } else if(userinput == '2') {
   Game* game = new Game();
   game->load("../gamedata/game.json");

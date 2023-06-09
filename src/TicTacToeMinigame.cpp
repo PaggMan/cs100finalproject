@@ -131,9 +131,4 @@ void TicTacToeMinigame::terminate(){
     
 }
 
-int main() {
-    TicTacToeMinigame testGame;
-    testGame.initialize();
 
-    return 0;
-}

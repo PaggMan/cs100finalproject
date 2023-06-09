@@ -215,10 +215,3 @@ void MinesweeperMinigame::terminate(){
     gameOver = true;
     printGrid(true);
 }
-
-int main() {
-    MinesweeperMinigame testGame;
-    testGame.initialize();
-
-    return 0;
-}

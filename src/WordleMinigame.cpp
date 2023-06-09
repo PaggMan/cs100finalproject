@@ -235,9 +235,3 @@ void WordleMinigame::terminate(){
     
 }
 
-int main() {
-    WordleMinigame testGame;
-    testGame.initialize();
-
-    return 0;
-}
