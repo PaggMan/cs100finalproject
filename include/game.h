@@ -14,7 +14,7 @@ class Game {
         Game();
         void load(string fileName);
         ~Game();
-        void save();
+        void save(string fileName);
         void start();
 
 
