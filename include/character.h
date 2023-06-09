@@ -2,6 +2,7 @@
 #define __CHARACTER__
 #include <string>
 #include <iostream>
+#include "print.h"
 using namespace std;
 
 class Character {

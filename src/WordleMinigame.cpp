@@ -254,8 +254,3 @@ void WordleMinigame::terminate(){
         userWon = false;
     }
 }
-
-int main() {
-    WordleMinigame r;
-    r.initialize();
-}

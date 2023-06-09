@@ -112,28 +112,33 @@ void MinesweeperMinigame::revealChoice(int row, int column) {
 }
 
 void MinesweeperMinigame::printGrid(bool endGame) {
-    cout << "    0 1 2 3 4 5 6 7 8 9\n  -----------------------\n";
+    string output;
+    Print outputObject;
+    output = "    0 1 2 3 4 5 6 7 8 9\n  -----------------------\n";
+    outputObject.printOutput(output);
     for(int i = 0; i < 8; ++i) {
-        cout << i << " | ";
+        output = to_string(i) + " | ";
+        outputObject.printOutput(output);
         for(int j = 0; j < 10; ++j) {
             if(endGame or gridToPrint[i][j] != 0) {
                 if(grid[i][j] == -1) {
-                    cout << "M ";
+                    output = "M ";
+                    outputObject.printOutput(output);
                 }
                 else {
-                    cout << grid[i][j] << ' ';
+                    output = to_string(grid[i][j]) + " ";
+                    outputObject.printOutput(output);
                 }
             }
-            else if(gridToPrint[i][j] == -1) {
-                cout << "F ";
-            }
             else {
-                cout << "? ";
+                output = "? ";
+                outputObject.printOutput(output);
             }
         }
-        cout << "|\n";
+        output = "|\n";
+        outputObject.printOutput(output);
     }
-    cout << endl;
+    outputObject.printNewline();
 }
 
 void MinesweeperMinigame::initialize(){
@@ -147,23 +152,26 @@ void MinesweeperMinigame::initialize(){
     output += "Enter the row of your first choice: ";
     outputObject.printOutput(output);
     cin >> row;
-    cout << endl;
+    outputObject.printNewline();
     while(cin.fail() or row < 0 or row > 7) {
         cin.clear();
         cin.ignore(2147483647, '\n');
-        cout << "Please enter a valid row: ";
+        output = "Please enter a valid row: ";
+        outputObject.printOutput(output);
         cin >> row;
-        cout << endl;
+        outputObject.printNewline();
     }
-    cout << "Enter the column of your first choice: ";
+    output = "Enter the column of your first choice: ";
+    outputObject.printOutput(output);
     cin >> column;
-    cout << endl;
+    outputObject.printNewline();
     while(cin.fail() or column < 0 or column > 9) {
         cin.clear();
         cin.ignore(2147483647, '\n');
-        cout << "Please enter a valid column: ";
+        output = "Please enter a valid column: ";
+        outputObject.printOutput(output);
         cin >> column;
-        cout << endl;
+        outputObject.printNewline();
     }
     generateGrid(row, column);
     revealChoice(row, column);
@@ -173,25 +181,29 @@ void MinesweeperMinigame::initialize(){
         row = -1;
         column = -1;
         while(!validIndex(row, column)) {
-            cout << "Enter your next row: ";
+            output = "Enter your next row: ";
+            outputObject.printOutput(output);
             cin >> row;
-            cout << endl;
+            outputObject.printNewline();
             while(cin.fail() or row < 0 or row > 7) {
                 cin.clear();
                 cin.ignore(2147483647, '\n');
-                cout << "Please enter a valid row: ";
+                output = "Please enter a valid row: ";
+                outputObject.printOutput(output);
                 cin >> row;
-                cout << endl;
+                outputObject.printNewline();
             }
-            cout << "Enter your next column: ";
+            output = "Enter your next column: ";
+            outputObject.printOutput(output);
             cin >> column;
-            cout << endl;
+            outputObject.printNewline();
             while(cin.fail() or column < 0 or column > 9) {
                 cin.clear();
                 cin.ignore(2147483647, '\n');
-                cout << "Please enter a valid column: ";
+                output = "Please enter a valid column: ";
+                outputObject.printOutput(output);
                 cin >> column;
-                cout << endl;
+                outputObject.printNewline();
             }
         }
         if(grid[row][column] == -1) {
@@ -210,12 +222,16 @@ void MinesweeperMinigame::initialize(){
 }
 
 void MinesweeperMinigame::terminate(){
+    string output;
+    Print outputObject;
     if(uncoveredSquares == 70) {
-        cout << "Congratulations, you won!\n\n";
+        output = "Congratulations, you won!\n\n";
+        outputObject.printOutput(output);
         userWon = true;
     }
     else {
-        cout << "Better luck next time, you lost.\n\n";
+        output = "Better luck next time, you lost.\n\n";
+        outputObject.printOutput(output);
         userWon = false;
     }
     gameOver = true;
