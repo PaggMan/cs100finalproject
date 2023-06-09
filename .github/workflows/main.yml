@@ -27,8 +27,14 @@ jobs:
     - name: Clone googletest repo
       run: git submodule update --init --recursive
         
-    # Run tests on rectangle class
-    - name: Run the test file for rectangle
+    # Run tests on character class
+    - name: Run the test file for character
       run: |
         cmake .
-        make && ./characterTests && ./testCharacterValidator
+        make && ./bin/characterTests
+        
+    #Run tests on validator class
+    - name: Run the test file for character and course validator
+      run: |
+        cmake .
+        make && ./bin/testCharacterValidator
