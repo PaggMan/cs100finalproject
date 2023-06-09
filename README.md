@@ -14,6 +14,41 @@
 - [Github Page](https://github.com/ryannoghani)
 - [Issues](https://github.com/cs100/final-project-ksugi014-cmill100-pchen215-rnogh001/issues?q=user%3Aryannoghani)
 
+
+## Getting started
+### Installing
+This assumes you already have a working c++ environment, if not, download [here](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170)
+Alternatively, you can install the C++ extension pack on Visual Studio Code
+
+Test that you have g++ installed with
+```sh
+g++ --version
+```
+Clone the repository
+```sh
+git clone https://github.com/cs100/final-project-ksugi014-cmill100-pchen215-rnogh001
+cd final-project-ksugi014-cmill100-pchen215-rnogh001
+```
+
+You will need to download CMake n from their [**website**](https://cmake.org/download/) to build the binary files used for executing the program.
+
+### Usage
+
+Set up your project environment with
+```sh
+cmake .
+```
+Install necessary dependencies and compile with
+```sh
+make
+```
+All binary files will be in the /bin directory.
+Now you should be good to run the executable with the following
+```sh
+./bin/rungame
+```
+> NOTE: It will take some time to install FTXUI and link it.
+
 ## Project Description
 
 ### Why is it important to us?
