@@ -33,7 +33,6 @@ Game::Game() {
     minigameList.push_back(new MinesweeperMinigame());
     minigameList.push_back(new RockPaperScissorsMinigame());
     minigameList.push_back(new TicTacToeMinigame());
-    minigameList.push_back(new TypingMinigame());
     minigameList.push_back(new UnscrambleMinigame());
     minigameList.push_back(new WordleMinigame());
 }
@@ -284,6 +283,7 @@ void Game::load(string fileName) {
     file.close();
 
     Json::Value characterData = gameData["character"];
+
     std::string name = characterData["name"].asString();
     int grades = characterData["grades"].asInt();
     int happiness = characterData["happiness"].asInt();
@@ -295,6 +295,12 @@ void Game::load(string fileName) {
     character->setGrades(grades);
     character->setHappiness(happiness);
     character->setHealth(health);
+    this->name = gameData["name"].asString();
+
+    courseList[0] = new Course("Class", 5.0);
+    courseList[1] = new Course("Class", 5.0);
+    courseList[2] = new Course("Class", 5.0);
+    courseList[3] = new Course("Class", 5.0);
 
     cout << "Loading your game..." << endl;
     sleep(1.5);
@@ -330,7 +336,7 @@ void Game::save(string fileName) {
     std::ofstream file(fileNameToSave);
     file << jsonString;
     file.close();
-    cout << "Successfully saved game to " << fileNameToSave << ".json" << endl;
+    cout << "Successfully saved game to " << fileNameToSave  << endl;
 
 
     //delete this;
@@ -447,7 +453,7 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 
 
 void Game::playMinigame() {     //Randomly chooses a minigame to play
-    int randomIndex = rand()%6;
+    int randomIndex = rand()%5;
     minigameList.at(randomIndex)->initialize();
     if(minigameList.at(randomIndex)->getResult()) {
         character->setGrades(character->getGrades() + 10);
@@ -470,14 +476,10 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
     } 
 
     else if (randomIndex == 3) {
-        minigameList.at(randomIndex) = new TypingMinigame();
-    }
-
-    else if (randomIndex == 4) {
         minigameList.at(randomIndex) = new UnscrambleMinigame();
     }
 
-    else if (randomIndex == 5) {
+    else if (randomIndex == 4) {
         minigameList.at(randomIndex) = new WordleMinigame();
     }
 }

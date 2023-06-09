@@ -13,6 +13,11 @@ class Game {
         Character* character;
         Course** courseList;
         std::vector<Minigame*> minigameList;
+        Minigame* minigame1;
+        Minigame* minigame2;
+        Minigame* minigame3;
+        Minigame* minigame4;
+        Minigame* minigame5;
     
     public: //Public member functions
         Game();

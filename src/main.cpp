@@ -111,7 +111,13 @@ if(userinput == '1') {
 
 
     Game* game = new Game();
-    game->load(fileToLoad);
+    try {
+      game->load(fileToLoad); // goes into game
+    }
+    catch(std::runtime_error& e) {
+      delete game;
+      return 0;
+    }
     /*
     Everything below here should be handled by the load function
     */
