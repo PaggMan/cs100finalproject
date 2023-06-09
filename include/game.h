@@ -50,6 +50,7 @@ class Game {
     void clearAndLoad();
     void playMinigame();
     void printLobby();
+    void handleColor(int );
     
     string calculateScore(); // Used to calculate internship opportunities
         
