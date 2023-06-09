@@ -87,7 +87,7 @@ Minigames and Stats: The game may include minigames or challenges that players c
 <img src="https://files.catbox.moe/3ms1o7.png"  width="600">
 
 ### SOLID Principle UML Diagram
-<img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
+<img src="https://files.catbox.moe/tpelmf.png"  width="600">
  - Our UML follows the Single Responsibilty SOLID principle. It is most evident in the minigame section, as each minigame has its own class that inherits from a Minigame interface. Another example of SRP being followed is the addition of the CharacterValidator class for our new UML diagram. The reason for this addition was because the Character class was initially in charge of not only storing a character's name and list of courses, but also making sure that these pieces of information the user enters are valid to use. This is why CharacterValidator was added, in order to divide these two responsibilities for the two classes.
 
 ### Main Menu
