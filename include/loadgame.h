@@ -49,6 +49,8 @@ class GameManager {
 
         int userChoice;
         cout << "Type out the number corresponding to the game you want to load: "; cin >> userChoice;
+        cin.clear();
+        cin.ignore(2147483647, '\n');
         if(userChoice > savedGames.size() || userChoice < 1) 
             throw std::out_of_range("Invalid option");
         gameToLoadIndex = userChoice -1; // subtract 1 cuz index starts at 0

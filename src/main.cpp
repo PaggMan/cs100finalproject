@@ -104,8 +104,20 @@ if(userinput == '1') {
       return 0;
     }
 
-    cout << "Found " << gm.getNumGames() << " saved games." << endl;
-    gm.printOptions();
+    bool rePrint = false;
+    do {
+      try {
+        cout << "Found " << gm.getNumGames() << " saved games." << endl;
+        gm.printOptions();
+      } catch(std::out_of_range& e) {
+        cout << "\n\nInvalid option." << endl;
+        sleep(1);
+        system("clear");
+        rePrint = true;
+      }
+          
+    } while(rePrint);
+
 
     string fileToLoad = gm.getGameFile();
 
