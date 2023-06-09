@@ -84,15 +84,19 @@ Now you should be good to run the executable with the following
 ### Screen Layouts
 
 Title Screen
+
 <img src="https://cdn.discordapp.com/attachments/771442141007839294/1116689481597198416/image.png" width = "600">
 
 TicTacToe
+
 <img src="https://cdn.discordapp.com/attachments/771442141007839294/1116689457953902652/image.png" width = "600">
 
 Minesweeper
+
 <img src = "https://cdn.discordapp.com/attachments/771442141007839294/1116689441264762930/image.png" width = "600">
 
 Lobby
+
 <img src = "https://cdn.discordapp.com/attachments/771442141007839294/1116689606503579768/68747470733a2f2f66696c65732e636174626f782e6d6f652f706c656d37782e6a7067.png" width = "600">
 
 ### OLD UML Diagram
