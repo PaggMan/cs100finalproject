@@ -391,7 +391,13 @@ void Game::gameLoop() {
         runDay();
     }
     // build suspense here
+    system("clear");
+    printCharacters("You just finished your last day at UCR!\n\n\n", 25);
+    sleep(1.5);
+    printCharacters("Now it's time to see what internship offers you got!\n\n", 25);
+    sleep(1.5);
     displayInternships();
+    this->save(this->name);
 }
 
 
@@ -597,6 +603,10 @@ void Game::displayInternships() {
     cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
     cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
     cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+    string x;
+    cin >> x;
+    cin.clear();
+    cin.ignore(2147483647, '\n');
 
 
 
