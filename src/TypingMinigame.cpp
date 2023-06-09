@@ -6,8 +6,9 @@
 using namespace std;
 
 
-TypingMinigame::TypingMinigame(string target){
-    targetWord = target;
+TypingMinigame::TypingMinigame(){
+    int targetWordIndex = rand() % 5;
+    targetWord = possibleWords[targetWordIndex];
 }
 
 void TypingMinigame::disableTerminalEcho() {
@@ -27,7 +28,7 @@ void TypingMinigame::enableTerminalEcho() {
 void TypingMinigame::initialize(){
     disableTerminalEcho();
 
-    cout << "Type " << targetWord << endl;
+    cout << "Type \"" << targetWord << "\"" << endl;
     getline(cin, userInput);
 
     enableTerminalEcho();
@@ -49,12 +50,4 @@ void TypingMinigame::terminate(){
         gameOver = false;
     }
     return;
-}
-
-
-int main()
-{
-    TypingMinigame* t = new TypingMinigame("The fox jumps over the lazy dog");
-    t->initialize();
-    return 0;
 }
