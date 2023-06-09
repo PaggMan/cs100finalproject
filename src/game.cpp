@@ -296,8 +296,9 @@ void Game::load(string fileName) {
 }
 
 void Game::save(string fileName) {
-    if(fileName == "") fileName = "gamedata/game";
-    else fileName == "gamedata/" + fileName + ".json";
+    string fileNameToSave;
+    if(fileName == "") fileNameToSave = "gamedata/game";
+    else fileNameToSave = "gamedata/savedgames/" + fileName + ".json";
     // Write character data
     Json::Value characterToWrite;
     characterToWrite["name"] = character->getName();
@@ -309,15 +310,17 @@ void Game::save(string fileName) {
     Json::Value game;
     game["character"] = characterToWrite;
     game["version"] = "1.0";
-    game["name"] = "College Student Simulator";
+    game["name"] = fileName;
     
 
     // Write the JSON to a file
     Json::StyledWriter writer;
     std::string jsonString = writer.write(game);
-    std::ofstream file("gamedata/game.json");
+    // std::ofstream file("gamedata/game.json");
+    std::ofstream file(fileNameToSave);
     file << jsonString;
     file.close();
+    cout << "Successfully saved game to " << fileNameToSave << ".json" << endl;
 
 
     //delete this;
@@ -693,7 +696,7 @@ void Game::printLobby() {
     }
 
     else if(option == '4') {
-        save(name);
+        save(this->name);
         throw runtime_error("Game saved and quit");
 
     }
