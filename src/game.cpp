@@ -51,23 +51,18 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
     double courseDifficulty = 0.0;
     while (inFS >> courseName) {
         output = courseName;
-        outputObject.printStaggeredOutput(output, 25);
+        outputObject.printStaggeredOutput(output, 10);
         numSpaces = 8 - courseName.size();
 
         for (unsigned i = 0; i < numSpaces; ++i) {
             output = ' ';
-            outputObject.printStaggeredOutput(output, 25);
+            outputObject.printStaggeredOutput(output, 10);
         }
         inFS >> courseDifficulty;
-        if(courseDifficulty ) {
-
-        }
-        else {
-            
-        }
+        
         outputObject.handleColor(static_cast<int>(courseDifficulty));
-        output = '\t' + courseDifficulty + '\n';
-        outputObject.printStaggeredOutput(output, 25);
+        output = '\t' + to_string(courseDifficulty);
+        outputObject.printStaggeredOutput(output, 10);
         outputObject.handleColor(-1);
     }
 
