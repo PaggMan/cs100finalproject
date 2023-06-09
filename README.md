@@ -77,7 +77,7 @@ Now you should be good to run the executable with the following
 <img src="https://files.catbox.moe/5a45yi.png" width = "600">
 
 ### Lobby Screen
-<img src="https://files.catbox.moe/fp9wzh.png" width = "600">
+<img src="https://files.catbox.moe/03gnlp.png" width = "600">
 
 ### Final Game Over Screen
 <img src="https://files.catbox.moe/lmbi4y.png" width = "600">
