@@ -32,13 +32,11 @@ jobs:
       run: |
         cmake .
         make 
-        cd bin
-        ./characterTests
+        ls
+        ./bin/characterTests
         
     #Run tests on validator class
     - name: Run the test file for character and course validator
       run: |
-        cmake .
-        make
-        cd bin
-        ./testCharacterValidator
+        ls
+        ./bin/testCharacterValidator
