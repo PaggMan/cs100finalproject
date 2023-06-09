@@ -28,7 +28,7 @@
 
 ### Screen Navigation
 
-<img src="https://files.catbox.moe/3ms1o7.png"  width="600" height="300">
+<img src="https://files.catbox.moe/3ms1o7.png"  width="600">
 
 ### SOLID Principle UML Diagram
 <img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
