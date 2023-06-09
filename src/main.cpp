@@ -40,7 +40,7 @@ if(userinput == '1') {
      cin.clear();
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
      Game* game = new Game();
-     //game->start();
+     game->start();
 } else if(userinput == '2') {
   Game* game = new Game();
   game->load("../gamedata/game.json");

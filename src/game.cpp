@@ -3,49 +3,29 @@
 #include <fstream>
 #include <unistd.h>
 #include <stdexcept>
+#include <random>
+
+
+
 
 Game::Game() {
+
+
+
+
+    // The following is if they are loading a new game, we can skip this if they have a saved game.
+
     //initialize current day to 1.
     //initialize the name of the game to "My Game"
 
-    //Give welcome message    
-
-    //ask user to enter character name
-    //make sure that the entered name is valid. If not valid, ask again.
-        //****I'm thinking of adding a feature where if the user enters 3 invalid names in a row, the game assigns the player a default name.
-    
-
-    //Show a list of courses the user can choose from
-    //Ask the user to choose 4 courses by entering the name of a course.
-        //A list of courses will be located in a txt file, where they can either be outputted to the screen and read from to create a new course.
-        //A course validator must exist in order to determine whether a selected course actually exists, or if there is a duplicate course somewhere in your list.
-    
-
-
-    //2 of the 4 private member variables are being initialized here. 
     currentDay = 1;
     name = "My Simulation";
-    //Character and CourseList will be initialized later because they first require user input.
+    courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
+    character = nullptr;    //The character will be initialized later once the user gives the character customization information.
 
 
 
-    //Welcome message to starting a new game
-    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
     
-    customizeCharacter();   //This function will create a character and give it a name.
-
-
-    sleep(2);
-    system("clear");
-
-    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
-    std::cout << " For this last quarter, you decide to take four more classes.";
-    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
-
-    chooseCourses();
-
-    system("clear");
-    std::cout << "Good! It is time to begin your last quarter at UCR...";
 }
 
 
@@ -75,9 +55,6 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
-
-    courseList = new Course*[4];    //Array of course pointers of size 4 initialized.
-
     std::cout << '\n';
 
     //Show list of courses
@@ -332,15 +309,28 @@ void Game::save() {
 
 
 void Game::start() {
-    cout << "Enter a name for your character: ";
-    character->promptForName();
-    clearAndLoad();
-    cout << "Hi there, " << character->getName() << endl;
-    cout << "Type 1 to begin the game" << endl;
-    string garbage;
-    cin >> garbage;
-    save();
-    gameLoop();
+
+
+//Welcome message to starting a new game
+    std::cout << "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" << name << "\".\n\n";
+    
+    customizeCharacter();   //This function will create a character and give it a name.
+
+
+    sleep(2);
+    system("clear");
+
+    std::cout << "Hello " << character->getName() << "! You are a student at UCR in your last quarter before graduating!";
+    std::cout << " For this last quarter, you decide to take four more classes.";
+    std::cout << " Below are a list of classes you can take. Choose your 1st class by typing its name down below.\n";
+
+    chooseCourses();
+
+    system("clear");
+    std::cout << "Good! It is time to begin your last quarter at UCR..." << endl;
+
+
+    (void)displayInternships();
 
 }
 
@@ -348,6 +338,99 @@ void Game::gameLoop() {
     // run all the days of the game here.
 }
 
+std::vector<Internship> Game::parseInternships(string tier) {
+    std::vector<Internship> internships;
+
+    std::ifstream ifs;
+    ifs.open("gamedata/internships.json");
+    if (!ifs.is_open()) {
+        std::cout << "Failed to open the JSON file." << std::endl;
+        throw runtime_error("error reading file");
+    }
+
+    Json::Value root;
+    Json::Reader reader;
+    if (!reader.parse(ifs, root)) {
+        std::cout << "Failed to parse the JSON file." << std::endl;
+        ifs.close();
+        throw runtime_error("error reading file");
+    }
+
+    Json::Value tierInternships = root[tier];
+
+    if (tierInternships.isNull()) {
+        std::cout << "Invalid tier specified." << std::endl;
+        ifs.close();
+        throw runtime_error("invalid tier specified.");
+    }
+
+    for (Json::Value::ArrayIndex i = 0; i < tierInternships.size(); ++i) {
+        Json::Value internship = tierInternships[i];
+        Internship newInternship;
+        newInternship.title = internship["title"].asString();
+        newInternship.company = internship["company"].asString();
+        newInternship.startingWage = internship["starting_wage"].asString();
+        newInternship.welcomeMessage = internship["welcome_message"].asString();
+        internships.push_back(newInternship);
+        // cout << newInternship.title << endl;
+    }
+
+    ifs.close();
+    return internships;
+}
+
+void Game::displayInternships() {
+    system("clear");
+    cout << "Loading your internship opportunity..." <<endl;
+    clearAndLoad();
+
+    string tier = calculateScore();
+    std::vector<Internship> possibleInternships = parseInternships(tier);
+
+
+    // int randIndex = rand() % possibleInternships.size();
+    // Internship theInternship = possibleInternships.at(randIndex); broken
+    Internship theInternship = getRandomFromVector(possibleInternships);
+ 
+    cout << "Congratulations! With your cumulative game score of " << this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness() << ", ";
+    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
+    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
+    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+
+
+
+
+}
+template<class T>
+T Game::getRandomFromVector(const std::vector<T>& v) {
+    // Initialize random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    
+    // Generate a random index within the range of the vector size
+    std::uniform_int_distribution<> dist(0, v.size() - 1);
+    int randomIndex = dist(gen);
+    
+    // Return the random Internship
+    return v[randomIndex];
+}
+
+string Game::calculateScore() {
+    int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
+
+    if(overallScore > 280) {
+        return "legendary";
+    } else if(overallScore > 250) {
+        return "epic";
+    } else if(overallScore > 200) {
+        return "good";
+    } else if(overallScore > 140) {
+        return "satisfactory";
+    } else {
+        return "poor";
+    }
+
+}
 
 // Getters and setters
 Character* Game::getCharacter() {
@@ -363,8 +446,8 @@ int Game::getCurrentDay() {
 }
 
 void Game::clearAndLoad() {
-    system("clear");
     sleep(1.5);
+    system("clear");
 }
 
 void Game::printLobby(){
@@ -428,3 +511,6 @@ void Game::printLobby(){
         character->hangWithFriends();
     }
 }
+
+
+

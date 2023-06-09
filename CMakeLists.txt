@@ -24,6 +24,8 @@ add_executable(characterTests
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+  
+  configure_file(${CMAKE_SOURCE_DIR}/gamedata/internships.json ${CMAKE_BINARY_DIR}/gamedata/internships.json COPYONLY)
 
 
 

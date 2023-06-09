@@ -1,6 +1,8 @@
 #include "character.h"
 #include "course.h"
+#include "internship.h"
 #include "json/json.h"
+#include <vector>
 class Game {
     private:    //Private member variables
         int currentDay;
@@ -20,6 +22,11 @@ class Game {
         string getName();
         int getCurrentDay();
         void setName(const string& name);
+        
+        template<class T>
+        T getRandomFromVector(const std::vector<T>& internships);
+        void displayInternships();
+        std::vector<Internship> parseInternships(string );
 
     private:   //Private member functions
     
@@ -31,5 +38,8 @@ class Game {
         void clearAndLoad();
         void gameLoop();
         void printLobby();
+
+
+        string calculateScore(); // Used to calculate internship opportunities
         
 };
