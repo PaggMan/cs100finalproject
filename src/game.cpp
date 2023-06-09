@@ -284,6 +284,7 @@ void Game::load(string fileName) {
     file.close();
 
     Json::Value characterData = gameData["character"];
+
     std::string name = characterData["name"].asString();
     int grades = characterData["grades"].asInt();
     int happiness = characterData["happiness"].asInt();
@@ -295,6 +296,7 @@ void Game::load(string fileName) {
     character->setGrades(grades);
     character->setHappiness(happiness);
     character->setHealth(health);
+    this->name = gameData["name"].asString();
 
     cout << "Loading your game..." << endl;
     sleep(1.5);

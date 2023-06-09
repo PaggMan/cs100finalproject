@@ -111,7 +111,7 @@ if(userinput == '1') {
 
 
     Game* game = new Game();
-    game->load(fileToLoad);
+    game->load(fileToLoad); // goes into game
     /*
     Everything below here should be handled by the load function
     */
