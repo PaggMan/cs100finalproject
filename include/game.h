@@ -1,7 +1,7 @@
 #include "character.h"
 #include "course.h"
 #include "minigame.h"
-
+#include "print.h"
 #include "internship.h"
 #include "json/json.h"
 #include <vector>
