@@ -77,6 +77,7 @@ target_sources(rungame PRIVATE
 )
 
 
+
 # Set the Google Test directory
 set(GTEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/googletest")
 
@@ -86,22 +87,34 @@ add_subdirectory(${GTEST_DIR})
 # Include Google Test directories
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# # characterTests
-# add_executable(characterTests
-#     tests/characterTests.cpp
-#     src/character.cpp
-#     src/game.cpp
-# )
+# characterTests
+add_executable(characterTests
+    tests/characterTests.cpp
+    src/character.cpp
+)
 
-# # Link Google Test libraries
-# target_link_libraries(characterTests 
-#     PRIVATE gtest 
-#     PRIVATE gtest_main
-#     )
+# Link Google Test libraries
+target_link_libraries(characterTests 
+    PRIVATE gtest 
+    PRIVATE gtest_main
+    )
 
-# target_include_directories(characterTests PRIVATE
-#     ${CMAKE_CURRENT_SOURCE_DIR}/include
-# )
+target_link_libraries(rungame
+  PRIVATE ftxui::screen
+  PRIVATE ftxui::dom
+  PRIVATE ftxui::component 
+  PRIVATE stdc++fs
+)
+    
+target_sources(characterTests PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_reader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_writer.cpp
+)
+
+ target_include_directories(characterTests PRIVATE
+     ${CMAKE_CURRENT_SOURCE_DIR}/include
+ )
 
 # commented out characterTests for now
 

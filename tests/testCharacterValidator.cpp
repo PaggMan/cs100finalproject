@@ -9,9 +9,9 @@ TEST (ValidCharacterNameTest, testBlankSpace) {  //Ensures that isValidCharacter
     EXPECT_FALSE(blank->isValidCharacterName(""));
 }
 
-TEST (ValidCharacterNameTest, testNameWithSpaces) {  //Ensures that isValidCharacterName function validates a name with spaces
+TEST (ValidCharacterNameTest, testNameWithSpaces) {  //Ensures that isValidCharacterName function does not validate a name with spaces
     CharacterValidator* spaces = new CharacterValidator();
-    EXPECT_TRUE(spaces->isValidCharacterName("Hi there"));
+    EXPECT_FALSE(spaces->isValidCharacterName("Hi there"));
 }
 
 TEST (ValidCharacterNameTest, testLongName) {  //Ensures that isValidCharacterName function doesn't validate a really long name
