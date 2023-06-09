@@ -84,7 +84,7 @@ Minigames and Stats: The game may include minigames or challenges that players c
 
 ### Screen Navigation
 
-<img src="https://files.catbox.moe/3ms1o7.png"  width="600">
+<img src="https://cdn.discordapp.com/attachments/964617182325637160/1116865547456479332/image.png"  width="600">
 
 ### SOLID Principle UML Diagram
 <img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
