@@ -15,7 +15,8 @@ class WordleMinigame : public Minigame{
         char attempt5[5][2];
         char attempt6[5][2];
         string arr[20] = {"dream", "guard", "flood", "adult", "sight", "alarm", "force", "wound", "brave", "cable", "panic", "study", "faith", "equal", "grade", "award", "bully", "voice", "drive", "title"};
-        int checkInWord[5] = {0, 0, 0, 0, 0};
+        int checkInWord[5] = { 0 };
+        int wordCheck;
         void printAttempt(const char arr[5][2]);
     public:
         WordleMinigame();
