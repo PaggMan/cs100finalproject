@@ -432,6 +432,12 @@ void Game::runDay() {  //Allows user to make choices on a given day and calls mi
 void Game::playMinigame() {     //Randomly chooses a minigame to play
     int randomIndex = rand()%6;
     minigameList.at(randomIndex)->initialize();
+    if(minigameList.at(randomIndex)->getResult()) {
+        character->setGrades(character->getGrades() + 10);
+    }
+    else {
+        character->setGrades(character->getGrades() - 5);
+    }
     delete minigameList.at(randomIndex);
     
     if (randomIndex == 0) {
