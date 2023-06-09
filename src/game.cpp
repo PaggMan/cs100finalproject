@@ -297,6 +297,11 @@ void Game::load(string fileName) {
     character->setHealth(health);
     this->name = gameData["name"].asString();
 
+    courseList[0] = new Course("Class", 5.0);
+    courseList[1] = new Course("Class", 5.0);
+    courseList[2] = new Course("Class", 5.0);
+    courseList[3] = new Course("Class", 5.0);
+
     cout << "Loading your game..." << endl;
     sleep(1.5);
     system("clear");
