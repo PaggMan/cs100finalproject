@@ -35,6 +35,7 @@ void TypingMinigame::enableTerminalEcho() {
 void TypingMinigame::initialize(){
     disableTerminalEcho();
 
+    cout << "Welcome to the Typing Game! You will be given a phrase and you have to type it, however, you cannot see what you type!\n";
     cout << "Type \"" << targetWord << "\"" << endl;
     getline(cin, userInput);
 
