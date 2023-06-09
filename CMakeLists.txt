@@ -98,3 +98,33 @@ target_link_libraries(characterTests
     PRIVATE gtest 
     PRIVATE gtest_main
     )
+
+target_link_libraries(rungame
+  PRIVATE ftxui::screen
+  PRIVATE ftxui::dom
+  PRIVATE ftxui::component 
+  PRIVATE stdc++fs
+)
+    
+target_sources(characterTests PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_reader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_value.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_writer.cpp
+)
+
+ target_include_directories(characterTests PRIVATE
+     ${CMAKE_CURRENT_SOURCE_DIR}/include
+ )
+
+# commented out characterTests for now
+
+# character validator tests
+add_executable(testCharacterValidator
+    tests/testCharacterValidator.cpp
+    src/characterValidator.cpp
+    src/course.cpp 
+)
+
+TARGET_LINK_LIBRARIES(testCharacterValidator gtest)
+TARGET_COMPILE_DEFINITIONS(testCharacterValidator PRIVATE gtest_disable_pthreads=ON)
+
