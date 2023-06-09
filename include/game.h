@@ -30,5 +30,6 @@ class Game {
         void addCourse(const std::string& courseName, unsigned& courseListSize);  //Adds a course from courseCatalog.txt based on the user entered course name. If not found, the courseListSize variable is not incremented.
         void clearAndLoad();
         void gameLoop();
+        void printLobby();
         
 };
