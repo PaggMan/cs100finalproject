@@ -91,7 +91,7 @@ add_subdirectory(${GTEST_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Link Google Test libraries
-target_link_libraries(runtests 
+target_link_libraries(characterTests 
     PRIVATE gtest 
     PRIVATE gtest_main
     )
