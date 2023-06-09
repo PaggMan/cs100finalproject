@@ -6,73 +6,90 @@ RockPaperScissorsMinigame::RockPaperScissorsMinigame(){
 }
 
 void RockPaperScissorsMinigame::initialize(){
+    string output;
+    Print outputObject;
     string userChoice;
     int computerChoice;
-    string output;
     
-    cout << "\nHello, welcome to Rock Paper Scissors!\nThe rules are like any normal Rock Paper Scissors game and it is first to 3 wins.\nLet's get started!\n\n";
+    output = "\nHello, welcome to Rock Paper Scissors!\nThe rules are like any normal Rock Paper Scissors game and it is first to 3 wins.\nLet's get started!\n\n";
+    outputObject.printOutput(output);
 
     while(userScore != 3 and computerScore != 3) {
         srand(time(0));
         computerChoice = (rand() % 3) + 1; // 1 is Rock, 2 is Paper, 3 is Scissors
-        cout << "Enter your choice (Rock, Paper, Scissors): ";
+        output = "Enter your choice (Rock, Paper, Scissors): ";
+        outputObject.printOutput(output);
         cin >> userChoice;
 
         if(userChoice == "Rock" or userChoice == "rock") {
             if(computerChoice == 1) {
-                cout << "We both chose Rock, it is a tie!\n";
+                output = "We both chose Rock, it is a tie!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 2) {
                 computerScore++;
-                cout << "I chose Paper and you chose Rock, I win this round!\n";
+                output = "I chose Paper and you chose Rock, I win this round!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 3) {
                 userScore++;
-                cout << "I chose Scissors and you chose Rock, you win this round!\n";
+                output = "I chose Scissors and you chose Rock, you win this round!\n";
+                outputObject.printOutput(output);
             }
         }
         else if(userChoice == "Paper" or userChoice == "paper") {
             if(computerChoice == 1) {
                 userScore++;
-                cout << "I chose Rock and you chose Paper, you win this round!\n";
+                output = "I chose Rock and you chose Paper, you win this round!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 2) {
-                
-                cout << "We both chose Paper, it is a tie!\n";
+                output = "We both chose Paper, it is a tie!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 3) {
                 computerScore++;
-                cout << "I chose Scissors and you chose Paper, I win this round!\n";
+                output = "I chose Scissors and you chose Paper, I win this round!\n";
+                outputObject.printOutput(output);
             }
         }
         else if(userChoice == "Scissors" or userChoice == "scissors") {
             if(computerChoice == 1) {
                 computerScore++;
-                cout << "I chose Rock and you chose Scissors, I win this round!\n";
+                output = "I chose Rock and you chose Scissors, I win this round!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 2) {
                 userScore++;
-                cout << "I chose Paper and you chose Scissors, you win this round!\n";
+                output = "I chose Paper and you chose Scissors, you win this round!\n";
+                outputObject.printOutput(output);
             }
             else if(computerChoice == 3) {
-                cout << "We both chose Scissors, it is a tie!\n";
+                output = "We both chose Scissors, it is a tie!\n";
+                outputObject.printOutput(output);
             }
         }
         else {
-            cout << "Invalid choice! You did not choose rock, paper, or scissors!" << endl;
+            output = "Invalid choice! You did not choose rock, paper, or scissors!\n";
+            outputObject.printOutput(output);
         }
-        cout << "The current score is " + to_string(userScore) + " (your score) to " + to_string(computerScore) + " (my score).\n\n";
+        output = "The current score is " + to_string(userScore) + " (your score) to " + to_string(computerScore) + " (my score).\n\n";
+        outputObject.printOutput(output);
     }
     terminate();
 }
 
 void RockPaperScissorsMinigame::terminate(){
+    string output;
+    Print outputObject;
     if(userScore == 3) {
-        cout << "\nCongratulations, you won the game!\n";
+        output = "\nCongratulations, you won the game!\n";
+        outputObject.printOutput(output);
         userWon = true;
     }
     else if(computerScore == 3) {
-        cout << "\nUnlucky, you did not win the game.\n";
+        output = "\nUnlucky, you did not win the game.\n";
+        outputObject.printOutput(output);
         userWon = false;
     }
 }

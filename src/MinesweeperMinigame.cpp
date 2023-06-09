@@ -137,11 +137,15 @@ void MinesweeperMinigame::printGrid(bool endGame) {
 }
 
 void MinesweeperMinigame::initialize(){
+    string output;
+    Print outputObject;
+
     int row = -1;
     int column = -1;
     
-    cout << "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!\n\n";
-    cout << "Enter the row of your first choice: ";
+    output = "Welcome to Minesweeper! There are 10 mines on the board. Let's get started!\n\n";
+    output += "Enter the row of your first choice: ";
+    outputObject.printOutput(output);
     cin >> row;
     cout << endl;
     while(cin.fail() or row < 0 or row > 7) {

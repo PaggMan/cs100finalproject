@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include "minigame.h"
+#include "print.h"
 using namespace std;
 
 class WordleMinigame : public Minigame{

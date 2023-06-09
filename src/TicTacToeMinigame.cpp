@@ -5,24 +5,28 @@ TicTacToeMinigame::TicTacToeMinigame(){
 }
 
 void TicTacToeMinigame::initialize(){
+    string output;
+    Print outputObject;
+
     int userChoice = -1;
     int computerChoice = 0;
     int count = 0;
 
-    cout << "\nHello, welcome to Tic Tac Toe!\nThe rules are like any normal Tic Tac Toe game.\n\n";
+    output = "\nHello, welcome to Tic Tac Toe!\nThe rules are like any normal Tic Tac Toe game.\n\n";
+    output += "Here are the index numbers for each location in the game:\n";
+    output += "1 | 2 | 3\n";
+    output += "---------\n";
+    output += "4 | 5 | 6\n";
+    output += "---------\n";
+    output += "7 | 8 | 9\n";
 
-    cout << "Here are the index numbers for each location in the game:\n";
-    cout << "1 | 2 | 3\n";
-    cout << "---------\n";
-    cout << "4 | 5 | 6\n";
-    cout << "---------\n";
-    cout << "7 | 8 | 9\n";
-    
-    cout << "\nLet's get started!\n\n";
+    output += "\nLet's get started!\n\n";
+    outputObject.printOutput(output);
 
     while((count < 9) && (winner == 0)) {
         if(count % 2 == 0) {
-            cout << "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
+            output = "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
+            outputObject.printOutput(output);
             cin >> userChoice;
             userChoice--;
             while(userChoice < 0 or userChoice > 9 or arr[userChoice] != ' ') {
@@ -30,8 +34,9 @@ void TicTacToeMinigame::initialize(){
                     cin.clear();
                     cin.ignore(2147483647, '\n');
                 }
-                cout << "Invalid location!\n";
-                cout << "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
+                output = "Invalid location!\n";
+                output += "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
+                outputObject.printOutput(output);
                 cin >> userChoice;
                 userChoice--;
             }
@@ -100,25 +105,30 @@ void TicTacToeMinigame::initialize(){
                 }
                 arr[computerChoice] = 'X';
             }
-            cout << "\nMy turn! Here is my move.\n";
+            output = "\nMy turn! Here is my move.\n";
+            outputObject.printOutput(output);
         }
 
-        cout << string(1, arr[0]) + " | " + arr[1] + " | " + arr[2] + "\n";
-        cout << "---------\n";
-        cout << string(1, arr[3]) + " | " + arr[4] + " | " + arr[5] + "\n";
-        cout << "---------\n";
-        cout << string(1, arr[6]) + " | " + arr[7] + " | " + arr[8] + "\n\n";
+        output = string(1, arr[0]) + " | " + arr[1] + " | " + arr[2] + "\n";
+        output += "---------\n";
+        output += string(1, arr[3]) + " | " + arr[4] + " | " + arr[5] + "\n";
+        output += "---------\n";
+        output += string(1, arr[6]) + " | " + arr[7] + " | " + arr[8] + "\n\n";
+        outputObject.printOutput(output);
         
         if(((arr[0] == arr[1]) && (arr[1] == arr[2]) && (arr[2] == 'O')) or ((arr[3] == arr[4]) && (arr[4] == arr[5]) && (arr[5] == 'O')) or ((arr[6] == arr[7]) && (arr[7] == arr[8]) && (arr[8] == 'O')) or ((arr[0] == arr[3]) && (arr[3] == arr[6]) && (arr[6] == 'O')) or ((arr[1] == arr[4]) && (arr[4] == arr[7]) && (arr[7] == 'O')) or ((arr[2] == arr[5]) && (arr[5] == arr[8]) && (arr[8] == 'O')) or ((arr[0] == arr[4]) && (arr[4] == arr[8]) && (arr[8] == 'O')) or ((arr[2] == arr[4]) && (arr[4] == arr[6]) && (arr[6] == 'O'))) {
-            cout << "Congratulations, you won!\n";
+            output = "Congratulations, you won!\n";
+            outputObject.printOutput(output);
             winner = 1;
         }
         else if(((arr[0] == arr[1]) && (arr[1] == arr[2]) && (arr[2] == 'X')) or ((arr[3] == arr[4]) && (arr[4] == arr[5]) && (arr[5] == 'X')) or ((arr[6] == arr[7]) && (arr[7] == arr[8]) && (arr[8] == 'X')) or ((arr[0] == arr[3]) && (arr[3] == arr[6]) && (arr[6] == 'X')) or ((arr[1] == arr[4]) && (arr[4] == arr[7]) && (arr[7] == 'X')) or ((arr[2] == arr[5]) && (arr[5] == arr[8]) && (arr[8] == 'X')) or ((arr[0] == arr[4]) && (arr[4] == arr[8]) && (arr[8] == 'X')) or ((arr[2] == arr[4]) && (arr[4] == arr[6]) && (arr[6] == 'X'))) {
-            cout << "Unlucky, you did not win.\n";
+            output = "Unlucky, you did not win.\n";
+            outputObject.printOutput(output);
             winner = -1;
         }
         else if(count == 8) {
-            cout << "We tied!\n";
+            output = "We tied!\n";
+            outputObject.printOutput(output);
         }
         count++;
     }

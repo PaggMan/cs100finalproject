@@ -12,11 +12,15 @@ UnscrambleMinigame::UnscrambleMinigame(){
 }
 
 void UnscrambleMinigame::initialize(){
-    cout << "Welcome to Unscramble! Your goal is the unscramble the given CS100 word!\n";
-    cout << "Unscramble this word: " << scrambledWords[word] << endl << endl;
-    cout << "  *Be careful, the word is case sensitive!" << endl << endl << endl;
+    string output;
+    Print outputObject;
 
-    cout << "Enter your guess: ";
+    output = "Welcome to Unscramble! Your goal is the unscramble the given CS100 word!\n";
+    output += "Unscramble this word: " + scrambledWords[word] + "\n\n";
+    output += "  *Be careful, the word is case sensitive!\n\n\n";
+
+    output += "Enter your guess: ";
+    outputObject.printOutput(output);
   
     getline(cin, userInput);
 
@@ -31,11 +35,15 @@ void UnscrambleMinigame::initialize(){
 }
 
 void UnscrambleMinigame::terminate(){
+    string output;
+    Print outputObject;
     if(userWon){
-        cout << "You Win!" << endl;
+        output = "You Win!\n";
+        outputObject.printOutput(output);
     }
     else{
-        cout << "You lose!" << endl;
+        output = "You lose!\n";
+        outputObject.printOutput(output);
     }
     return;
 }

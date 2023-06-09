@@ -5,31 +5,37 @@ WordleMinigame::WordleMinigame(){
 }
 
 void WordleMinigame::printAttempt(const char arr[5][2]) {
+    string output;
+    Print outputObject;
     for(int i = 0; i < 5; ++i) {
         if(arr[i][1] == 'O') {
-            cout << "\033[1;32m" << arr[i][0] << "\033[0m";
+            output = arr[i][0];
+            outputObject.printGreen(output);
         }
         else if(arr[i][1] == 'X') {
-            cout << "\033[1;33m" << arr[i][0] << "\033[0m";
+            output = arr[i][0];
+            outputObject.printYellow(output);
         }
         else {
-            cout << arr[i][0];
+            output = arr[i][0];
+            outputObject.printOutput(output);
         }
     }
-    cout << endl;
+    outputObject.printNewline();
 }
 
 void WordleMinigame::initialize(){
     string word, output;
+    Print outputObject;
 
     srand(time(0));
     word = arr[rand() % 20];
 
     output = "\nHello, welcome to Wordle!\nThe goal of the game is to guess the 5 letter word using 5 letter word guesses. You have 6 attempts!\nLet's get started!\n\n";
-    cout << output;
+    outputObject.printOutput(output);
     
     output = "Enter your first attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     for(int i = 0; i < 5; ++i) {
         cin >> attempt1[i][0];
         if(attempt1[i][0] == word.at(i)) {
@@ -53,13 +59,14 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
         terminate();
         return;
     }
     
     output = "Enter your second attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     wordCheck = 0;
     for(int i = 0; i < 5; ++i) {
         cin >> attempt2[i][0];
@@ -85,13 +92,14 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
         terminate();
         return;
     }
 
     output = "Enter your third attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     wordCheck = 0;
     for(int i = 0; i < 5; ++i) {
         cin >> attempt3[i][0];
@@ -118,13 +126,14 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
         terminate();
         return;
     }
 
     output = "Enter your fourth attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     wordCheck = 0;
     for(int i = 0; i < 5; ++i) {
         cin >> attempt4[i][0];
@@ -153,13 +162,14 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
         terminate();
         return;
     }
 
     output = "Enter your fifth attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     wordCheck = 0;
     for(int i = 0; i < 5; ++i) {
         cin >> attempt5[i][0];
@@ -188,13 +198,14 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
         terminate();
         return;
     }
 
     output = "Enter your last attempt (all lowercase): ";
-    cout << output;
+    outputObject.printOutput(output);
     wordCheck = 0;
     for(int i = 0; i < 5; ++i) {
         cin >> attempt6[i][0];
@@ -224,10 +235,12 @@ void WordleMinigame::initialize(){
         checkInWord[i] = 0;
     }
     if(wordCheck == 5) {
-        cout << "Congratulations, you got the word!\n";
+        output = "Congratulations, you got the word!\n";
+        outputObject.printOutput(output);
     }
     else {
-        cout << "Better luck next time, you did not get the word, which was " + word + ".\n";
+        output = "Better luck next time, you did not get the word, which was " + word + ".\n";
+        outputObject.printOutput(output);
     }
 
     terminate();
@@ -240,4 +253,9 @@ void WordleMinigame::terminate(){
     else {
         userWon = false;
     }
+}
+
+int main() {
+    WordleMinigame r;
+    r.initialize();
 }
