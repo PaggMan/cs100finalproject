@@ -19,7 +19,9 @@ add_executable(rungame
 add_executable(characterTests
     tests/characterTests.cpp
     src/character.cpp
+    src/game.cpp
 )
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
