@@ -74,7 +74,17 @@ if(userinput == '1') {
      
 
      game->start();
-     game->gameLoop();
+
+     try {
+        game->gameLoop();
+     }
+
+     catch(std::runtime_error& e) {
+        return 1;
+     }
+
+
+
      game->displayInternships();
 } else if(userinput == '2') {
     system("clear");
