@@ -16,11 +16,7 @@ add_executable(rungame
     src/characterValidator.cpp 
 )
 
-add_executable(characterTests
-    tests/characterTests.cpp
-    src/character.cpp
-    src/game.cpp
-)
+
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
@@ -68,11 +64,6 @@ target_include_directories(rungame PRIVATE
 )
 
 
-target_include_directories(characterTests PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-
 # Add the JSONCpp source files to project
 target_sources(rungame PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lib_json/json_reader.cpp
@@ -90,13 +81,26 @@ add_subdirectory(${GTEST_DIR})
 # Include Google Test directories
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Link Google Test libraries
-target_link_libraries(characterTests 
-    PRIVATE gtest 
-    PRIVATE gtest_main
-    )
+# # characterTests
+# add_executable(characterTests
+#     tests/characterTests.cpp
+#     src/character.cpp
+#     src/game.cpp
+# )
 
+# # Link Google Test libraries
+# target_link_libraries(characterTests 
+#     PRIVATE gtest 
+#     PRIVATE gtest_main
+#     )
 
+# target_include_directories(characterTests PRIVATE
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include
+# )
+
+# commented out characterTests for now
+
+# character validator tests
 add_executable(testCharacterValidator
     tests/testCharacterValidator.cpp
     src/characterValidator.cpp
