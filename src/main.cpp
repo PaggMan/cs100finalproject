@@ -7,6 +7,7 @@
 #include <ftxui/screen/screen.hpp>
 #include <unistd.h>
 #include "../include/loadgame.h"
+#include <thread>
 
 
 using namespace ftxui;
@@ -72,7 +73,7 @@ if(userinput == '1') {
      }
      system("clear");
      
-
+     game->giveInstructions();
      game->start();
      game->gameLoop();
      game->displayInternships();

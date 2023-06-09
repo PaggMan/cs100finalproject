@@ -297,7 +297,7 @@ void Game::load(string fileName) {
 
 void Game::save(string fileName) {
     if(fileName == "") fileName = "gamedata/game";
-    else fileName == "gamedata/" + fileName;
+    else fileName == "gamedata/" + fileName + ".json";
     // Write character data
     Json::Value characterToWrite;
     characterToWrite["name"] = character->getName();
@@ -461,12 +461,50 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
 
 void Game::giveInstructions() {
     // run all the days of the game here.
+    string text1 = "Welcome to UCR! You just finished your 2nd quarter as a fourth year computer science major and things are starting to heat up...\n\n";
+    string text2 = "Keeping your work-life balance has always been quite the task... \nThere's just so many things to do in a day...\n";
+    string text3 = "This game will be a simulation of keeping your life 'intact' before you graduate. You'll have to balance your happiness levels, health, and grades all while worrying about jobs for when you graduate. And you definitely don't want to spend your life cleaning toilets for the night shift at the local McDonalds...\n\n";
+    string text4 = "When you start this game, you'll be at the point where there's only 15 days left before graduation, and everyday, you'll always be busy with something\n";
+    string text5 = "A typical day in this game consists of choosing whether to attend your classes for the day or not, and then doing a nighttime activity to work on various aspects of your status as a student.\n";
+    string text6 = "If you decide to go to class, you'll play one of the of the many minigames in this game. If you win, you will gain 'academic points' that will help your academic status.\n But be careful, if you lose, you might see a dip in your GPA.\n";
+    string text7 = "If you opt not to go to class, you will have an option to do a daytime activity. These all can affect in various ways your health, happiness, and grades.\n\nYou'll still have the nightime activity too!";
+    string text8 = "At the end of the day, you'll be sent to your room where you can view your stats, and plan accordingly the next day in order to be at your best state.\n";
+    string text9 = "At the end of the 15 days, your status as a student will be used to determine your job opportunity. The better your stats, the better your wage and opportunity!";
+
+    printCharacters(text1, 25); // in milliseconds
+    printCharacters("\n\n\n", 150);
+    printCharacters(text2, 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters(text3+text4, 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters(text5+text6, 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters(text7, 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters(text8, 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters(text9, 25);
+    printCharacters("\n\n\n", 150);
+    cout << "\n\n\n";
 
 
     //Give introduction message about what it being your last quarter and how this quarter determines your job prospects.
     //Tells user to stay as happy as possible and shows them stat bars
         //Display stat bars
     //Explains the user will have decisions to make that will alter these stat bars and also minigames to play to make upgrades.
+
+
+    // Very end
+    printCharacters("Ok, you seem good to go!", 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters("Its time to start your last quarter here at UCR!", 25);
+    printCharacters("\n\n\n", 150);
+    printCharacters("Type any character to continue...", 25);
+    printCharacters("\n\n\n", 150);
+    char trash; cin >> trash;
+    cin.clear();
+    cin.ignore(2147483647, '\n');
+    system("clear");
 }
 
 std::vector<Internship> Game::parseInternships(string tier) {
@@ -579,6 +617,13 @@ int Game::getCurrentDay() {
 void Game::clearAndLoad() {
     sleep(1.5);
     system("clear");
+}
+
+void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
+    for (char c : text) {
+        std::cout << c << std::flush; // Print the character
+        usleep(delay * 1000); // Delay in microseconds
+    }
 }
 
 void Game::printLobby() {
