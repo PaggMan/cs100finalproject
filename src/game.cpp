@@ -280,6 +280,7 @@ void Game::load(string fileName) {
     int grades = characterData["grades"].asInt();
     int happiness = characterData["happiness"].asInt();
     int health = characterData["health"].asInt();
+    this->currentDay = gameData["currentDay"].asInt();
 
     character = new Character();
     character->setName(name);
@@ -310,6 +311,7 @@ void Game::save(string fileName) {
     Json::Value game;
     game["character"] = characterToWrite;
     game["version"] = "1.0";
+    game["currentDay"] = currentDay;
     game["name"] = fileName;
     
 
