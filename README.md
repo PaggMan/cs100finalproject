@@ -43,9 +43,6 @@
 ### Lobby Screen
 <img src="https://files.catbox.moe/fp9wzh.png" width = "600">
 
-### Lobby Screen Layout
-<img src="https://files.catbox.moe/plem7x.jpg" width="600">
-
 ### Final Game Over Screen
 <img src="https://files.catbox.moe/lmbi4y.png" width = "600">
 
