@@ -30,7 +30,7 @@ bool noSpacesInName(const std::string& name) {
  
 int main() {
  system("clear");
-
+cout << "\033[1;36m";
  cout << " _____  _____   _____ _             _            _     _____ _                 _       _             " << endl;
  
  cout << "/  __ \\/  ___| /  ___| |           | |          | |   /  ___(_)               | |     | |            " << endl;
@@ -39,7 +39,7 @@ int main() {
  cout << "| \\__/\\/\\__/ / /\\__/ / |_| |_| | (_| |  __/ | | | |_  /\\__/ / | | | | | | |_| | | (_| | || (_) | |   " << endl;
  cout << " \\____/\\____/  \\____/ \\__|\\__,_|\\__,_|\\___|_| |_|\\__| \\____/|_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|   " << endl;
  cout << "\n\n\n\n\n";
-
+  cout << "\033[0m\n" << endl;
 
 
 cout << "1. New game\n";
@@ -88,7 +88,7 @@ if(userinput == '1') {
 
 
 
-     game->displayInternships();
+    //  game->displayInternships(); we moved this into gameloop so the game class handles the entirety of the game
 
      delete game;
 
@@ -105,8 +105,20 @@ if(userinput == '1') {
       return 0;
     }
 
-    cout << "Found " << gm.getNumGames() << " saved games." << endl;
-    gm.printOptions();
+    bool rePrint = false;
+    do {
+      try {
+        cout << "Found " << gm.getNumGames() << " saved games." << endl;
+        gm.printOptions();
+      } catch(std::out_of_range& e) {
+        cout << "\n\nInvalid option." << endl;
+        sleep(1);
+        system("clear");
+        rePrint = true;
+      }
+          
+    } while(rePrint);
+
 
     string fileToLoad = gm.getGameFile();
 

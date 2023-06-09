@@ -431,6 +431,14 @@ void Game::gameLoop() {
         system("clear");
         runDay();
     }
+    // build suspense here
+    system("clear");
+    printCharacters("You just finished your last day at UCR!\n\n\n", 25);
+    sleep(1.5);
+    printCharacters("Now it's time to see what internship offers you got!\n\n", 25);
+    sleep(1.5);
+    displayInternships();
+    this->save(this->name);
 }
 
 
@@ -643,7 +651,8 @@ void Game::displayInternships() {
     outputObject.printOutput(output);
     clearAndLoad();
 
-    string tier = calculateScore();
+    // string tier = calculateScore();
+    string tier = this->character->getTier();
     std::vector<Internship> possibleInternships = parseInternships(tier);
 
 
@@ -651,11 +660,14 @@ void Game::displayInternships() {
     // Internship theInternship = possibleInternships.at(randIndex); broken
     Internship theInternship = getRandomFromVector(possibleInternships);
  
-    output = "Congratulations! With your cumulative game score of " + to_string(this->character->getGrades()) + to_string(this->character->getHappiness()) + to_string(this->character->getHappiness()) + ", ";
-    output += "You've been offered an internship at " + theInternship.company + "!\n\n";
-    output += "Here's a message from the hiring team: \n\n" + theInternship.welcomeMessage + "\n\n\n";
-    output += "Your starting wage is " + theInternship.startingWage + "\n\n\n";
-    outputObject.printOutput(output);
+    cout << "Congratulations! With your cumulative game score of " << this->character->getCumulativeScore() << ", ";
+    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
+    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
+    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+    string x;
+    cin >> x;
+    cin.clear();
+    cin.ignore(2147483647, '\n');
 
 
 
@@ -674,22 +686,6 @@ T Game::getRandomFromVector(const std::vector<T>& v) {
     return v[randomIndex];
 }
 
-string Game::calculateScore() {
-    int overallScore = this->character->getGrades() + this->character->getHappiness() + this->character->getHappiness();
-
-    if(overallScore > 280) {
-        return "legendary";
-    } else if(overallScore > 250) {
-        return "epic";
-    } else if(overallScore > 200) {
-        return "good";
-    } else if(overallScore > 140) {
-        return "satisfactory";
-    } else {
-        return "poor";
-    }
-
-}
 
 // Getters and setters
 Character* Game::getCharacter() {
@@ -725,8 +721,14 @@ void Game::handleColor(int num) {
     if(num >= 5) {
         cout << "\033[1;32m"; //set to green
         return;
+    } if(num >=3) {
+        cout << "\033[1;33m"; // yellow
+        return;
     }
-    cout << "\033[1;33m"; // yellow
+    else {
+        cout << "\033[1;31m"; // red
+    }
+    
 }
 
 void Game::printLobby() {

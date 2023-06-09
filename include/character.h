@@ -24,6 +24,8 @@ class Character {
         int getGrades();
         int getHealth();
         int getHappiness();
+        int getCumulativeScore();
+        string getTier();
 
         //stat modifiers
         void setName(const string&);
