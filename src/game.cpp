@@ -265,6 +265,14 @@ Game::~Game() {
      delete courseList[2];
      delete courseList[3];
      delete[] courseList;
+
+    for (Minigame* x: minigameList) {
+        delete x;
+    }
+
+    /*for (unsigned i = 0; i < minigameList.size(); ++i) {
+        delete minigameList.at(i);
+    }*/
 }
 
 void Game::load(string fileName) {
@@ -448,27 +456,27 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
     delete minigameList.at(randomIndex);
     
     if (randomIndex == 0) {
-        new MinesweeperMinigame();
+        minigameList.at(randomIndex) =  new MinesweeperMinigame();
     }
 
     else if (randomIndex == 1) {
-        new RockPaperScissorsMinigame();
+        minigameList.at(randomIndex) = new RockPaperScissorsMinigame();
     }
 
     else if (randomIndex == 2) {
-        new TicTacToeMinigame();
+        minigameList.at(randomIndex) = new TicTacToeMinigame();
     } 
 
     else if (randomIndex == 3) {
-        new TypingMinigame();
+        minigameList.at(randomIndex) = new TypingMinigame();
     }
 
     else if (randomIndex == 4) {
-        new UnscrambleMinigame();
+        minigameList.at(randomIndex) = new UnscrambleMinigame();
     }
 
     else if (randomIndex == 5) {
-        new WordleMinigame();
+        minigameList.at(randomIndex) = new WordleMinigame();
     }
 }
 

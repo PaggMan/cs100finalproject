@@ -73,7 +73,7 @@ if(userinput == '1') {
      }
      system("clear");
      
-     game->giveInstructions();
+     //game->giveInstructions();
      game->start();
 
      try {
@@ -81,12 +81,16 @@ if(userinput == '1') {
      }
 
      catch(std::runtime_error& e) {
+        delete game;
         return 1;
      }
 
 
 
      game->displayInternships();
+
+     delete game;
+
 } else if(userinput == '2') {
     system("clear");
     cout << "Looking for saved games..." << endl;
@@ -97,7 +101,7 @@ if(userinput == '1') {
           gm.handleGameLoad();
     } catch(std::runtime_error& e) {
       cout << e.what() << endl;
-      return 1;
+      return 0;
     }
 
     cout << "Found " << gm.getNumGames() << " saved games." << endl;
@@ -116,7 +120,7 @@ if(userinput == '1') {
     // system("clear");
     // cout << "Welcome back, " << game->getCharacter()->getName() << endl;
 
-
+    delete game;
   
 
 } else {
@@ -206,4 +210,5 @@ if(userinput == '1') {
   // // Create the screen and render the container.
   // auto screen = ScreenInteractive::Fullscreen();
   // screen.Loop(titleScreen);
+  return 0;
 }
