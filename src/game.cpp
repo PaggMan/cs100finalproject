@@ -259,7 +259,8 @@ Game::~Game() {
 
 void Game::load(string fileName) {
 
-    std::ifstream file("gamedata/game.json");
+    // std::ifstream file("gamedata/game.json");
+    std::ifstream file(fileName);
     Json::Value gameData;
     file >> gameData;
     file.close();
@@ -276,9 +277,17 @@ void Game::load(string fileName) {
     character->setHappiness(happiness);
     character->setHealth(health);
 
+    cout << "Loading your game..." << endl;
+    sleep(1.5);
+    system("clear");
+    cout << "Welcome back to UCR, " << character->getName() << endl;
+    gameLoop();
+    return;
 }
 
-void Game::save() {
+void Game::save(string fileName) {
+    if(fileName == "") fileName = "gamedata/game";
+    else fileName == "gamedata/" + fileName;
     // Write character data
     Json::Value characterToWrite;
     characterToWrite["name"] = character->getName();

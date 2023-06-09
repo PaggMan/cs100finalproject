@@ -16,6 +16,12 @@ add_executable(rungame
     src/characterValidator.cpp 
 )
 
+# add test source files
+add_executable(runtests
+  # tests/testCharacterValidator
+  tests/testGame
+)
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/courseCatalog.txt
     ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
   
@@ -42,12 +48,18 @@ endif()
  
 # ------------------------------------------------------------------------------
 
-target_include_directories(rungame PRIVATE src)
+target_include_directories(rungame 
+  PRIVATE src
+  PRIVATE include
+)
 
+
+#  link against ftxui, and fs library (for reading files)
 target_link_libraries(rungame
   PRIVATE ftxui::screen
   PRIVATE ftxui::dom
   PRIVATE ftxui::component 
+  PRIVATE stdc++fs
 )
 
 
@@ -74,7 +86,7 @@ add_subdirectory(${GTEST_DIR})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Link Google Test libraries
-target_link_libraries(rungame 
+target_link_libraries(runtests 
     PRIVATE gtest 
     PRIVATE gtest_main
     )
