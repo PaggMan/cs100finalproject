@@ -12,9 +12,6 @@ UnscrambleMinigame::UnscrambleMinigame(){
 }
 
 void UnscrambleMinigame::initialize(){
-    string output;
-    Print outputObject;
-
     output = "Welcome to Unscramble! Your goal is the unscramble the given CS100 word!\n";
     output += "Unscramble this word: " + scrambledWords[word] + "\n\n";
     output += "  *Be careful, the word is case sensitive!\n\n\n";
@@ -35,8 +32,6 @@ void UnscrambleMinigame::initialize(){
 }
 
 void UnscrambleMinigame::terminate(){
-    string output;
-    Print outputObject;
     if(userWon){
         output = "You Win!\n";
         outputObject.printOutput(output);

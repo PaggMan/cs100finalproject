@@ -6,8 +6,6 @@ RockPaperScissorsMinigame::RockPaperScissorsMinigame(){
 }
 
 void RockPaperScissorsMinigame::initialize(){
-    string output;
-    Print outputObject;
     string userChoice;
     int computerChoice;
     
@@ -80,8 +78,6 @@ void RockPaperScissorsMinigame::initialize(){
 }
 
 void RockPaperScissorsMinigame::terminate(){
-    string output;
-    Print outputObject;
     if(userScore == 3) {
         output = "\nCongratulations, you won the game!\n";
         outputObject.printOutput(output);

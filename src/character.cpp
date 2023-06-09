@@ -66,8 +66,7 @@ Character::~Character() {
 
     //stat modifiers (algorithm for increase subject to change, maybe increases and decreases)
     void Character::workout(){
-        string output;
-        Print outputObject;
+        
         int increase = rand() % 10 + 1;
         if(health == 100){
             output = "You ego-lift without a spotter, and it falls on your face. -15 health\n";
@@ -112,8 +111,7 @@ Character::~Character() {
     }
 
     void Character::studyHarder(){
-        string output;
-        Print outputObject;
+        
         if(grades == 100){
             output = "You get burnt out, fall asleep at your desk, and miss your midterm. -10 grades\n";
             outputObject.printOutput(output);
@@ -161,8 +159,7 @@ Character::~Character() {
     }
 
     void Character::hangWithFriends(){
-        string output;
-        Print outputObject;
+        
         if(happiness == 100){
                 output = "You get into an argument with your friends on the way back home. -15 happiness\n";
                 outputObject.printOutput(output);

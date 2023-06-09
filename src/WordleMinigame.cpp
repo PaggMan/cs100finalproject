@@ -5,8 +5,6 @@ WordleMinigame::WordleMinigame(){
 }
 
 void WordleMinigame::printAttempt(const char arr[5][2]) {
-    string output;
-    Print outputObject;
     for(int i = 0; i < 5; ++i) {
         if(arr[i][1] == 'O') {
             output = arr[i][0];
@@ -25,11 +23,8 @@ void WordleMinigame::printAttempt(const char arr[5][2]) {
 }
 
 void WordleMinigame::initialize(){
-    string word, output;
-    Print outputObject;
-
     srand(time(0));
-    word = arr[rand() % 20];
+    string word = arr[rand() % 20];
 
     output = "\nHello, welcome to Wordle!\nThe goal of the game is to guess the 5 letter word using 5 letter word guesses. You have 6 attempts!\nLet's get started!\n\n";
     outputObject.printOutput(output);

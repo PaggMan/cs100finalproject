@@ -5,9 +5,6 @@ TicTacToeMinigame::TicTacToeMinigame(){
 }
 
 void TicTacToeMinigame::initialize(){
-    string output;
-    Print outputObject;
-
     int userChoice = -1;
     int computerChoice = 0;
     int count = 0;

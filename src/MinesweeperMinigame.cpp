@@ -112,8 +112,6 @@ void MinesweeperMinigame::revealChoice(int row, int column) {
 }
 
 void MinesweeperMinigame::printGrid(bool endGame) {
-    string output;
-    Print outputObject;
     output = "    0 1 2 3 4 5 6 7 8 9\n  -----------------------\n";
     outputObject.printOutput(output);
     for(int i = 0; i < 8; ++i) {
@@ -142,9 +140,6 @@ void MinesweeperMinigame::printGrid(bool endGame) {
 }
 
 void MinesweeperMinigame::initialize(){
-    string output;
-    Print outputObject;
-
     int row = -1;
     int column = -1;
     
@@ -222,8 +217,6 @@ void MinesweeperMinigame::initialize(){
 }
 
 void MinesweeperMinigame::terminate(){
-    string output;
-    Print outputObject;
     if(uncoveredSquares == 70) {
         output = "Congratulations, you won!\n\n";
         outputObject.printOutput(output);

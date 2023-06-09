@@ -13,6 +13,9 @@ class Character {
         int grades;
         int happiness;
         int health;
+
+        string output;
+        Print outputObject;
     
     public:
         Character();

@@ -18,7 +18,8 @@ class Game {
         Minigame* minigame3;
         Minigame* minigame4;
         Minigame* minigame5;
-    
+        Print outputObject;
+        string output;
     public: //Public member functions
         Game();
         void load(string fileName);
@@ -34,7 +35,6 @@ class Game {
         string getName();
         int getCurrentDay();
         void setName(const string& name);
-        void printCharacters(const std::string& text, int delay);
         
         template<class T>
         T getRandomFromVector(const std::vector<T>& internships);
@@ -50,7 +50,6 @@ class Game {
     void clearAndLoad();
     void playMinigame();
     void printLobby();
-    void handleColor(int );
     
     string calculateScore(); // Used to calculate internship opportunities
         

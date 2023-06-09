@@ -39,8 +39,7 @@ Game::Game() {
 
 
 void Game::printCourseList() {  //Takes contents of courseCatalog.txt and outputs in formatted way.
-    std::string output;
-    Print outputObject;
+    
     std::ifstream inFS;
     inFS.open("courseCatalog.txt");
     if (!inFS.is_open()) {
@@ -51,11 +50,13 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
     std::string courseName = "";
     double courseDifficulty = 0.0;
     while (inFS >> courseName) {
-        std::cout << courseName;
+        output = courseName;
+        outputObject.printStaggeredOutput(output, 25);
         numSpaces = 8 - courseName.size();
 
         for (unsigned i = 0; i < numSpaces; ++i) {
-            std::cout << ' ';
+            output = ' ';
+            outputObject.printStaggeredOutput(output, 25);
         }
         inFS >> courseDifficulty;
         if(courseDifficulty ) {
@@ -64,9 +65,10 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
         else {
             
         }
-        handleColor(static_cast<int>(courseDifficulty));
-        std::cout << '\t' << courseDifficulty << '\n';
-        handleColor(-1);
+        outputObject.handleColor(static_cast<int>(courseDifficulty));
+        output = '\t' + courseDifficulty + '\n';
+        outputObject.printStaggeredOutput(output, 25);
+        outputObject.handleColor(-1);
     }
 
     inFS.close();
@@ -74,8 +76,6 @@ void Game::printCourseList() {  //Takes contents of courseCatalog.txt and output
 
 
 void Game::chooseCourses() {   //Prompts the user to choose 4 courses
-    std::string output;
-    Print outputObject;
     output = "\n";
     outputObject.printOutput(output);
 
@@ -254,8 +254,6 @@ void Game::addCourse(const std::string& courseName, unsigned& courseListSize) { 
 
 
 void Game::customizeCharacter() {  //Prompts the user to enter a name for their character.
-    std::string output;
-    Print outputObject;
 
     output = "\tTo run " + name + ", you will need a character. What would you like to name this character?\n\n";
     outputObject.printOutput(output);
@@ -307,8 +305,6 @@ Game::~Game() {
 }
 
 void Game::load(string fileName) {
-    std::string output;
-    Print outputObject;
 
     // std::ifstream file("gamedata/game.json");
     std::ifstream file(fileName);
@@ -347,8 +343,6 @@ void Game::load(string fileName) {
 }
 
 void Game::save(string fileName) {
-    std::string output;
-    Print outputObject;
 
     string fileNameToSave;
     if(fileName == "") fileNameToSave = "gamedata/game";
@@ -393,8 +387,6 @@ void Game::save(string fileName) {
 
 
 void Game::start() {
-    std::string output;
-    Print outputObject;
 
 //Welcome message to starting a new game
     output = "Hello there! Welcome to CS Student Simulator! The simulation we will be running today is \"" + name + "\".\n\n";
@@ -421,6 +413,7 @@ void Game::start() {
 }
 
 void Game::gameLoop() {
+
     srand(time(NULL));
     //While loop that iterates until currentDay reaches 30
 
@@ -433,9 +426,9 @@ void Game::gameLoop() {
     }
     // build suspense here
     system("clear");
-    printCharacters("You just finished your last day at UCR!\n\n\n", 25);
+    outputObject.printStaggeredOutput("You just finished your last day at UCR!\n\n\n", 25);
     sleep(1.5);
-    printCharacters("Now it's time to see what internship offers you got!\n\n", 25);
+    outputObject.printStaggeredOutput("Now it's time to see what internship offers you got!\n\n", 25);
     sleep(1.5);
     displayInternships();
     this->save(this->name);
@@ -443,8 +436,6 @@ void Game::gameLoop() {
 
 
 void Game::runDay() {  //Allows user to make choices on a given day and calls minigame classes
-    std::string output;
-    Print outputObject;
 
     output = "DAY " + to_string(currentDay) + "\n\n";
     outputObject.printOutput(output);
@@ -546,8 +537,7 @@ void Game::playMinigame() {     //Randomly chooses a minigame to play
 }
 
 void Game::giveInstructions() {
-    std::string output;
-    Print outputObject;
+
     // run all the days of the game here.
     string text1 = "Welcome to UCR! You just finished your 2nd quarter as a fourth year computer science major and things are starting to heat up...\n\n";
     string text2 = "Keeping your work-life balance has always been quite the task... \nThere's just so many things to do in a day...\n";
@@ -558,6 +548,8 @@ void Game::giveInstructions() {
     string text7 = "If you opt not to go to class, you will have an option to do a daytime activity. These all can affect in various ways your health, happiness, and grades.\n\nYou'll still have the nightime activity too!";
     string text8 = "At the end of the day, you'll be sent to your room where you can view your stats, and plan accordingly the next day in order to be at your best state.\n";
     string text9 = "At the end of the 15 days, your status as a student will be used to determine your job opportunity. The better your stats, the better your wage and opportunity!";
+    string text10 = "In calculating your standardized score as a student, different categories will be weighted differently, so make sure you don't slack off on your grades.";
+    string text11 = "Not studying/going to class will lower your grades category so make sure you keep an eye out on that.";
 
     outputObject.printStaggeredOutput(text1, 25); // in milliseconds
     outputObject.printStaggeredOutput("\n\n\n", 150);
@@ -573,9 +565,11 @@ void Game::giveInstructions() {
     outputObject.printStaggeredOutput("\n\n\n", 150);
     outputObject.printStaggeredOutput(text9, 25);
     outputObject.printStaggeredOutput("\n\n\n", 150);
-    outputObject.printNewline();
-    outputObject.printNewline();
-    outputObject.printNewline();
+    outputObject.printStaggeredOutput(text10, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printStaggeredOutput(text11, 25);
+    outputObject.printStaggeredOutput("\n\n\n", 150);
+    outputObject.printOutput("\n\n\n");
 
 
     //Give introduction message about what it being your last quarter and how this quarter determines your job prospects.
@@ -598,8 +592,7 @@ void Game::giveInstructions() {
 }
 
 std::vector<Internship> Game::parseInternships(string tier) {
-    std::string output;
-    Print outputObject;
+
     std::vector<Internship> internships;
 
     std::ifstream ifs;
@@ -636,7 +629,6 @@ std::vector<Internship> Game::parseInternships(string tier) {
         newInternship.startingWage = internship["starting_wage"].asString();
         newInternship.welcomeMessage = internship["welcome_message"].asString();
         internships.push_back(newInternship);
-        // cout << newInternship.title << endl;
     }
 
     ifs.close();
@@ -644,8 +636,7 @@ std::vector<Internship> Game::parseInternships(string tier) {
 }
 
 void Game::displayInternships() {
-    std::string output;
-    Print outputObject;
+
     system("clear");
     output = "Loading your internship opportunity...\n";
     outputObject.printOutput(output);
@@ -660,10 +651,11 @@ void Game::displayInternships() {
     // Internship theInternship = possibleInternships.at(randIndex); broken
     Internship theInternship = getRandomFromVector(possibleInternships);
  
-    cout << "Congratulations! With your cumulative game score of " << this->character->getCumulativeScore() << ", ";
-    cout << "You've been offered an internship at " << theInternship.company << "!\n\n";
-    cout << "Here's a message from the hiring team: "<< endl << endl << theInternship.welcomeMessage << "\n\n\n";
-    cout << "Your starting wage is " << theInternship.startingWage << "\n\n\n";
+    output = "Congratulations! With your cumulative game score of " + to_string(this->character->getCumulativeScore()) + ", ";
+    output += "You've been offered an internship at " + theInternship.company + "!\n\n";
+    output += "Here's a message from the hiring team: \n\n" + theInternship.welcomeMessage + "\n\n\n";
+    output += "Your starting wage is " + theInternship.startingWage + "\n\n\n";
+    outputObject.printStaggeredOutput(output, 25);
     string x;
     cin >> x;
     cin.clear();
@@ -705,93 +697,80 @@ void Game::clearAndLoad() {
     system("clear");
 }
 
-void Game::printCharacters(const std::string& text, int delay) { // delay is in milliseconds
-    for (char c : text) {
-        std::cout << c << std::flush; // Print the character
-        usleep(delay * 1000); // Delay in microseconds
-    }
-}
-
-void Game::handleColor(int num) {
-    if(num == -1) {
-        cout << "\033[0m\n"; // reset to white
-        return;
-    }
-    
-    if(num >= 5) {
-        cout << "\033[1;32m"; //set to green
-        return;
-    } if(num >=3) {
-        cout << "\033[1;33m"; // yellow
-        return;
-    }
-    else {
-        cout << "\033[1;31m"; // red
-    }
-    
-}
-
 void Game::printLobby() {
-    std::string output;
-    Print outputObject;
-    cout << character->getName() << "\'s Room" << endl;
-    cout << endl << endl;
+
+    output = character->getName() + "\'s Room\n\n\n";
+    outputObject.printOutput(output);
     int healthPercent = character->getHealth() / 10; //health out of 10 (truncated)
-    cout << "Health:    [ ";
-    handleColor(healthPercent); // set to green or yellow based on score
+    output = "Health:    [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(healthPercent); // set to green or yellow based on score
     for(int i = 0; i < healthPercent; ++i){
-        cout << "█ "; 
+        output = "█ "; 
+        outputObject.printOutput(output);
     }
     for(int i = healthPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
     
-    cout << "] " << character->getHealth() << "%" << endl;
-    handleColor(-1); // reset to white
-    cout << endl;
+    output = "] " + to_string(character->getHealth()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1); // reset to white
+    outputObject.printNewline();
 
     int gradesPercent = character->getGrades() / 10;
-    cout << "Grades:    [ ";
-    handleColor(gradesPercent);
+    output = "Grades:    [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(gradesPercent);
     for(int i = 0; i < gradesPercent; ++i){
-        cout << "█ "; 
+        output = "█ ";
+        outputObject.printOutput(output);
     }
     for(int i = gradesPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
 
-    cout << "] " << character->getGrades() << "%" << endl;
-    handleColor(-1);
-    cout << endl;
+    output = "] " + to_string(character->getGrades()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1);
+    outputObject.printNewline();
 
     int happinessPercent = character->getHappiness() / 10;
-    cout << "Happiness: [ ";
-    handleColor(happinessPercent);
+    output = "Happiness: [ ";
+    outputObject.printOutput(output);
+    outputObject.handleColor(happinessPercent);
     for(int i = 0; i < happinessPercent; ++i){
-        cout << "█ "; 
+        output = "█ "; 
+        outputObject.printOutput(output);
     }
     for(int i = happinessPercent; i < 10; ++i){
-        cout << "- ";
+        output = "- ";
+        outputObject.printOutput(output);
     }
 
-    cout << "] " << character->getHappiness() << "%" << endl;
-    handleColor(-1);
-    cout << endl << endl;
+    output = "] " + to_string(character->getHappiness()) + "%\n";
+    outputObject.printOutput(output);
+    outputObject.handleColor(-1);
+    output = "\n\n";
 
-    cout << "Options: " << endl;
-    cout << "\t1. Workout" << endl;
-    cout << "\t2. Study" << endl; 
-    cout << "\t3. Hang with Friends" << endl;
-    cout << "\t4. Save and quit game" << endl;
-    cout << "Type an option: ";
+    output += "Options: \n";
+    output += "\t1. Workout\n";
+    output += "\t2. Study\n"; 
+    output += "\t3. Hang with Friends\n";
+    output += "\t4. Save and quit game\n";
+    output += "Type an option: \n";
+    outputObject.printOutput(output);
     char option = 0;
     cin >> option;
 
     while(cin.fail() or option != '1' and option != '2' and option != '3' and option != '4'){
         cin.clear();
         cin.ignore(2147483647, '\n');
-        cout << "Invalid option, please try again" << endl;
-        cout << "Type an option: ";
+        output = "Invalid option, please try again\n";
+        output += "Type an option: ";
+        outputObject.printOutput(output);
         cin >> option;
     }
     if(option == '1'){
