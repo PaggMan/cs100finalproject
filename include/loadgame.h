@@ -26,6 +26,7 @@ class GameManager {
                 savedGames.push_back(entry.path().string());
                 savedGameTitles.push_back(entry.path().stem().string());
                 // std::cout << "  " << fileCtr << ". "<< entry.path().stem().string() << std::endl;
+                // I ended up just getting data here. printing and getting user input is in a different function
                 // fileCtr++;
             }
         }
