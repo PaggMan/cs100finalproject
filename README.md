@@ -101,3 +101,6 @@ Lobby
 
 ### Testing
 We tested out project using GitHub actions (CI). Our continuous integration constantly checks to see if unit tests are passing, and if the program is working correctly. 
+
+<img src = "https://cdn.discordapp.com/attachments/1096301999986835466/1116714924434010172/image.png" width = "600">
+
