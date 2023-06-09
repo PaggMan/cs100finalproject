@@ -5,18 +5,18 @@ TicTacToeMinigame::TicTacToeMinigame(){
 }
 
 void TicTacToeMinigame::initialize(){
-    int userChoice = 0;
+    int userChoice = -1;
     int computerChoice = 0;
     int count = 0;
 
     cout << "\nHello, welcome to Tic Tac Toe!\nThe rules are like any normal Tic Tac Toe game.\n\n";
 
-    cout << "Here are the index numbers for each location in the game:" << endl;
-    cout << "1 | 2 | 3" << endl;
-    cout << "---------" << endl;
-    cout << "4 | 5 | 6" << endl;
-    cout << "---------" << endl;
-    cout << "7 | 8 | 9" << endl;
+    cout << "Here are the index numbers for each location in the game:\n";
+    cout << "1 | 2 | 3\n";
+    cout << "---------\n";
+    cout << "4 | 5 | 6\n";
+    cout << "---------\n";
+    cout << "7 | 8 | 9\n";
     
     cout << "\nLet's get started!\n\n";
 
@@ -25,7 +25,7 @@ void TicTacToeMinigame::initialize(){
             cout << "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9): ";
             cin >> userChoice;
             userChoice--;
-            while(arr[userChoice] != ' ') {
+            while(userChoice < 0 or userChoice > 9 or arr[userChoice] != ' ') {
                 if(cin.fail()) {
                     cin.clear();
                     cin.ignore(2147483647, '\n');
@@ -104,19 +104,19 @@ void TicTacToeMinigame::initialize(){
             cout << "\nMy turn! Here is my move.\n";
         }
 
-        cout << arr[0] << " | " << arr[1] << " | " << arr[2] << endl;
-        cout << "---------" << endl;
-        cout << arr[3] << " | " << arr[4] << " | " << arr[5] << endl;
-        cout << "---------" << endl;
-        cout << arr[6] << " | " << arr[7] << " | " << arr[8] << endl << endl;
+        cout << string(1, arr[0]) + " | " + arr[1] + " | " + arr[2] + "\n";
+        cout << "---------\n";
+        cout << string(1, arr[3]) + " | " + arr[4] + " | " + arr[5] + "\n";
+        cout << "---------\n";
+        cout << string(1, arr[6]) + " | " + arr[7] + " | " + arr[8] + "\n\n";
         
         if(((arr[0] == arr[1]) && (arr[1] == arr[2]) && (arr[2] == 'O')) or ((arr[3] == arr[4]) && (arr[4] == arr[5]) && (arr[5] == 'O')) or ((arr[6] == arr[7]) && (arr[7] == arr[8]) && (arr[8] == 'O')) or ((arr[0] == arr[3]) && (arr[3] == arr[6]) && (arr[6] == 'O')) or ((arr[1] == arr[4]) && (arr[4] == arr[7]) && (arr[7] == 'O')) or ((arr[2] == arr[5]) && (arr[5] == arr[8]) && (arr[8] == 'O')) or ((arr[0] == arr[4]) && (arr[4] == arr[8]) && (arr[8] == 'O')) or ((arr[2] == arr[4]) && (arr[4] == arr[6]) && (arr[6] == 'O'))) {
             cout << "Congratulations, you won!\n";
-            break;
+            winner = 1;
         }
         else if(((arr[0] == arr[1]) && (arr[1] == arr[2]) && (arr[2] == 'X')) or ((arr[3] == arr[4]) && (arr[4] == arr[5]) && (arr[5] == 'X')) or ((arr[6] == arr[7]) && (arr[7] == arr[8]) && (arr[8] == 'X')) or ((arr[0] == arr[3]) && (arr[3] == arr[6]) && (arr[6] == 'X')) or ((arr[1] == arr[4]) && (arr[4] == arr[7]) && (arr[7] == 'X')) or ((arr[2] == arr[5]) && (arr[5] == arr[8]) && (arr[8] == 'X')) or ((arr[0] == arr[4]) && (arr[4] == arr[8]) && (arr[8] == 'X')) or ((arr[2] == arr[4]) && (arr[4] == arr[6]) && (arr[6] == 'X'))) {
             cout << "Unlucky, you did not win.\n";
-            break;
+            winner = -1;
         }
         else if(count == 8) {
             cout << "We tied!\n";
@@ -128,12 +128,10 @@ void TicTacToeMinigame::initialize(){
 }
 
 void TicTacToeMinigame::terminate(){
-    
-}
-
-int main() {
-    TicTacToeMinigame testGame;
-    testGame.initialize();
-
-    return 0;
+    if(winner == 1) {
+        userWon = true;
+    }
+    else {
+        userWon = false;
+    }
 }

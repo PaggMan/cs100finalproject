@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "minigame.h"
-
 using namespace std;
 
 class TypingMinigame : public Minigame{
@@ -11,7 +10,6 @@ class TypingMinigame : public Minigame{
         string targetWord;
         string possibleWords[5] = {"The fox jumps over the lazy dog", "CS100 is the best class", "CS Student simulator is Game of the Year", "I think the developers should get a raise", "How much wood would a woodchuck chuck if a woodchuck could chuck wood"};
         string userInput;
-        bool gameOver;
         void disableTerminalEcho();
         void enableTerminalEcho();
     

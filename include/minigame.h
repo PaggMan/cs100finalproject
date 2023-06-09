@@ -7,12 +7,13 @@
 using namespace std;
 
 class Minigame{
+    protected:
+        bool userWon;
     public:
         virtual void initialize() = 0;
         virtual void terminate() = 0;
-        bool gameOver;
         bool getResult(){
-            return gameOver;
+            return userWon;
         }
 };
 
