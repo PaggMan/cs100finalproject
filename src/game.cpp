@@ -664,8 +664,14 @@ void Game::handleColor(int num) {
     if(num >= 5) {
         cout << "\033[1;32m"; //set to green
         return;
+    } if(num >=3) {
+        cout << "\033[1;33m"; // yellow
+        return;
     }
-    cout << "\033[1;33m"; // yellow
+    else {
+        cout << "\033[1;41m"; // red
+    }
+    
 }
 
 void Game::printLobby() {
