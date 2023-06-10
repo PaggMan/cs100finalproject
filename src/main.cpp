@@ -74,7 +74,7 @@ if(userinput == '1') {
      }
      system("clear");
      
-     //game->giveInstructions();
+     game->giveInstructions(); // comment out to skip tutorial
      game->start();
 
      try {
