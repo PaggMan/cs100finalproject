@@ -34,7 +34,11 @@ You will need to download CMake n from their [**website**](https://cmake.org/dow
 
 ### Usage
 
-Set up your project environment with
+⚠️ **IMPORTANT** ⚠️
+
+- It's important that you create an empty directory under `/gamedata/` called `savedgames` or else game saving and loading will crash.
+
+Next, set up your project environment with
 ```sh
 cmake .
 ```
@@ -42,12 +46,14 @@ Install necessary dependencies and compile with
 ```sh
 make
 ```
+> NOTE: It will take some time to install FTXUI and link it.
+
 All binary files will be in the /bin directory.
 Now you should be good to run the executable with the following
 ```sh
 ./bin/rungame
 ```
-> NOTE: It will take some time to install FTXUI and link it.
+
 
 ## Project Description
 
