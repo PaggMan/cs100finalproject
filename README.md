@@ -87,7 +87,7 @@ Minigames and Stats: The game may include minigames or challenges that players c
 <img src="https://cdn.discordapp.com/attachments/964617182325637160/1116865547456479332/image.png"  width="600">
 
 ### SOLID Principle UML Diagram
-<img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
+<img src="https://files.catbox.moe/o9g4r9.png"  width="600">
 
  - Our UML follows the Single Responsibilty SOLID principle. It is most evident in the minigame section, as each minigame has its own class that inherits from a Minigame interface. 
  
