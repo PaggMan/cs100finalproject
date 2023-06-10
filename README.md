@@ -103,6 +103,8 @@ Minigames and Stats: The game may include minigames or challenges that players c
  
  - Open-closed principle: Our program has the ability to extend its course and internship list without having to modify the display functions that show the user courses and internships. This is due to storing courses and internships inside a file. The file's contents can be extended while the functions reading from that file are not changed.
 
+- Dependency Inversion Principle: The game class is the "higher level module" that does not directly interact and use the different minigame classes. Instead, it only uses the abstracted minigame interface that can be used to command any type of minigame.
+
 ### Main Menu
 <img src="https://cdn.discordapp.com/attachments/1096301999986835466/1116772027928416276/Screen_Shot_2023-06-09_at_9.50.08_AM.png" width="600">
 
