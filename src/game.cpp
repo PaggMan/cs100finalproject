@@ -96,7 +96,7 @@ void Game::chooseCourses() {   //Prompts the user to choose 4 courses
             //Now the only thing that must be done to verify the course is to ensure that there are no duplicate courses in courseList
             if (courseListValidator.isValidCourseList(courseList, courseListSize)) {
                 isValidCourse = true;
-                
+                // adfasfdjsalkf
             }
 
             else {
