@@ -74,7 +74,7 @@ if(userinput == '1') {
      }
      system("clear");
      
-     //game->giveInstructions();
+     game->giveInstructions();
      game->start();
 
      try {
