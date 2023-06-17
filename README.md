@@ -34,7 +34,11 @@ You will need to download CMake n from their [**website**](https://cmake.org/dow
 
 ### Usage
 
-Set up your project environment with
+⚠️ **IMPORTANT** ⚠️
+
+- It's important that you create an empty directory under `/gamedata/` called `savedgames` or else game saving and loading will crash.
+
+Next, set up your project environment with
 ```sh
 cmake .
 ```
@@ -42,12 +46,14 @@ Install necessary dependencies and compile with
 ```sh
 make
 ```
+> NOTE: It will take some time to install FTXUI and link it.
+
 All binary files will be in the /bin directory.
 Now you should be good to run the executable with the following
 ```sh
 ./bin/rungame
 ```
-> NOTE: It will take some time to install FTXUI and link it.
+
 
 ## Project Description
 
@@ -87,7 +93,7 @@ Minigames and Stats: The game may include minigames or challenges that players c
 <img src="https://cdn.discordapp.com/attachments/964617182325637160/1116865547456479332/image.png"  width="600">
 
 ### SOLID Principle UML Diagram
-<img src="https://files.catbox.moe/e4jjw4.jpg"  width="600">
+<img src="https://files.catbox.moe/o9g4r9.png"  width="600">
 
  - Our UML follows the Single Responsibilty SOLID principle. It is most evident in the minigame section, as each minigame has its own class that inherits from a Minigame interface. 
  
@@ -96,6 +102,8 @@ Minigames and Stats: The game may include minigames or challenges that players c
  - SRP is followed by giving output functions their own class called "print". This relieves the extra responsibility of outputting for the game class, allowing game to only have to focus on story progression.
  
  - Open-closed principle: Our program has the ability to extend its course and internship list without having to modify the display functions that show the user courses and internships. This is due to storing courses and internships inside a file. The file's contents can be extended while the functions reading from that file are not changed.
+
+- Dependency Inversion Principle: The game class is the "higher level module" that does not directly interact and use the different minigame classes. Instead, it only uses the abstracted minigame interface that can be used to command any type of minigame.
 
 ### Main Menu
 <img src="https://cdn.discordapp.com/attachments/1096301999986835466/1116772027928416276/Screen_Shot_2023-06-09_at_9.50.08_AM.png" width="600">
